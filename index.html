@@ -107,6 +107,8 @@
       <a href="#settings">Settings</a>
       <a href="#documents">Documents</a>
       <a href="#audit">Audit & Logs</a>
+      <h3>Runner (Field Agent)</h3>
+      <a href="#runner-flow">Runner App & Portal</a>
       <h3>Videos</h3>
       <a href="#videos">All Workflow Videos</a>
     </nav>
@@ -1045,6 +1047,58 @@
     
     </div>
   </section>
+    <section id="runner-flow" class="module-section">
+    <div class="module-header accent-teal">
+      <h2>🏃 Runner Flow — Field Pickup Agent</h2>
+    </div>
+    <div class="module-body">
+      <p>Pickup runners (field agents) have their own separate web portal and mobile app. They do <strong>not</strong> log into the main admin portal. Instead, they use the <strong>Runner App</strong> or receive an SMS deep-link to their pickup job.</p>
+      <div class="flow-diagram">
+        <strong>Runner Flow:</strong>
+        <div class="flow-steps" style="margin-top:10px;">
+          <span class="flow-step">Admin Assigns Pickup</span><span class="flow-arrow">→</span>
+          <span class="flow-step">Runner Gets SMS</span><span class="flow-arrow">→</span>
+          <span class="flow-step">Opens Runner App / Link</span><span class="flow-arrow">→</span>
+          <span class="flow-step">Confirms Pickup + Photos</span><span class="flow-arrow">→</span>
+          <span class="flow-step">Drops at Hub</span>
+        </div>
+      </div>
+      <h3>Step 1 — Runner App Login</h3>
+      <p>Runners log into the Runner App at <code>/runner-app</code> using their mobile number and password set during onboarding.</p>
+      <figure class="ss-fig">
+        <img src="screenshots/runner-app-login.png" alt="Runner App Login" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+        <figcaption>Runner App — Login form. Runner enters their mobile number and password.</figcaption>
+      </figure>
+      <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Open the Runner App URL</strong><p>Admin shares <code>/runner-app</code> with the runner. The Android APK handles this automatically on mobile.</p></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Sign in with mobile number or username</strong><p>Default password is <code>Runner@</code> + last 4 digits of mobile number (set during onboarding).</p></div></div>
+      <h3>Step 2 — Runner Inbox</h3>
+      <p>After login the runner sees all pickup assignments with customer name, device, scheduled slot, and an "Open Pickup Flow" button per job.</p>
+      <figure class="ss-fig">
+        <img src="screenshots/runner-app-inbox.png" alt="Runner App Inbox" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+        <figcaption>Runner App Inbox — all assigned pickups with customer and device details.</figcaption>
+      </figure>
+      <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Click "Open Pickup Flow"</strong><p>Opens the Runner Portal — shows customer address, IMEI confirmation, and photo upload.</p></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Upload device photos</strong><p>Capture required photos (front, back, sides, damage) and upload through the portal.</p></div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-body"><strong>Confirm pickup</strong><p>Click "Confirm Pickup". The request moves to "Picked Up" in the admin portal automatically.</p></div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-body"><strong>Drop device at hub</strong><p>Physically deliver to the hub. Hub operator scans it to complete the handoff.</p></div></div>
+      <h3>Step 3 — SMS Deep Link (One-Tap Alternative)</h3>
+      <p>When a pickup is assigned, the runner gets an SMS with a one-click link. Tapping it opens the runner portal directly — no login needed.</p>
+      <figure class="ss-fig">
+        <img src="screenshots/runner-access.png" alt="Runner Access Page" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+        <figcaption>Runner Access Page — SMS link landing. On mobile opens the Android app first; falls back to browser portal.</figcaption>
+      </figure>
+      <div class="info-box">📱 <strong>Android APK:</strong> If the runner has the GSH Android app installed, the SMS link opens it directly with the pickup pre-loaded. Otherwise it falls back to the browser portal.</div>
+      <h3>Runner Credentials</h3>
+      <table class="cred-table">
+        <thead><tr><th>Username</th><th>Password</th><th>Role</th><th>Access</th></tr></thead>
+        <tbody>
+          <tr><td><strong>pickup</strong></td><td>Admin@123</td><td>Pickup Agent</td><td>Runner App inbox, pickup assignments, photo upload, confirmation</td></tr>
+        </tbody>
+      </table>
+      <div class="warn-box">⚠️ Runners do <strong>not</strong> have access to the main admin portal — they only see their own assigned pickups.</div>
+    </div>
+    </section>
+
 <section id="videos" class="module-section">
     <div class="module-header accent-slate">
       <h2>🎬 Workflow Videos</h2>

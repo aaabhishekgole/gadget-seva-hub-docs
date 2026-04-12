@@ -107,7 +107,8 @@
       <a href="#settings">Settings</a>
       <a href="#documents">Documents</a>
       <a href="#audit">Audit & Logs</a>
-      <h3>Runner (Field Agent)</h3>
+      <h3>Pickup Agent</h3>
+      <a href="#pickup-agent">Pickup Agent Flow</a>
       <a href="#runner-flow">Runner App & Portal</a>
       <h3>Videos</h3>
       <a href="#videos">All Workflow Videos</a>
@@ -1047,6 +1048,70 @@
     
     </div>
   </section>
+    <section id="pickup-agent" class="module-section">
+    <div class="module-header accent-teal">
+      <h2>🚗 Pickup Agent — username: pickup</h2>
+    </div>
+    <div class="module-body">
+      <p>The <strong>pickup</strong> user is a Pickup Agent. They log into the main GSH portal and manage all doorstep pickup tasks — from viewing assignments to tracking completed pickups.</p>
+
+      <table class="cred-table">
+        <thead><tr><th>Username</th><th>Password</th><th>Role</th></tr></thead>
+        <tbody><tr><td><strong>pickup</strong></td><td>Admin@123</td><td>Pickup Agent</td></tr></tbody>
+      </table>
+
+      <div class="flow-diagram">
+        <strong>Pickup Agent Daily Flow:</strong>
+        <div class="flow-steps" style="margin-top:10px;">
+          <span class="flow-step">Login to Portal</span><span class="flow-arrow">→</span>
+          <span class="flow-step">Check Assign Pickup</span><span class="flow-arrow">→</span>
+          <span class="flow-step">Go to Customer</span><span class="flow-arrow">→</span>
+          <span class="flow-step">Confirm via Runner App</span><span class="flow-arrow">→</span>
+          <span class="flow-step">Drop at Hub</span>
+        </div>
+      </div>
+
+      <h3>Dashboard after Login</h3>
+      <p>After logging in as <strong>pickup / Admin@123</strong>, the agent sees a limited menu — only Pickup Management, Dashboard, and Service Requests are visible. Admin-only modules (Billing, Users, Settings) are hidden.</p>
+      <figure class="ss-fig">
+        <img src="screenshots/pickup-user-dashboard.png" alt="Pickup Agent Dashboard" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+        <figcaption>Pickup Agent dashboard — restricted menu showing only pickup-relevant sections.</figcaption>
+      </figure>
+
+      <h3>Assign Pickup</h3>
+      <p>Shows all requests ready for doorstep collection. The pickup agent can see which jobs need to be picked up today.</p>
+      <figure class="ss-fig">
+        <img src="screenshots/pickup-user-assign-pickup.png" alt="Assign Pickup" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+        <figcaption>Assign Pickup — all requests awaiting pickup assignment.</figcaption>
+      </figure>
+
+      <h3>Pending Pickup</h3>
+      <p>Jobs that have been assigned to a runner and are waiting to be collected from the customer.</p>
+      <figure class="ss-fig">
+        <img src="screenshots/pickup-user-pending-pickup.png" alt="Pending Pickup" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+        <figcaption>Pending Pickup queue — assigned but not yet collected.</figcaption>
+      </figure>
+
+      <h3>Picked Up Devices & History</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0;">
+        <figure class="ss-fig">
+          <img src="screenshots/pickup-user-picked-up.png" alt="Picked Up Devices" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+          <figcaption>Picked Up Devices — collected and in transit to hub.</figcaption>
+        </figure>
+        <figure class="ss-fig">
+          <img src="screenshots/pickup-user-failed.png" alt="Pickup Failed" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+          <figcaption>Pickup Failed Cases — attempts that were unsuccessful.</figcaption>
+        </figure>
+      </div>
+      <figure class="ss-fig">
+        <img src="screenshots/pickup-user-history.png" alt="Pickup History" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+        <figcaption>Pickup History — all completed pickup records.</figcaption>
+      </figure>
+
+      <div class="info-box">💡 <strong>Tip:</strong> After checking the portal, the pickup agent uses the <strong>Runner App</strong> (see next section) on their mobile to actually confirm the pickup with photos at the customer's doorstep.</div>
+    </div>
+    </section>
+
     <section id="runner-flow" class="module-section">
     <div class="module-header accent-teal">
       <h2>🏃 Runner Flow — Field Pickup Agent</h2>

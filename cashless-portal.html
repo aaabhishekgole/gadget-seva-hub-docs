@@ -145,7 +145,8 @@
     <span class="badge">v1.0 — April 2026</span>
     <span class="badge">No Login Required</span>
     <span class="badge">Customer &amp; Promoter</span>
-    <span class="badge">28 Regression Tests</span>
+    <span class="badge">v1.1 — Search &amp; Track Added</span>
+    <span class="badge">35 Regression Tests</span>
   </div>
 </div>
 
@@ -160,6 +161,7 @@
     <a href="#roles">Who Uses It?</a>
 
     <h3>Customer Flow</h3>
+    <a href="#search">Search &amp; Track Existing Claim</a>
     <a href="#step1">Step 1 — Register Claim</a>
     <a href="#step2">Step 2 — Upload Documents</a>
     <a href="#step3">Step 3 — Submit for Approval</a>
@@ -185,6 +187,7 @@
     <h3>Regression Testing</h3>
     <a href="#test-overview">Test Suite Overview</a>
     <a href="#test-registration">Registration Tests</a>
+    <a href="#test-search">Search &amp; Track Tests</a>
     <a href="#test-upload">Upload Tests</a>
     <a href="#test-prerepair">Pre-Repair Submit Tests</a>
     <a href="#test-postrepair">Post-Repair Tests</a>
@@ -245,6 +248,40 @@
       </div>
     </section>
 
+    <!-- Search & Track -->
+    <section id="search" class="module-section">
+      <div class="module-header accent-cyan">
+        <h2>🔍 Search &amp; Track an Existing Claim</h2>
+      </div>
+      <div class="module-body">
+        <p>Customers and promoters who have already registered a claim can <strong>find and resume it</strong> without needing the bookmark link — just enter the insurance claim number or mobile number.</p>
+
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Open the portal</strong><p>Go to <code>/cashless-portal</code>. The home card shows two tabs: <em>New Claim Registration</em> and <em>Track Existing Claim</em>.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Click "Track Existing Claim"</strong><p>The search form appears with two fields — Insurance Claim Number (from your insurer) OR Registered Mobile Number.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Enter one of the two values</strong><p>Enter the insurance claim number (exact, case-insensitive) OR the mobile number used at registration. You don't need both.</p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Click "Search Claim"</strong><p>The portal finds your claim and loads the full claim card with status and upload panel — exactly as if you had used the bookmark link.</p></div></div>
+
+        <div class="ss-grid">
+          <figure class="ss-fig">
+            <img src="images/cashless-portal-01-home.png" alt="Portal home — two tabs: New Claim Registration and Track Existing Claim" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+            <figcaption>Portal home — two tabs for registering or tracking a claim</figcaption>
+          </figure>
+          <figure class="ss-fig">
+            <img src="images/cashless-portal-02-track.png" alt="Track Existing Claim — search by insurance number or mobile" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+            <figcaption>Track tab — search by insurance claim number or mobile number</figcaption>
+          </figure>
+        </div>
+
+        <div class="info-box">💡 <strong>Multiple claims?</strong> If multiple claims are registered under the same mobile number, the most recent claim is returned. For precise lookup, always use the insurance claim number.</div>
+
+        <h3>Search API</h3>
+        <pre><span class="k">GET</span> /api/public/cashless/search?insuranceClaimNumber=INS-2025-00123
+<span class="c"># OR</span>
+<span class="k">GET</span> /api/public/cashless/search?phone=9876543210</pre>
+        <p>Returns the same <code>PublicClaimStatusResponse</code> as token-based lookup. Returns HTTP 404 if no matching portal claim is found.</p>
+      </div>
+    </section>
+
     <!-- Step 1 — Register -->
     <section id="step1" class="module-section">
       <div class="module-header accent-blue">
@@ -260,12 +297,12 @@
 
         <div class="ss-grid">
           <figure class="ss-fig">
-            <img src="screenshots/cashless-01-registration-form.png" alt="Cashless portal — registration form" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
-            <figcaption>Cashless portal — empty registration form</figcaption>
+            <img src="images/cashless-portal-01-home.png" alt="Cashless portal — registration form" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+            <figcaption>Cashless portal — New Claim Registration form</figcaption>
           </figure>
           <figure class="ss-fig">
-            <img src="screenshots/cashless-02-form-filled.png" alt="Cashless portal — form filled in" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
-            <figcaption>All fields filled — ready to register</figcaption>
+            <img src="images/cashless-portal-04-registered.png" alt="After registration — claim card with GSH-YYYYMMDD-XXXX number and upload panel" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+            <figcaption>After registration — GSH claim number assigned and Step 2 (Upload Docs) active</figcaption>
           </figure>
         </div>
 
@@ -503,33 +540,26 @@
         <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Find the portal claim</strong><p>Portal-registered claims show the insurance claim number in the table. Use the Filter by Status dropdown to see <strong>Approval Pending</strong> claims.</p></div></div>
         <div class="step" id="admin-approve"><div class="step-num">4</div><div class="step-body"><strong>Approve / Reject</strong><p>Open the claim detail, verify IMEI if required, enter approved amount and remarks, then click <strong>Approve</strong> or <strong>Reject</strong>.</p></div></div>
 
-        <div class="tab-row">
-          <span class="tab-chip">All Claims</span>
-          <span class="tab-chip amber">Approval Pending</span>
-          <span class="tab-chip green">Approved Claims</span>
-          <span class="tab-chip red">Rejected Claims</span>
-          <span class="tab-chip">Re-upload Pending</span>
-          <span class="tab-chip">Claim History</span>
-        </div>
+        <div class="info-box">💡 Portal-registered insurance claims appear in the <strong>Cashless → Approval Queue</strong> (not Claims Management), merged alongside service-request cashless cases. Each portal claim card shows an amber <strong>"Portal Claim"</strong> badge so admins can distinguish them at a glance.</div>
 
         <div class="ss-grid">
           <figure class="ss-fig">
-            <img src="screenshots/cashless-admin-01-all-claims.png" alt="Admin — All Claims tab" loading="lazy">
-            <figcaption>Admin — All Claims tab showing portal-registered claims</figcaption>
+            <img src="images/cashless-portal-06-admin-queue.png" alt="Admin Cashless Approval Queue — summary stats" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+            <figcaption>Cashless Approval Queue — Queue Size increases when portal claims are submitted</figcaption>
           </figure>
           <figure class="ss-fig">
-            <img src="screenshots/cashless-admin-02-approval-pending.png" alt="Admin — Approval Pending queue" loading="lazy">
-            <figcaption>Admin — Approval Pending queue with submitted claims</figcaption>
+            <img src="images/cashless-portal-07-admin-claim-card.png" alt="Admin — Portal Claim card with amber badge" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+            <figcaption>Portal Claim card — amber badge, document count, customer phone</figcaption>
           </figure>
         </div>
         <div class="ss-grid">
           <figure class="ss-fig">
-            <img src="screenshots/cashless-admin-03-approved.png" alt="Admin — Approved Claims" loading="lazy">
-            <figcaption>Admin — Approved Claims list</figcaption>
+            <img src="images/cashless-portal-08-admin-actions.png" alt="Admin — Approve Claim / Reject Claim buttons with notes field" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+            <figcaption>Admin — Approval notes field and Approve / Reject Claim buttons</figcaption>
           </figure>
           <figure class="ss-fig">
-            <img src="screenshots/cashless-admin-05-invoice-verification.png" alt="Admin — Invoice Verification" loading="lazy">
-            <figcaption>Admin — Invoice Verification screen for post-repair billing</figcaption>
+            <img src="images/cashless-portal-05-track-found.png" alt="Portal — Track result showing GSH-YYYYMMDD-XXXX claim" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+            <figcaption>Customer view after tracking claim — GSH-YYYYMMDD-XXXX number format</figcaption>
           </figure>
         </div>
       </div>
@@ -547,6 +577,7 @@
           <thead><tr><th>Method</th><th>Endpoint</th><th>Purpose</th></tr></thead>
           <tbody>
             <tr><td><code>POST</code></td><td><code>/api/public/cashless/register</code></td><td>Register new claim or lookup existing by insurance claim number</td></tr>
+            <tr><td><code>GET</code></td><td><code>/api/public/cashless/search?insuranceClaimNumber=&amp;phone=</code></td><td>Find existing claim by insurance number OR mobile phone (case-insensitive)</td></tr>
             <tr><td><code>GET</code></td><td><code>/api/public/cashless/{token}</code></td><td>Fetch current claim status, uploaded docs, missing docs</td></tr>
             <tr><td><code>POST</code></td><td><code>/api/public/cashless/{token}/documents</code></td><td>Upload a document (multipart/form-data: <code>documentType</code> + <code>file</code>)</td></tr>
             <tr><td><code>POST</code></td><td><code>/api/public/cashless/{token}/submit</code></td><td>Submit pre-repair docs for GSH approval</td></tr>
@@ -604,14 +635,15 @@ file         = &lt;binary image file&gt;</pre>
         <table class="cred-table">
           <thead><tr><th>Group</th><th>Tag</th><th>Tests</th><th>Focus</th></tr></thead>
           <tbody>
-            <tr><td>Registration</td><td><code>@Regression</code></td><td>5</td><td>New claim, duplicate lookup, optional fields, validation errors</td></tr>
+            <tr><td>Registration</td><td><code>@Regression</code></td><td>6</td><td>New claim, duplicate lookup, optional fields, validation, GSH-YYYYMMDD-XXXX claim number format</td></tr>
+            <tr><td>Search &amp; Track</td><td><code>@Regression</code></td><td>6</td><td>Find by insurance number, find by phone, 404 for no match, 400 for no params, case-insensitive, no SR-linked claims</td></tr>
             <tr><td>Status Lookup</td><td><code>@Regression</code></td><td>3</td><td>Fetch by token, 404 for unknown token, readable status message</td></tr>
-            <tr><td>Document Upload</td><td><code>@Regression</code></td><td>4</td><td>Single upload, all 9 docs + canSubmit, versioning, upload blocked in wrong status</td></tr>
-            <tr><td>Pre-Repair Submission</td><td><code>@Regression</code></td><td>4</td><td>Submit → APPROVAL_PENDING, blocked if docs missing, blocked if already pending</td></tr>
-            <tr><td>Post-Repair Submission</td><td><code>@Regression</code></td><td>5</td><td>Phase switch after approval, all 7 docs, submit → INVOICE_SUBMITTED, validation blocks</td></tr>
-            <tr><td>Full E2E Lifecycle</td><td><code>@Regression</code></td><td>2</td><td>Complete register → upload → approve → post-repair → INVOICE_SUBMITTED</td></tr>
-            <tr><td>UI Smoke Tests</td><td><code>@Regression</code></td><td>6</td><td>Page loads, form fields, pre-repair UI, post-repair UI, complete state, invalid token</td></tr>
-            <tr><td>Security</td><td><code>@Regression</code></td><td>4</td><td>No auth header needed, token isolation (A cannot see B)</td></tr>
+            <tr><td>Document Upload</td><td><code>@Regression</code></td><td>5</td><td>Single upload, all 9 docs + canSubmit, versioning, upload blocked in wrong status, optional SERIAL_NUMBER_PHOTO</td></tr>
+            <tr><td>Pre-Repair Submission</td><td><code>@Regression</code></td><td>5</td><td>Submit → APPROVAL_PENDING, blocked if docs missing, blocked if already pending, claim appears in admin queue</td></tr>
+            <tr><td>Post-Repair Submission</td><td><code>@Regression</code></td><td>6</td><td>Phase switch after approval, all 7 docs, submit → INVOICE_SUBMITTED, optional EXCESS_PAYMENT_PROOF, validation blocks</td></tr>
+            <tr><td>Full E2E Lifecycle</td><td><code>@Regression</code></td><td>2</td><td>11-step lifecycle: register → search → upload → approve → admin queue → post-repair → INVOICE_SUBMITTED</td></tr>
+            <tr><td>UI Smoke Tests</td><td><code>@Regression</code></td><td>8</td><td>Two-tab home, Track tab fields, serial number slot, excess payment slot, stepper highlights, complete state</td></tr>
+            <tr><td>Security</td><td><code>@Regression</code></td><td>5</td><td>No auth header needed, token isolation (A cannot see B), search endpoint no-auth</td></tr>
           </tbody>
         </table>
 
@@ -675,6 +707,77 @@ file         = &lt;binary image file&gt;</pre>
             <ul>
               <li>POST with <code>customerPhone: "1234567890"</code> (starts with 1 — invalid Indian number)</li>
               <li>Assert: HTTP status ≥ 400</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Search & Track Tests -->
+    <section id="test-search" class="module-section">
+      <div class="module-header accent-teal">
+        <h2>🧪 Search &amp; Track Tests</h2>
+      </div>
+      <div class="module-body">
+
+        <div class="test-block">
+          <div class="test-header"><span class="test-badge">TC-SRC-01</span><span class="test-title">Should find a portal claim by insurance claim number</span></div>
+          <div class="test-body">
+            <ul>
+              <li>Register claim → call <code>GET /search?insuranceClaimNumber=INS-XXXX</code></li>
+              <li>Assert: response <code>claimId</code> matches registered claim</li>
+              <li>Assert: <code>publicToken</code> is present in response</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="test-block">
+          <div class="test-header"><span class="test-badge">TC-SRC-02</span><span class="test-title">Should find a portal claim by mobile phone number</span></div>
+          <div class="test-body">
+            <ul>
+              <li>Register claim with phone → call <code>GET /search?phone=9876543210</code></li>
+              <li>Assert: response <code>claimId</code> matches registered claim</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="test-block">
+          <div class="test-header"><span class="test-badge">TC-SRC-03</span><span class="test-title">Should return 404 when no claim matches the search</span></div>
+          <div class="test-body">
+            <ul>
+              <li>Call <code>GET /search?insuranceClaimNumber=NONEXISTENT-999</code></li>
+              <li>Assert: HTTP status 404</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="test-block">
+          <div class="test-header"><span class="test-badge">TC-SRC-04</span><span class="test-title">Should return 400 when neither insurance number nor phone is provided</span></div>
+          <div class="test-body">
+            <ul>
+              <li>Call <code>GET /search</code> with no query params</li>
+              <li>Assert: HTTP status ≥ 400</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="test-block">
+          <div class="test-header"><span class="test-badge">TC-SRC-05</span><span class="test-title">Search should be case-insensitive for insurance claim number</span></div>
+          <div class="test-body">
+            <ul>
+              <li>Register with <code>INS-2025-ABC</code> → search with <code>ins-2025-abc</code></li>
+              <li>Assert: same claim returned (backend normalises to uppercase)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="test-block">
+          <div class="test-header"><span class="test-badge">TC-SRC-06</span><span class="test-title">Search should not return SR-linked claims (no publicToken)</span></div>
+          <div class="test-body">
+            <ul>
+              <li>Ensure a service-request-linked claim exists with same phone</li>
+              <li>Search by phone → assert only portal claims returned</li>
             </ul>
           </div>
         </div>
@@ -857,16 +960,20 @@ file         = &lt;binary image file&gt;</pre>
       <div class="module-body">
 
         <div class="test-block">
-          <div class="test-header"><span class="test-badge">TC-E2E-01</span><span class="test-title">Complete portal lifecycle: register → upload pre-repair → submit → approve → upload post-repair → INVOICE_SUBMITTED</span></div>
+          <div class="test-header"><span class="test-badge">TC-E2E-01</span><span class="test-title">Complete 11-step portal lifecycle: register → search → upload → approve → admin queue → post-repair → INVOICE_SUBMITTED</span></div>
           <div class="test-body">
             <ul>
               <li><strong>Step 1:</strong> Register claim → assert <code>CLAIM_SUBMITTED</code>, <code>PRE_REPAIR</code></li>
-              <li><strong>Step 2:</strong> Upload all 9 pre-repair docs → assert <code>canSubmit === true</code></li>
-              <li><strong>Step 3:</strong> Submit for approval → assert <code>APPROVAL_PENDING</code></li>
-              <li><strong>Step 4:</strong> Admin approves → assert <code>APPROVED</code></li>
-              <li><strong>Step 5:</strong> Fetch portal status → assert <code>portalPhase === "POST_REPAIR"</code></li>
-              <li><strong>Step 6:</strong> Upload all 7 post-repair docs → assert <code>canSubmit === true</code></li>
-              <li><strong>Step 7:</strong> Submit post-repair → assert <code>INVOICE_SUBMITTED</code>, <code>COMPLETE</code></li>
+              <li><strong>Step 2:</strong> Claim number matches <code>GSH-YYYYMMDD-XXXX</code> format</li>
+              <li><strong>Step 3:</strong> Search by insurance claim number → assert same <code>claimId</code> returned</li>
+              <li><strong>Step 4:</strong> Search by mobile phone → assert same <code>claimId</code> returned</li>
+              <li><strong>Step 5:</strong> Upload all 9 pre-repair docs → assert <code>canSubmit === true</code></li>
+              <li><strong>Step 6:</strong> Submit for approval → assert <code>APPROVAL_PENDING</code></li>
+              <li><strong>Step 7:</strong> Claim appears in admin Cashless Approval Queue API</li>
+              <li><strong>Step 8:</strong> Admin approves → assert <code>APPROVED</code></li>
+              <li><strong>Step 9:</strong> Fetch portal status → assert <code>portalPhase === "POST_REPAIR"</code></li>
+              <li><strong>Step 10:</strong> Upload all 7 post-repair docs (incl. optional EXCESS_PAYMENT_PROOF) → assert <code>canSubmit === true</code></li>
+              <li><strong>Step 11:</strong> Submit post-repair → assert <code>INVOICE_SUBMITTED</code>, <code>COMPLETE</code></li>
             </ul>
           </div>
         </div>
@@ -932,11 +1039,13 @@ file         = &lt;binary image file&gt;</pre>
           <thead><tr><th>ID</th><th>Test</th><th>Assert</th></tr></thead>
           <tbody>
             <tr><td>TC-UI-01</td><td>Portal loads without login redirect</td><td>No login heading visible; "Cashless Insurance Portal" text present</td></tr>
-            <tr><td>TC-UI-02</td><td>Registration form renders all required fields</td><td>Insurance number, full name, mobile number inputs visible</td></tr>
-            <tr><td>TC-UI-03</td><td>Pre-repair upload UI shown after registration</td><td>"Upload Required Documents" heading + document slot labels visible</td></tr>
-            <tr><td>TC-UI-04</td><td>POST_REPAIR UI shown after admin approval</td><td>APPROVED badge + "Post-Repair" heading + post-repair slots visible</td></tr>
-            <tr><td>TC-UI-05</td><td>COMPLETE state shown after post-repair submission</td><td>INVOICE_SUBMITTED badge visible</td></tr>
-            <tr><td>TC-UI-06</td><td>Invalid token shows error / registration fallback</td><td>"Could not load claim" or "Register Your Claim" visible</td></tr>
+            <tr><td>TC-UI-02</td><td>Two-tab home: New Claim Registration &amp; Track Existing Claim tabs visible</td><td>Both tab buttons visible on load</td></tr>
+            <tr><td>TC-UI-03</td><td>Track tab shows insurance number and phone search fields</td><td>Both input fields and "Search Claim" button visible after clicking Track tab</td></tr>
+            <tr><td>TC-UI-04</td><td>Pre-repair upload UI shown after registration</td><td>"Upload Required Documents" heading + document slot labels visible</td></tr>
+            <tr><td>TC-UI-05</td><td>Serial Number Photo optional slot visible in pre-repair upload panel</td><td>SERIAL_NUMBER_PHOTO slot with "Optional" label visible</td></tr>
+            <tr><td>TC-UI-06</td><td>POST_REPAIR UI shown after admin approval</td><td>APPROVED badge + "Post-Repair" heading + post-repair slots visible</td></tr>
+            <tr><td>TC-UI-07</td><td>Excess Payment Proof optional slot visible in post-repair upload panel</td><td>EXCESS_PAYMENT_PROOF slot with "Optional" label visible</td></tr>
+            <tr><td>TC-UI-08</td><td>COMPLETE state shown after post-repair submission</td><td>INVOICE_SUBMITTED badge visible; stepper on step 4</td></tr>
           </tbody>
         </table>
       </div>
@@ -955,7 +1064,8 @@ file         = &lt;binary image file&gt;</pre>
             <tr><td>TC-SEC-01</td><td>Register endpoint requires no Authorization header</td><td>HTTP 200 without any token</td></tr>
             <tr><td>TC-SEC-02</td><td>Status endpoint requires no Authorization header</td><td>HTTP 200 for valid public token</td></tr>
             <tr><td>TC-SEC-03</td><td>Upload endpoint requires no Authorization header</td><td>HTTP 200 for valid public token + file</td></tr>
-            <tr><td>TC-SEC-04</td><td>Token A cannot access Token B's data</td><td>Fetching with token A returns claim A, not claim B</td></tr>
+            <tr><td>TC-SEC-04</td><td>Search endpoint requires no Authorization header</td><td>HTTP 200 for matching insurance number, no auth header sent</td></tr>
+            <tr><td>TC-SEC-05</td><td>Token A cannot access Token B's data</td><td>Fetching with token A returns claim A, not claim B</td></tr>
           </tbody>
         </table>
 

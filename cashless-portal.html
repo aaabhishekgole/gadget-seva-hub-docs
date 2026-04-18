@@ -192,6 +192,10 @@
     <a href="#test-ui">UI Smoke Tests</a>
     <a href="#test-security">Security Tests</a>
     <a href="#run">How to Run Tests</a>
+
+    <h3>Videos</h3>
+    <a href="#video-portal">Customer Portal Flow</a>
+    <a href="#video-admin">Admin Claims Flow</a>
   </nav>
 
   <!-- ── Content ── -->
@@ -254,7 +258,16 @@
         <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Fill in your details</strong><p>Enter your full name and 10-digit mobile number (mandatory). Email, Promoter Name, Device Model, and IMEI are optional but help GSH process your claim faster.</p></div></div>
         <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Click "Register Claim →"</strong><p>The portal creates your claim and immediately moves to the document upload screen. Your browser URL now contains a unique token — <strong>bookmark this page.</strong></p></div></div>
 
-        <div class="no-ss">📷 Screenshot — Registration form</div>
+        <div class="ss-grid">
+          <figure class="ss-fig">
+            <img src="screenshots/cashless-01-registration-form.png" alt="Cashless portal — registration form" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+            <figcaption>Cashless portal — empty registration form</figcaption>
+          </figure>
+          <figure class="ss-fig">
+            <img src="screenshots/cashless-02-form-filled.png" alt="Cashless portal — form filled in" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+            <figcaption>All fields filled — ready to register</figcaption>
+          </figure>
+        </div>
 
         <h3>Registration Form Fields</h3>
         <table class="cred-table">
@@ -287,7 +300,7 @@
         <div class="step"><div class="step-num">3</div><div class="step-body"><strong>See the slot turn green</strong><p>Once uploaded, the slot shows a green checkmark and an "Uploaded" label. The progress bar advances.</p></div></div>
         <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Replace if needed</strong><p>Click "Replace" on any uploaded slot to upload a newer version. The old file is archived — only the latest version is shown.</p></div></div>
 
-        <div class="no-ss">📷 Screenshot — Document upload panel with progress bar</div>
+        <div class="info-box">💡 After registration, the upload panel appears automatically with all document slots and a progress bar showing 0/9 uploaded.</div>
 
         <h3 id="pre-repair-docs">Pre-Repair Documents Required (9 total)</h3>
         <div class="doc-grid">
@@ -331,7 +344,7 @@
 
         <div class="warn-box">⚠️ <strong>Note:</strong> After submission, the upload panel is hidden until GSH either approves or requests re-uploads. Document uploads are only allowed in <code>CLAIM_SUBMITTED</code> and <code>REUPLOAD_PENDING</code> status.</div>
 
-        <div class="no-ss">📷 Screenshot — All docs uploaded, Submit button active</div>
+        <div class="info-box">💡 Once all 9 documents are uploaded, the progress bar shows 9/9 and the green Submit button becomes active.</div>
       </div>
     </section>
 
@@ -381,7 +394,7 @@
         <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Upload all 7 post-repair documents</strong><p>Photograph the repaired device from 6 angles and upload the service center invoice.</p></div></div>
         <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Click "Submit Post-Repair Documents →"</strong><p>All 7 documents must be present. The submit button activates when the progress bar reaches 7/7.</p></div></div>
 
-        <div class="no-ss">📷 Screenshot — Post-repair upload panel</div>
+        <div class="info-box">💡 After GSH approves, the portal automatically switches to Step 3 — Post-Repair. The progress bar resets to 0/7 for the new document set.</div>
 
         <h3 id="post-repair-docs">Post-Repair Documents Required (7 total)</h3>
         <div class="doc-grid">
@@ -497,6 +510,27 @@
           <span class="tab-chip red">Rejected Claims</span>
           <span class="tab-chip">Re-upload Pending</span>
           <span class="tab-chip">Claim History</span>
+        </div>
+
+        <div class="ss-grid">
+          <figure class="ss-fig">
+            <img src="screenshots/cashless-admin-01-all-claims.png" alt="Admin — All Claims tab" loading="lazy">
+            <figcaption>Admin — All Claims tab showing portal-registered claims</figcaption>
+          </figure>
+          <figure class="ss-fig">
+            <img src="screenshots/cashless-admin-02-approval-pending.png" alt="Admin — Approval Pending queue" loading="lazy">
+            <figcaption>Admin — Approval Pending queue with submitted claims</figcaption>
+          </figure>
+        </div>
+        <div class="ss-grid">
+          <figure class="ss-fig">
+            <img src="screenshots/cashless-admin-03-approved.png" alt="Admin — Approved Claims" loading="lazy">
+            <figcaption>Admin — Approved Claims list</figcaption>
+          </figure>
+          <figure class="ss-fig">
+            <img src="screenshots/cashless-admin-05-invoice-verification.png" alt="Admin — Invoice Verification" loading="lazy">
+            <figcaption>Admin — Invoice Verification screen for post-repair billing</figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -968,6 +1002,34 @@ npx allure open Report/allure-report</pre></div></div>
             <tr><td><code>approvePublicClaimViaAdminApi(request, token, id)</code></td><td>Admin approves via authenticated API</td></tr>
           </tbody>
         </table>
+      </div>
+    </section>
+
+    <!-- Video: Customer Portal Flow -->
+    <section id="video-portal" class="module-section">
+      <div class="module-header accent-cyan">
+        <h2>🎥 Video — Customer Cashless Portal Flow</h2>
+      </div>
+      <div class="module-body">
+        <p>Full end-to-end walkthrough of the public cashless portal: opening the registration form, filling customer details, submitting the claim, uploading pre-repair documents, and tracking claim status.</p>
+        <video controls style="width:100%;border-radius:10px;margin-top:16px;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/cashless-portal-flow.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/cashless-portal-flow.webm">Download the video</a>.
+        </video>
+      </div>
+    </section>
+
+    <!-- Video: Admin Claims Flow -->
+    <section id="video-admin" class="module-section">
+      <div class="module-header accent-red">
+        <h2>🎥 Video — Admin Claims Management Flow</h2>
+      </div>
+      <div class="module-body">
+        <p>Admin-side walkthrough: logging in to the ops console, viewing portal-registered claims, filtering by Approval Pending status, approving claims, and navigating the Invoice Verification screen.</p>
+        <video controls style="width:100%;border-radius:10px;margin-top:16px;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/cashless-admin-flow.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/cashless-admin-flow.webm">Download the video</a>.
+        </video>
       </div>
     </section>
 

@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gadget Seva Hub — Cashless Insurance Portal Guide</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f1f5f9; color: #1e293b; line-height: 1.6; }
+    a { color: #2563eb; }
+    code { background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 4px; padding: 2px 6px; font-size: .85rem; font-family: 'Consolas', monospace; color: #0f172a; }
+    pre { background: #0f172a; color: #e2e8f0; border-radius: 10px; padding: 20px 24px; margin: 16px 0 24px; overflow-x: auto; font-size: .82rem; line-height: 1.7; font-family: 'Consolas', monospace; }
+    pre .c  { color: #64748b; }
+    pre .k  { color: #93c5fd; }
+    pre .s  { color: #86efac; }
+    pre .fn { color: #fde68a; }
+    pre .kw { color: #c4b5fd; }
+
+    /* Hero */
+    .hero { background: linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%); color: #f8fafc; padding: 56px 48px 48px; }
+    .hero h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 10px; }
+    .hero p  { font-size: 1.1rem; color: #94a3b8; max-width: 720px; }
+    .hero .badge-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:20px; }
+    .badge { background:#1e293b; border-radius:999px; padding:6px 16px; font-size:.85rem; font-weight:600; color:#93c5fd; }
+
+    /* Layout */
+    .layout { display: flex; min-height: 100vh; }
+    .sidebar { width: 260px; background: #0f172a; color: #f8fafc; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; flex-shrink: 0; }
+    .sidebar h3 { font-size: .7rem; letter-spacing: 1.5px; text-transform: uppercase; color: #475569; padding: 16px 20px 6px; margin-top: 12px; }
+    .sidebar a { display: block; padding: 8px 20px; color: #cbd5e1; text-decoration: none; font-size: .9rem; border-left: 3px solid transparent; transition: all .15s; }
+    .sidebar a:hover, .sidebar a.active { color: #f8fafc; background: #1e293b; border-left-color: #3b82f6; }
+    .content { flex: 1; padding: 0; overflow: hidden; }
+
+    /* Sections */
+    .module-section { background: #fff; margin: 24px 32px; border-radius: 16px; box-shadow: 0 1px 4px rgba(0,0,0,.08); overflow: hidden; }
+    .module-header { padding: 24px 32px; }
+    .module-header h2 { font-size: 1.5rem; font-weight: 700; color: #fff; }
+    .module-body { padding: 28px 32px; }
+
+    /* Accent colors */
+    .accent-blue   { background: #2563eb; }
+    .accent-cyan   { background: #0891b2; }
+    .accent-teal   { background: #0d9488; }
+    .accent-gold   { background: #d97706; }
+    .accent-orange { background: #ea580c; }
+    .accent-purple { background: #7c3aed; }
+    .accent-rose   { background: #e11d48; }
+    .accent-red    { background: #dc2626; }
+    .accent-green  { background: #16a34a; }
+    .accent-slate  { background: #475569; }
+    .accent-indigo { background: #4f46e5; }
+
+    /* Typography */
+    h3 { font-size: 1.1rem; font-weight: 700; color: #0f172a; margin: 24px 0 12px; }
+    h4 { font-size: .95rem; font-weight: 600; color: #334155; margin: 18px 0 8px; }
+    p  { color: #475569; margin-bottom: 12px; font-size: .95rem; }
+    ul, ol { padding-left: 20px; color: #475569; font-size: .95rem; margin-bottom: 14px; }
+    li { margin-bottom: 6px; }
+
+    /* Steps */
+    .step { display:flex; gap:14px; margin-bottom:16px; align-items:flex-start; }
+    .step-num { width:28px; height:28px; background:#2563eb; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.8rem; font-weight:800; flex-shrink:0; margin-top:2px; }
+    .step-body strong { display:block; font-size:.95rem; color:#0f172a; }
+    .step-body p { margin:4px 0 0; font-size:.88rem; }
+
+    /* Figures */
+    .ss-fig { margin: 16px 0 24px; }
+    figcaption { font-size: .8rem; color: #64748b; text-align: center; margin-top: 6px; }
+    .no-ss { background: #f8fafc; border: 2px dashed #cbd5e1; border-radius: 8px; padding: 32px; text-align: center; color: #94a3b8; margin: 16px 0; font-size:.9rem; }
+
+    /* Info / warn boxes */
+    .info-box { background:#eff6ff; border-left:4px solid #2563eb; border-radius:6px; padding:14px 18px; margin:16px 0; font-size:.9rem; color:#1e40af; }
+    .warn-box { background:#fffbeb; border-left:4px solid #d97706; border-radius:6px; padding:14px 18px; margin:16px 0; font-size:.9rem; color:#92400e; }
+    .success-box { background:#f0fdf4; border-left:4px solid #16a34a; border-radius:6px; padding:14px 18px; margin:16px 0; font-size:.9rem; color:#14532d; }
+
+    /* Tables */
+    .cred-table { width:100%; border-collapse:collapse; margin:16px 0; font-size:.9rem; }
+    .cred-table th { background:#0f172a; color:#f8fafc; padding:10px 14px; text-align:left; }
+    .cred-table td { padding:10px 14px; border-bottom:1px solid #e2e8f0; vertical-align:top; }
+    .cred-table tr:last-child td { border-bottom:none; }
+    .cred-table tr:nth-child(even) td { background:#f8fafc; }
+
+    /* Tabs / chips */
+    .tab-row { display:flex; gap:8px; flex-wrap:wrap; margin:12px 0; }
+    .tab-chip { background:#f1f5f9; border:1px solid #e2e8f0; border-radius:8px; padding:5px 14px; font-size:.82rem; font-weight:600; color:#334155; }
+    .tab-chip.green { background:#f0fdf4; border-color:#bbf7d0; color:#166534; }
+    .tab-chip.blue  { background:#eff6ff; border-color:#bfdbfe; color:#1d4ed8; }
+    .tab-chip.amber { background:#fffbeb; border-color:#fde68a; color:#92400e; }
+    .tab-chip.red   { background:#fef2f2; border-color:#fecaca; color:#991b1b; }
+
+    /* Flow diagram */
+    .flow-diagram { background:#f8fafc; border-radius:10px; padding:20px 24px; margin:16px 0; }
+    .flow-steps { display:flex; flex-wrap:wrap; gap:0; align-items:center; }
+    .flow-step { background:#fff; border:1px solid #e2e8f0; border-radius:8px; padding:8px 14px; font-size:.82rem; font-weight:600; color:#334155; }
+    .flow-arrow { color:#94a3b8; font-size:1.2rem; padding:0 6px; }
+
+    /* Doc slot grid */
+    .doc-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:16px 0; }
+    .doc-slot { display:flex; align-items:center; gap:10px; border:1px solid #e2e8f0; border-radius:10px; padding:10px 14px; background:#f8fafc; }
+    .doc-slot .doc-icon { font-size:1.3rem; }
+    .doc-slot .doc-label { font-size:.85rem; font-weight:600; color:#334155; }
+    .doc-slot .doc-sub { font-size:.75rem; color:#94a3b8; }
+
+    /* Status badge */
+    .status-pill { display:inline-block; border-radius:999px; padding:3px 12px; font-size:.78rem; font-weight:700; }
+    .pill-blue   { background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; }
+    .pill-amber  { background:#fffbeb; color:#92400e; border:1px solid #fde68a; }
+    .pill-green  { background:#f0fdf4; color:#166534; border:1px solid #bbf7d0; }
+    .pill-red    { background:#fef2f2; color:#991b1b; border:1px solid #fecaca; }
+    .pill-orange { background:#fff7ed; color:#9a3412; border:1px solid #fed7aa; }
+    .pill-purple { background:#faf5ff; color:#6b21a8; border:1px solid #e9d5ff; }
+    .pill-indigo { background:#eef2ff; color:#3730a3; border:1px solid #c7d2fe; }
+    .pill-gray   { background:#f8fafc; color:#475569; border:1px solid #e2e8f0; }
+
+    /* Test block */
+    .test-block { border:1px solid #e2e8f0; border-radius:10px; margin:12px 0; overflow:hidden; }
+    .test-header { background:#f8fafc; border-bottom:1px solid #e2e8f0; padding:10px 16px; display:flex; align-items:center; gap:10px; }
+    .test-badge { font-size:.72rem; font-weight:700; background:#dbeafe; color:#1d4ed8; border-radius:4px; padding:2px 8px; }
+    .test-title { font-size:.9rem; font-weight:600; color:#0f172a; }
+    .test-body { padding:12px 16px; font-size:.85rem; color:#475569; }
+    .test-body ul { margin:6px 0; padding-left:18px; }
+
+    /* Screenshot grid */
+    .ss-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:16px 0; }
+
+    /* Responsive */
+    @media(max-width:900px){
+      .layout { flex-direction:column; }
+      .sidebar { width:100%; height:auto; position:relative; }
+      .ss-grid, .doc-grid { grid-template-columns:1fr; }
+      .hero { padding:36px 24px 32px; }
+      .hero h1 { font-size:1.8rem; }
+      .module-section { margin:16px; }
+      .module-body { padding:20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Hero ── -->
+<div class="hero">
+  <h1>🛡️ Cashless Insurance Claim Portal</h1>
+  <p>Complete end-to-end guide for customers and promoters to register, upload documents, and track cashless device insurance claims through Gadget Seva Hub.</p>
+  <div class="badge-row">
+    <span class="badge">v1.0 — April 2026</span>
+    <span class="badge">No Login Required</span>
+    <span class="badge">Customer &amp; Promoter</span>
+    <span class="badge">28 Regression Tests</span>
+  </div>
+</div>
+
+<!-- ── Layout ── -->
+<div class="layout">
+
+  <!-- ── Sidebar ── -->
+  <nav class="sidebar">
+    <h3>Overview</h3>
+    <a href="#overview">What is the Portal?</a>
+    <a href="#access">How to Access</a>
+    <a href="#roles">Who Uses It?</a>
+
+    <h3>Customer Flow</h3>
+    <a href="#step1">Step 1 — Register Claim</a>
+    <a href="#step2">Step 2 — Upload Documents</a>
+    <a href="#step3">Step 3 — Submit for Approval</a>
+    <a href="#step4">Step 4 — GSH Review</a>
+    <a href="#step5">Step 5 — Post-Repair Upload</a>
+    <a href="#step6">Step 6 — Final Submission</a>
+
+    <h3>Documents Required</h3>
+    <a href="#pre-repair-docs">Pre-Repair Documents</a>
+    <a href="#post-repair-docs">Post-Repair Documents</a>
+
+    <h3>Status Reference</h3>
+    <a href="#statuses">All Claim Statuses</a>
+    <a href="#flow">Full Status Flow</a>
+
+    <h3>Admin Side</h3>
+    <a href="#admin-view">Viewing in Admin Portal</a>
+    <a href="#admin-approve">Approving / Rejecting</a>
+
+    <h3>API Reference</h3>
+    <a href="#api">Public API Endpoints</a>
+
+    <h3>Regression Testing</h3>
+    <a href="#test-overview">Test Suite Overview</a>
+    <a href="#test-registration">Registration Tests</a>
+    <a href="#test-upload">Upload Tests</a>
+    <a href="#test-prerepair">Pre-Repair Submit Tests</a>
+    <a href="#test-postrepair">Post-Repair Tests</a>
+    <a href="#test-e2e">End-to-End Test</a>
+    <a href="#test-ui">UI Smoke Tests</a>
+    <a href="#test-security">Security Tests</a>
+    <a href="#run">How to Run Tests</a>
+  </nav>
+
+  <!-- ── Content ── -->
+  <div class="content">
+
+    <!-- Overview -->
+    <section id="overview" class="module-section">
+      <div class="module-header accent-indigo">
+        <h2>🛡️ What is the Cashless Insurance Claim Portal?</h2>
+      </div>
+      <div class="module-body">
+        <p>The <strong>Cashless Insurance Claim Portal</strong> is a public-facing web page at <code>/cashless-portal</code> that allows customers or promoters (shopkeepers / sellers) to register an insurance claim, upload required documents, and track the claim status — <strong>without needing to log in</strong> to the Gadget Seva Hub admin system.</p>
+
+        <h3>Key Highlights</h3>
+        <ul>
+          <li>No login or account creation required — open to anyone with an insurance claim number</li>
+          <li>Unique bookmark-able URL per claim (via a secure public token)</li>
+          <li>Guided 4-step progress bar — Register → Upload Docs → Post-Repair → Complete</li>
+          <li>Real-time upload progress indicator for each document</li>
+          <li>Document versioning — re-uploading replaces the previous file cleanly</li>
+          <li>Automatic phase switching: Pre-Repair → Post-Repair after GSH approval</li>
+          <li>All claim actions visible to admin in the Claims Management module</li>
+        </ul>
+
+        <div class="info-box">💡 <strong>Tip:</strong> The portal URL contains a unique token after registration (e.g. <code>/cashless-portal?token=abc-def-123</code>). Bookmark this link to return later and check status or upload more documents.</div>
+
+        <h3>Portal URL</h3>
+        <p><strong>UAT:</strong> <a href="https://front-end-uat.up.railway.app/cashless-portal" target="_blank">https://front-end-uat.up.railway.app/cashless-portal</a></p>
+        <p><strong>Local Dev:</strong> <code>http://localhost:5173/cashless-portal</code></p>
+      </div>
+    </section>
+
+    <!-- Who uses it -->
+    <section id="roles" class="module-section">
+      <div class="module-header accent-cyan">
+        <h2>👥 Who Uses the Portal?</h2>
+      </div>
+      <div class="module-body">
+        <table class="cred-table">
+          <thead><tr><th>Role</th><th>What they do</th><th>Needs login?</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Customer</strong></td><td>Registers the claim, uploads device photos and documents, tracks approval status</td><td>No</td></tr>
+            <tr><td><strong>Promoter / Shopkeeper</strong></td><td>Registers claim on behalf of customer (optional promoter name field), assists with uploads</td><td>No</td></tr>
+            <tr><td><strong>GSH Admin</strong></td><td>Reviews submitted claims in Claims Management, approves or rejects with notes</td><td>Yes (admin login)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Step 1 — Register -->
+    <section id="step1" class="module-section">
+      <div class="module-header accent-blue">
+        <h2>📝 Step 1 — Register Your Claim</h2>
+      </div>
+      <div class="module-body">
+        <p>The first step is to register your insurance claim number in the GSH system. If the same insurance claim number was already registered, the portal returns the existing record — no duplicates are created.</p>
+
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Open the portal</strong><p>Navigate to <code>https://front-end-uat.up.railway.app/cashless-portal</code> in any browser. No login is needed.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Enter Insurance Claim Number</strong><p>Type the claim number issued by your insurance company (e.g. <code>INS-2025-00123</code>). This field is mandatory.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Fill in your details</strong><p>Enter your full name and 10-digit mobile number (mandatory). Email, Promoter Name, Device Model, and IMEI are optional but help GSH process your claim faster.</p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Click "Register Claim →"</strong><p>The portal creates your claim and immediately moves to the document upload screen. Your browser URL now contains a unique token — <strong>bookmark this page.</strong></p></div></div>
+
+        <div class="no-ss">📷 Screenshot — Registration form</div>
+
+        <h3>Registration Form Fields</h3>
+        <table class="cred-table">
+          <thead><tr><th>Field</th><th>Required?</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Insurance Claim Number</td><td>✅ Mandatory</td><td>Issued by your insurance company. Unique per claim.</td></tr>
+            <tr><td>Customer Name</td><td>✅ Mandatory</td><td>Full name of the insured customer.</td></tr>
+            <tr><td>Mobile Number</td><td>✅ Mandatory</td><td>10-digit Indian mobile number starting with 6–9.</td></tr>
+            <tr><td>Email</td><td>Optional</td><td>Used for notifications if configured.</td></tr>
+            <tr><td>Promoter / Shopkeeper Name</td><td>Optional</td><td>Name of the seller or shop assisting the claim.</td></tr>
+            <tr><td>Device Model</td><td>Optional</td><td>e.g. Samsung Galaxy S24 Ultra</td></tr>
+            <tr><td>IMEI Number</td><td>Optional</td><td>15-digit device IMEI. Can be verified by GSH admin later.</td></tr>
+          </tbody>
+        </table>
+
+        <div class="warn-box">⚠️ <strong>Note:</strong> If you register the same insurance claim number again, the portal returns your existing claim — it does not create a duplicate. You can safely re-enter to retrieve your claim link.</div>
+      </div>
+    </section>
+
+    <!-- Step 2 — Upload -->
+    <section id="step2" class="module-section">
+      <div class="module-header accent-teal">
+        <h2>📁 Step 2 — Upload Pre-Repair Documents</h2>
+      </div>
+      <div class="module-body">
+        <p>After registration, you must upload <strong>9 required documents</strong> before you can submit the claim for GSH approval. The upload progress bar shows how many you have completed.</p>
+
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>See the document list</strong><p>All 9 required slots are shown. Each slot displays an icon, name, and status (Required / Uploaded).</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Click "Upload" on any slot</strong><p>A file picker opens. Select a photo (JPG/PNG), PDF, or short video from your device. You can upload in any order.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>See the slot turn green</strong><p>Once uploaded, the slot shows a green checkmark and an "Uploaded" label. The progress bar advances.</p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Replace if needed</strong><p>Click "Replace" on any uploaded slot to upload a newer version. The old file is archived — only the latest version is shown.</p></div></div>
+
+        <div class="no-ss">📷 Screenshot — Document upload panel with progress bar</div>
+
+        <h3 id="pre-repair-docs">Pre-Repair Documents Required (9 total)</h3>
+        <div class="doc-grid">
+          <div class="doc-slot"><div class="doc-icon">📱</div><div><div class="doc-label">Device Front Photo</div><div class="doc-sub">DEVICE_PHOTO_SIDE_1</div></div></div>
+          <div class="doc-slot"><div class="doc-icon">🔄</div><div><div class="doc-label">Device Back Photo</div><div class="doc-sub">DEVICE_PHOTO_SIDE_2</div></div></div>
+          <div class="doc-slot"><div class="doc-icon">◀</div><div><div class="doc-label">Device Left Side</div><div class="doc-sub">DEVICE_PHOTO_SIDE_3</div></div></div>
+          <div class="doc-slot"><div class="doc-icon">▶</div><div><div class="doc-label">Device Right Side</div><div class="doc-sub">DEVICE_PHOTO_SIDE_4</div></div></div>
+          <div class="doc-slot"><div class="doc-icon">▲</div><div><div class="doc-label">Device Top Edge</div><div class="doc-sub">DEVICE_PHOTO_SIDE_5</div></div></div>
+          <div class="doc-slot"><div class="doc-icon">▼</div><div><div class="doc-label">Device Bottom Edge</div><div class="doc-sub">DEVICE_PHOTO_SIDE_6</div></div></div>
+          <div class="doc-slot"><div class="doc-icon">🧾</div><div><div class="doc-label">Purchase Invoice</div><div class="doc-sub">PURCHASE_INVOICE</div></div></div>
+          <div class="doc-slot"><div class="doc-icon">📋</div><div><div class="doc-label">Repair Estimate Copy</div><div class="doc-sub">ESTIMATE_COPY</div></div></div>
+          <div class="doc-slot"><div class="doc-icon">📄</div><div><div class="doc-label">Job Sheet Copy</div><div class="doc-sub">JOB_SHEET_COPY</div></div></div>
+        </div>
+
+        <div class="info-box">💡 <strong>Tip:</strong> You can leave the portal and come back later using your bookmarked URL — uploads are saved immediately and persist across sessions.</div>
+      </div>
+    </section>
+
+    <!-- Step 3 — Submit -->
+    <section id="step3" class="module-section">
+      <div class="module-header accent-gold">
+        <h2>🚀 Step 3 — Submit for GSH Approval</h2>
+      </div>
+      <div class="module-body">
+        <p>Once all 9 pre-repair documents are uploaded, the green <strong>"Submit for GSH Approval →"</strong> button becomes active. Clicking it sends the claim to the GSH team for review.</p>
+
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Ensure all 9 documents are uploaded</strong><p>The progress bar must show 9/9. The Submit button is locked until all documents are present.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Click "Submit for GSH Approval →"</strong><p>The claim status changes to <span class="status-pill pill-amber">Awaiting GSH Review</span> immediately.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Wait for GSH review</strong><p>The portal shows a message: <em>"Your documents are under review by the Gadget Seva Hub team."</em> You cannot upload new documents during this phase.</p></div></div>
+
+        <div class="warn-box">⚠️ <strong>Note:</strong> After submission, the upload panel is hidden until GSH either approves or requests re-uploads. Document uploads are only allowed in <code>CLAIM_SUBMITTED</code> and <code>REUPLOAD_PENDING</code> status.</div>
+
+        <div class="no-ss">📷 Screenshot — All docs uploaded, Submit button active</div>
+      </div>
+    </section>
+
+    <!-- Step 4 — GSH Review -->
+    <section id="step4" class="module-section">
+      <div class="module-header accent-orange">
+        <h2>🔍 Step 4 — GSH Review &amp; Decision</h2>
+      </div>
+      <div class="module-body">
+        <p>The GSH admin reviews the submitted documents in the <strong>Claims Management → Approval Pending</strong> tab. They can approve, reject, or request re-upload.</p>
+
+        <h3>Possible Outcomes</h3>
+        <table class="cred-table">
+          <thead><tr><th>Decision</th><th>Claim Status</th><th>What happens</th></tr></thead>
+          <tbody>
+            <tr><td>✅ Approved</td><td><span class="status-pill pill-green">Claim Approved</span></td><td>Portal switches to <strong>Post-Repair phase</strong>. Customer gets the 7 post-repair document slots.</td></tr>
+            <tr><td>❌ Rejected</td><td><span class="status-pill pill-red">Claim Rejected</span></td><td>Rejection reason is shown on portal. After 3 rejections, claim is permanently rejected (locked).</td></tr>
+            <tr><td>🔁 Re-upload</td><td><span class="status-pill pill-orange">Re-upload Required</span></td><td>Upload panel reopens. Customer replaces flagged documents and resubmits.</td></tr>
+          </tbody>
+        </table>
+
+        <div class="info-box">💡 <strong>Return to your link</strong> to check the outcome. The claim card shows the latest status and a clear message explaining what to do next.</div>
+
+        <h3>Re-upload Flow (if required)</h3>
+        <div class="flow-diagram">
+          <div class="flow-steps">
+            <div class="flow-step">APPROVAL_PENDING</div><div class="flow-arrow">→</div>
+            <div class="flow-step">REUPLOAD_PENDING</div><div class="flow-arrow">→</div>
+            <div class="flow-step">Replace documents</div><div class="flow-arrow">→</div>
+            <div class="flow-step">Resubmit</div><div class="flow-arrow">→</div>
+            <div class="flow-step">APPROVAL_PENDING</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 5 — Post-Repair -->
+    <section id="step5" class="module-section">
+      <div class="module-header accent-purple">
+        <h2>🔧 Step 5 — Upload Post-Repair Documents</h2>
+      </div>
+      <div class="module-body">
+        <p>After GSH approves the claim, you get your device repaired at the service center. Then return to the portal and upload 7 post-repair documents to prove the repair was completed.</p>
+
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Get your device repaired</strong><p>Take the device to an authorised service center. Keep the repair invoice and excess payment receipt (if applicable).</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Return to your portal link</strong><p>The claim card now shows <span class="status-pill pill-green">Claim Approved</span> and Step 3 (Post-Repair) is highlighted in the progress bar.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Upload all 7 post-repair documents</strong><p>Photograph the repaired device from 6 angles and upload the service center invoice.</p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Click "Submit Post-Repair Documents →"</strong><p>All 7 documents must be present. The submit button activates when the progress bar reaches 7/7.</p></div></div>
+
+        <div class="no-ss">📷 Screenshot — Post-repair upload panel</div>
+
+        <h3 id="post-repair-docs">Post-Repair Documents Required (7 total)</h3>
+        <div class="doc-grid">
+          <div class="doc-slot"><div class="doc-icon">📱</div><div><div class="doc-label">Repaired Device — Front</div><div class="doc-sub">POST_REPAIR_PHOTO_1</div></div></div>
+          <div class="doc-slot"><div class="doc-icon">🔄</div><div><div class="doc-label">Repaired Device — Back</div><div class="doc-sub">POST_REPAIR_PHOTO_2</div></div></div>
+          <div class="doc-slot"><div class="doc-icon">◀</div><div><div class="doc-label">Repaired Device — Left</div><div class="doc-sub">POST_REPAIR_PHOTO_3</div></div></div>
+          <div class="doc-slot"><div class="doc-icon">▶</div><div><div class="doc-label">Repaired Device — Right</div><div class="doc-sub">POST_REPAIR_PHOTO_4</div></div></div>
+          <div class="doc-slot"><div class="doc-icon">▲</div><div><div class="doc-label">Repaired Device — Top</div><div class="doc-sub">POST_REPAIR_PHOTO_5</div></div></div>
+          <div class="doc-slot"><div class="doc-icon">▼</div><div><div class="doc-label">Repaired Device — Bottom</div><div class="doc-sub">POST_REPAIR_PHOTO_6</div></div></div>
+          <div class="doc-slot"><div class="doc-icon">🧾</div><div><div class="doc-label">Service Center Invoice</div><div class="doc-sub">REPAIR_INVOICE</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 6 — Final -->
+    <section id="step6" class="module-section">
+      <div class="module-header accent-green">
+        <h2>✅ Step 6 — Final Submission &amp; Completion</h2>
+      </div>
+      <div class="module-body">
+        <p>After submitting post-repair documents, the claim enters the GSH invoice verification queue. The portal shows a <strong>Complete</strong> status card — no further action is needed from the customer.</p>
+
+        <div class="flow-diagram">
+          <div class="flow-steps">
+            <div class="flow-step">INVOICE_SUBMITTED</div><div class="flow-arrow">→</div>
+            <div class="flow-step">GSH Invoice Review</div><div class="flow-arrow">→</div>
+            <div class="flow-step">INVOICE_APPROVED</div><div class="flow-arrow">→</div>
+            <div class="flow-step">READY_FOR_INSURANCE</div><div class="flow-arrow">→</div>
+            <div class="flow-step">SUBMITTED_TO_INSURANCE</div><div class="flow-arrow">→</div>
+            <div class="flow-step">CLOSED</div>
+          </div>
+        </div>
+
+        <div class="success-box">✅ <strong>Done!</strong> Once at CLOSED status, your insurance settlement is complete. The portal message reads: <em>"Your claim is closed and settlement is complete. Thank you!"</em></div>
+      </div>
+    </section>
+
+    <!-- Statuses -->
+    <section id="statuses" class="module-section">
+      <div class="module-header accent-slate">
+        <h2>📊 All Claim Statuses</h2>
+      </div>
+      <div class="module-body">
+        <table class="cred-table">
+          <thead><tr><th>Status</th><th>Portal Phase</th><th>What it means</th><th>Customer action</th></tr></thead>
+          <tbody>
+            <tr><td><span class="status-pill pill-blue">CLAIM_SUBMITTED</span></td><td>PRE_REPAIR</td><td>Claim registered, documents not yet submitted</td><td>Upload 9 documents</td></tr>
+            <tr><td><span class="status-pill pill-amber">APPROVAL_PENDING</span></td><td>PRE_REPAIR</td><td>Documents submitted, GSH reviewing</td><td>Wait for decision</td></tr>
+            <tr><td><span class="status-pill pill-green">APPROVED</span></td><td>POST_REPAIR</td><td>GSH approved — get device repaired</td><td>Upload 7 post-repair docs</td></tr>
+            <tr><td><span class="status-pill pill-red">REJECTED</span></td><td>PRE_REPAIR</td><td>Claim permanently rejected</td><td>Contact GSH support</td></tr>
+            <tr><td><span class="status-pill pill-orange">REUPLOAD_PENDING</span></td><td>PRE_REPAIR</td><td>GSH requested document re-upload</td><td>Replace &amp; resubmit</td></tr>
+            <tr><td><span class="status-pill pill-blue">INVOICE_SUBMITTED</span></td><td>COMPLETE</td><td>Post-repair docs submitted</td><td>None — wait for GSH</td></tr>
+            <tr><td><span class="status-pill pill-green">INVOICE_APPROVED</span></td><td>COMPLETE</td><td>Invoice verified by GSH</td><td>None</td></tr>
+            <tr><td><span class="status-pill pill-red">INVOICE_REJECTED</span></td><td>COMPLETE</td><td>Invoice has issue</td><td>Contact GSH</td></tr>
+            <tr><td><span class="status-pill pill-orange">INVOICE_REUPLOAD_PENDING</span></td><td>COMPLETE</td><td>Re-upload invoice requested</td><td>Upload corrected invoice</td></tr>
+            <tr><td><span class="status-pill pill-purple">READY_FOR_INSURANCE</span></td><td>COMPLETE</td><td>Docs ready for insurance submission</td><td>None</td></tr>
+            <tr><td><span class="status-pill pill-indigo">SUBMITTED_TO_INSURANCE</span></td><td>COMPLETE</td><td>Claim sent to insurer</td><td>Await settlement</td></tr>
+            <tr><td><span class="status-pill pill-gray">CLOSED</span></td><td>COMPLETE</td><td>Settlement complete</td><td>None — done!</td></tr>
+          </tbody>
+        </table>
+
+        <h3 id="flow">Full Status Flow Diagram</h3>
+        <div class="flow-diagram">
+          <div class="flow-steps">
+            <div class="flow-step">Register Claim</div><div class="flow-arrow">→</div>
+            <div class="flow-step">CLAIM_SUBMITTED</div><div class="flow-arrow">→</div>
+            <div class="flow-step">Upload 9 docs</div><div class="flow-arrow">→</div>
+            <div class="flow-step">APPROVAL_PENDING</div><div class="flow-arrow">→</div>
+            <div class="flow-step">GSH Approves</div><div class="flow-arrow">→</div>
+            <div class="flow-step">APPROVED</div>
+          </div>
+          <div class="flow-steps" style="margin-top:10px">
+            <div class="flow-step">APPROVED</div><div class="flow-arrow">→</div>
+            <div class="flow-step">Upload 7 docs</div><div class="flow-arrow">→</div>
+            <div class="flow-step">INVOICE_SUBMITTED</div><div class="flow-arrow">→</div>
+            <div class="flow-step">INVOICE_APPROVED</div><div class="flow-arrow">→</div>
+            <div class="flow-step">SUBMITTED_TO_INSURANCE</div><div class="flow-arrow">→</div>
+            <div class="flow-step">CLOSED</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Admin view -->
+    <section id="admin-view" class="module-section">
+      <div class="module-header accent-red">
+        <h2>🔐 Admin Side — Viewing Portal Claims</h2>
+      </div>
+      <div class="module-body">
+        <p>Claims registered through the public portal appear instantly in the admin portal under <strong>Claims Management</strong>.</p>
+
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Login to Admin Portal</strong><p>Go to <code>/login</code> with your admin credentials.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Navigate to Claims Management</strong><p>Click <strong>Claims</strong> in the left sidebar → <strong>All Claims</strong> tab.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Find the portal claim</strong><p>Portal-registered claims show the insurance claim number in the table. Use the Filter by Status dropdown to see <strong>Approval Pending</strong> claims.</p></div></div>
+        <div class="step" id="admin-approve"><div class="step-num">4</div><div class="step-body"><strong>Approve / Reject</strong><p>Open the claim detail, verify IMEI if required, enter approved amount and remarks, then click <strong>Approve</strong> or <strong>Reject</strong>.</p></div></div>
+
+        <div class="tab-row">
+          <span class="tab-chip">All Claims</span>
+          <span class="tab-chip amber">Approval Pending</span>
+          <span class="tab-chip green">Approved Claims</span>
+          <span class="tab-chip red">Rejected Claims</span>
+          <span class="tab-chip">Re-upload Pending</span>
+          <span class="tab-chip">Claim History</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- API Reference -->
+    <section id="api" class="module-section">
+      <div class="module-header accent-slate">
+        <h2>🔌 Public API Endpoints</h2>
+      </div>
+      <div class="module-body">
+        <p>All endpoints are under <code>/api/public/cashless/</code> and require <strong>no Authorization header</strong>. They are whitelisted in the GSH security configuration.</p>
+
+        <table class="cred-table">
+          <thead><tr><th>Method</th><th>Endpoint</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td><code>POST</code></td><td><code>/api/public/cashless/register</code></td><td>Register new claim or lookup existing by insurance claim number</td></tr>
+            <tr><td><code>GET</code></td><td><code>/api/public/cashless/{token}</code></td><td>Fetch current claim status, uploaded docs, missing docs</td></tr>
+            <tr><td><code>POST</code></td><td><code>/api/public/cashless/{token}/documents</code></td><td>Upload a document (multipart/form-data: <code>documentType</code> + <code>file</code>)</td></tr>
+            <tr><td><code>POST</code></td><td><code>/api/public/cashless/{token}/submit</code></td><td>Submit pre-repair docs for GSH approval</td></tr>
+            <tr><td><code>POST</code></td><td><code>/api/public/cashless/{token}/post-repair</code></td><td>Submit post-repair docs (only when status is APPROVED)</td></tr>
+          </tbody>
+        </table>
+
+        <h4>Sample: Register Claim</h4>
+        <pre><span class="k">POST</span> /api/public/cashless/register
+Content-Type: application/json
+
+{
+  <span class="s">"insuranceClaimNumber"</span>: <span class="s">"INS-2025-00123"</span>,
+  <span class="s">"customerName"</span>:        <span class="s">"Ramesh Kumar"</span>,
+  <span class="s">"customerPhone"</span>:       <span class="s">"9876543210"</span>,
+  <span class="s">"customerEmail"</span>:       <span class="s">"ramesh@example.com"</span>,
+  <span class="s">"promoterName"</span>:        <span class="s">"Galaxy Mobile Shop"</span>,
+  <span class="s">"deviceModel"</span>:         <span class="s">"Samsung Galaxy S24"</span>,
+  <span class="s">"imeiNumber"</span>:          <span class="s">"356938035643809"</span>
+}</pre>
+
+        <h4>Sample: Upload Document</h4>
+        <pre><span class="k">POST</span> /api/public/cashless/{token}/documents
+Content-Type: multipart/form-data
+
+documentType = DEVICE_PHOTO_SIDE_1
+file         = &lt;binary image file&gt;</pre>
+
+        <h4>Sample Response</h4>
+        <pre>{
+  <span class="s">"claimId"</span>:                1042,
+  <span class="s">"publicToken"</span>:            <span class="s">"a1b2c3d4-e5f6-..."</span>,
+  <span class="s">"claimNumber"</span>:            <span class="s">"GSH-CLM-1234567"</span>,
+  <span class="s">"insuranceClaimNumber"</span>:   <span class="s">"INS-2025-00123"</span>,
+  <span class="s">"claimStatus"</span>:            <span class="s">"CLAIM_SUBMITTED"</span>,
+  <span class="s">"portalPhase"</span>:            <span class="s">"PRE_REPAIR"</span>,
+  <span class="s">"statusMessage"</span>:          <span class="s">"Please upload all required documents..."</span>,
+  <span class="s">"uploadedDocumentTypes"</span>:  [<span class="s">"DEVICE_PHOTO_SIDE_1"</span>],
+  <span class="s">"requiredDocumentTypes"</span>:  [<span class="s">"DEVICE_PHOTO_SIDE_2"</span>, <span class="s">"..."</span>],
+  <span class="s">"canSubmit"</span>:              <span class="kw">false</span>,
+  <span class="s">"rejected"</span>:               <span class="kw">false</span>
+}</pre>
+      </div>
+    </section>
+
+    <!-- Regression Overview -->
+    <section id="test-overview" class="module-section">
+      <div class="module-header accent-indigo">
+        <h2>🧪 Regression Test Suite Overview</h2>
+      </div>
+      <div class="module-body">
+        <p>The cashless portal regression suite is in file <code>14-public-cashless-portal.regression.spec.ts</code> inside the Playwright framework at <code>Advance-Playwright-Framework-Testing/src/tests/regression/</code>.</p>
+
+        <h3>Test Groups Summary</h3>
+        <table class="cred-table">
+          <thead><tr><th>Group</th><th>Tag</th><th>Tests</th><th>Focus</th></tr></thead>
+          <tbody>
+            <tr><td>Registration</td><td><code>@Regression</code></td><td>5</td><td>New claim, duplicate lookup, optional fields, validation errors</td></tr>
+            <tr><td>Status Lookup</td><td><code>@Regression</code></td><td>3</td><td>Fetch by token, 404 for unknown token, readable status message</td></tr>
+            <tr><td>Document Upload</td><td><code>@Regression</code></td><td>4</td><td>Single upload, all 9 docs + canSubmit, versioning, upload blocked in wrong status</td></tr>
+            <tr><td>Pre-Repair Submission</td><td><code>@Regression</code></td><td>4</td><td>Submit → APPROVAL_PENDING, blocked if docs missing, blocked if already pending</td></tr>
+            <tr><td>Post-Repair Submission</td><td><code>@Regression</code></td><td>5</td><td>Phase switch after approval, all 7 docs, submit → INVOICE_SUBMITTED, validation blocks</td></tr>
+            <tr><td>Full E2E Lifecycle</td><td><code>@Regression</code></td><td>2</td><td>Complete register → upload → approve → post-repair → INVOICE_SUBMITTED</td></tr>
+            <tr><td>UI Smoke Tests</td><td><code>@Regression</code></td><td>6</td><td>Page loads, form fields, pre-repair UI, post-repair UI, complete state, invalid token</td></tr>
+            <tr><td>Security</td><td><code>@Regression</code></td><td>4</td><td>No auth header needed, token isolation (A cannot see B)</td></tr>
+          </tbody>
+        </table>
+
+        <div class="info-box">💡 All tests tagged <code>@Regression</code> and <code>@DetailedRegression</code> run with <code>npx playwright test --grep @Regression</code>.</div>
+      </div>
+    </section>
+
+    <!-- Registration Tests -->
+    <section id="test-registration" class="module-section">
+      <div class="module-header accent-blue">
+        <h2>🧪 Registration Tests</h2>
+      </div>
+      <div class="module-body">
+
+        <div class="test-block">
+          <div class="test-header"><span class="test-badge">TC-REG-01</span><span class="test-title">Should register a new claim and return CLAIM_SUBMITTED status</span></div>
+          <div class="test-body">
+            <ul>
+              <li>Call <code>POST /api/public/cashless/register</code> with valid payload</li>
+              <li>Assert: <code>claimStatus === "CLAIM_SUBMITTED"</code>, <code>portalPhase === "PRE_REPAIR"</code></li>
+              <li>Assert: <code>publicToken</code> is non-empty, <code>claimId &gt; 0</code></li>
+              <li>Assert: <code>canSubmit === false</code>, <code>uploadedDocumentTypes.length === 0</code></li>
+              <li>Assert: <code>requiredDocumentTypes.length === 9</code></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="test-block">
+          <div class="test-header"><span class="test-badge">TC-REG-02</span><span class="test-title">Should return existing claim when same insurance number is registered again</span></div>
+          <div class="test-body">
+            <ul>
+              <li>Register same <code>insuranceClaimNumber</code> twice</li>
+              <li>Assert: second response <code>claimId</code>, <code>publicToken</code>, and <code>claimNumber</code> match the first</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="test-block">
+          <div class="test-header"><span class="test-badge">TC-REG-03</span><span class="test-title">Should accept optional fields: promoter name, device model, IMEI</span></div>
+          <div class="test-body">
+            <ul>
+              <li>Register with <code>promoterName</code>, <code>deviceModel</code>, <code>imeiNumber</code> filled</li>
+              <li>Assert: <code>promoterName</code> and <code>deviceModel</code> reflected in response</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="test-block">
+          <div class="test-header"><span class="test-badge">TC-REG-04</span><span class="test-title">Should reject registration when insurance claim number is missing</span></div>
+          <div class="test-body">
+            <ul>
+              <li>POST without <code>insuranceClaimNumber</code></li>
+              <li>Assert: HTTP status ≥ 400</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="test-block">
+          <div class="test-header"><span class="test-badge">TC-REG-05</span><span class="test-title">Should reject registration with an invalid phone number format</span></div>
+          <div class="test-body">
+            <ul>
+              <li>POST with <code>customerPhone: "1234567890"</code> (starts with 1 — invalid Indian number)</li>
+              <li>Assert: HTTP status ≥ 400</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Upload Tests -->
+    <section id="test-upload" class="module-section">
+      <div class="module-header accent-teal">
+        <h2>🧪 Document Upload Tests</h2>
+      </div>
+      <div class="module-body">
+
+        <div class="test-block">
+          <div class="test-header"><span class="test-badge">TC-UPL-01</span><span class="test-title">Should upload a single pre-repair document and reflect in uploadedDocumentTypes</span></div>
+          <div class="test-body">
+            <ul>
+              <li>Register → upload <code>DEVICE_PHOTO_SIDE_1</code></li>
+              <li>Assert: response <code>uploadedDocumentTypes</code> contains <code>DEVICE_PHOTO_SIDE_1</code></li>
+              <li>Assert: <code>requiredDocumentTypes</code> does NOT contain <code>DEVICE_PHOTO_SIDE_1</code></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="test-block">
+          <div class="test-header"><span class="test-badge">TC-UPL-02</span><span class="test-title">Should upload all pre-repair documents and enable canSubmit</span></div>
+          <div class="test-body">
+            <ul>
+              <li>Register → upload all 9 required documents</li>
+              <li>Assert: <code>uploadedDocumentTypes.length === 9</code></li>
+              <li>Assert: <code>requiredDocumentTypes.length === 0</code></li>
+              <li>Assert: <code>canSubmit === true</code></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="test-block">
+          <div class="test-header"><span class="test-badge">TC-UPL-03</span><span class="test-title">Should replace a previously uploaded document (versioning)</span></div>
+          <div class="test-body">
+            <ul>
+              <li>Upload <code>DEVICE_PHOTO_SIDE_1</code> twice</li>
+              <li>Assert: only 1 current entry for <code>DEVICE_PHOTO_SIDE_1</code> in <code>uploadedDocumentTypes</code></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="test-block">
+          <div class="test-header"><span class="test-badge">TC-UPL-04</span><span class="test-title">Should reject upload when claim status does not allow it</span></div>
+          <div class="test-body">
+            <ul>
+              <li>Seed claim at <code>APPROVAL_PENDING</code> status</li>
+              <li>Attempt to upload a document</li>
+              <li>Assert: HTTP status ≥ 400 (uploads blocked in this status)</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Pre-Repair Submit Tests -->
+    <section id="test-prerepair" class="module-section">
+      <div class="module-header accent-gold">
+        <h2>🧪 Pre-Repair Submission Tests</h2>
+      </div>
+      <div class="module-body">
+
+        <div class="test-block">
+          <div class="test-header"><span class="test-badge">TC-PRE-01</span><span class="test-title">Should submit for approval and move to APPROVAL_PENDING</span></div>
+          <div class="test-body">
+            <ul>
+              <li>Register → upload all 9 → call <code>POST /submit</code></li>
+              <li>Assert: <code>claimStatus === "APPROVAL_PENDING"</code>, <code>canSubmit === false</code></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="test-block">
+          <div class="test-header"><span class="test-badge">TC-PRE-02</span><span class="test-title">Should block submission when required documents are missing</span></div>
+          <div class="test-body">
+            <ul>
+              <li>Register → upload only 2 docs → call <code>POST /submit</code></li>
+              <li>Assert: HTTP status ≥ 400</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="test-block">
+          <div class="test-header"><span class="test-badge">TC-PRE-03</span><span class="test-title">Should block submission when claim is already APPROVAL_PENDING</span></div>
+          <div class="test-body">
+            <ul>
+              <li>Seed claim at APPROVAL_PENDING → call <code>POST /submit</code> again</li>
+              <li>Assert: HTTP status ≥ 400</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="test-block">
+          <div class="test-header"><span class="test-badge">TC-PRE-04</span><span class="test-title">requiredDocumentTypes should list only the missing documents</span></div>
+          <div class="test-body">
+            <ul>
+              <li>Register → upload 2 docs → fetch status</li>
+              <li>Assert: <code>requiredDocumentTypes</code> does not include the 2 uploaded types</li>
+              <li>Assert: <code>requiredDocumentTypes.length === 7</code></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Post-Repair Tests -->
+    <section id="test-postrepair" class="module-section">
+      <div class="module-header accent-purple">
+        <h2>🧪 Post-Repair Submission Tests</h2>
+      </div>
+      <div class="module-body">
+
+        <div class="test-block">
+          <div class="test-header"><span class="test-badge">TC-PST-01</span><span class="test-title">Should switch to POST_REPAIR phase after admin approves the claim</span></div>
+          <div class="test-body">
+            <ul>
+              <li>Seed claim at APPROVAL_PENDING → admin approves via API</li>
+              <li>Fetch portal status</li>
+              <li>Assert: <code>claimStatus === "APPROVED"</code>, <code>portalPhase === "POST_REPAIR"</code></li>
+              <li>Assert: <code>requiredDocumentTypes.length === 7</code></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="test-block">
+          <div class="test-header"><span class="test-badge">TC-PST-02</span><span class="test-title">Should upload all post-repair docs and enable canSubmit</span></div>
+          <div class="test-body">
+            <ul>
+              <li>Approve claim → upload all 7 post-repair docs</li>
+              <li>Assert: <code>requiredDocumentTypes.length === 0</code>, <code>canSubmit === true</code></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="test-block">
+          <div class="test-header"><span class="test-badge">TC-PST-03</span><span class="test-title">Should submit post-repair docs and move to INVOICE_SUBMITTED</span></div>
+          <div class="test-body">
+            <ul>
+              <li>Approve → upload 7 docs → call <code>POST /post-repair</code></li>
+              <li>Assert: <code>claimStatus === "INVOICE_SUBMITTED"</code>, <code>portalPhase === "COMPLETE"</code></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="test-block">
+          <div class="test-header"><span class="test-badge">TC-PST-04</span><span class="test-title">Should block post-repair submission when claim is not APPROVED</span></div>
+          <div class="test-body">
+            <ul>
+              <li>Register new claim (CLAIM_SUBMITTED) → call <code>POST /post-repair</code></li>
+              <li>Assert: HTTP status ≥ 400</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="test-block">
+          <div class="test-header"><span class="test-badge">TC-PST-05</span><span class="test-title">Should block post-repair submission when post-repair docs are missing</span></div>
+          <div class="test-body">
+            <ul>
+              <li>Approve claim → upload only 1 post-repair doc → call <code>POST /post-repair</code></li>
+              <li>Assert: HTTP status ≥ 400</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- E2E Test -->
+    <section id="test-e2e" class="module-section">
+      <div class="module-header accent-green">
+        <h2>🧪 End-to-End Lifecycle Test</h2>
+      </div>
+      <div class="module-body">
+
+        <div class="test-block">
+          <div class="test-header"><span class="test-badge">TC-E2E-01</span><span class="test-title">Complete portal lifecycle: register → upload pre-repair → submit → approve → upload post-repair → INVOICE_SUBMITTED</span></div>
+          <div class="test-body">
+            <ul>
+              <li><strong>Step 1:</strong> Register claim → assert <code>CLAIM_SUBMITTED</code>, <code>PRE_REPAIR</code></li>
+              <li><strong>Step 2:</strong> Upload all 9 pre-repair docs → assert <code>canSubmit === true</code></li>
+              <li><strong>Step 3:</strong> Submit for approval → assert <code>APPROVAL_PENDING</code></li>
+              <li><strong>Step 4:</strong> Admin approves → assert <code>APPROVED</code></li>
+              <li><strong>Step 5:</strong> Fetch portal status → assert <code>portalPhase === "POST_REPAIR"</code></li>
+              <li><strong>Step 6:</strong> Upload all 7 post-repair docs → assert <code>canSubmit === true</code></li>
+              <li><strong>Step 7:</strong> Submit post-repair → assert <code>INVOICE_SUBMITTED</code>, <code>COMPLETE</code></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="test-block">
+          <div class="test-header"><span class="test-badge">TC-E2E-02</span><span class="test-title">Portal claim appears in admin claims list after registration</span></div>
+          <div class="test-body">
+            <ul>
+              <li>Register via public portal</li>
+              <li>Fetch via admin API: <code>GET /api/claims/{claimId}</code></li>
+              <li>Assert: <code>insuranceClaimNumber</code> matches, <code>claimStatus === "CLAIM_SUBMITTED"</code></li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>Full E2E Code Snippet</h3>
+        <pre><span class="c">// TC-E2E-01 — complete lifecycle test</span>
+<span class="fn">test</span>(<span class="s">'complete portal lifecycle'</span>, <span class="kw">async</span> ({ request }) => {
+  <span class="kw">const</span> session = <span class="kw">await</span> <span class="fn">createAdminSession</span>(request);
+
+  <span class="c">// Step 1: Register</span>
+  <span class="kw">const</span> claim = <span class="kw">await</span> <span class="fn">registerPublicClaim</span>(request, {
+    customerName: <span class="s">'E2E Test Customer'</span>,
+    deviceModel:  <span class="s">'Samsung S24 Ultra'</span>,
+  });
+  <span class="fn">expect</span>(claim.claimStatus).<span class="fn">toBe</span>(<span class="s">'CLAIM_SUBMITTED'</span>);
+
+  <span class="c">// Step 2: Upload all 9 pre-repair docs</span>
+  <span class="kw">const</span> afterUpload = <span class="kw">await</span> <span class="fn">uploadAllPublicPreRepairDocs</span>(request, claim.publicToken);
+  <span class="fn">expect</span>(afterUpload.canSubmit).<span class="fn">toBe</span>(<span class="kw">true</span>);
+
+  <span class="c">// Step 3: Submit for approval</span>
+  <span class="kw">const</span> submitted = <span class="kw">await</span> <span class="fn">submitPublicClaimForApproval</span>(request, claim.publicToken);
+  <span class="fn">expect</span>(submitted.claimStatus).<span class="fn">toBe</span>(<span class="s">'APPROVAL_PENDING'</span>);
+
+  <span class="c">// Step 4: Admin approves</span>
+  <span class="kw">await</span> <span class="fn">approvePublicClaimViaAdminApi</span>(request, session.accessToken, claim.claimId);
+
+  <span class="c">// Step 5: Verify POST_REPAIR phase</span>
+  <span class="kw">const</span> afterApproval = <span class="kw">await</span> <span class="fn">fetchPublicClaimStatus</span>(request, claim.publicToken);
+  <span class="fn">expect</span>(afterApproval.portalPhase).<span class="fn">toBe</span>(<span class="s">'POST_REPAIR'</span>);
+
+  <span class="c">// Step 6: Upload 7 post-repair docs</span>
+  <span class="kw">await</span> <span class="fn">uploadAllPublicPostRepairDocs</span>(request, claim.publicToken);
+
+  <span class="c">// Step 7: Submit post-repair → INVOICE_SUBMITTED</span>
+  <span class="kw">const</span> final = <span class="kw">await</span> <span class="fn">submitPublicClaimPostRepair</span>(request, claim.publicToken);
+  <span class="fn">expect</span>(final.claimStatus).<span class="fn">toBe</span>(<span class="s">'INVOICE_SUBMITTED'</span>);
+  <span class="fn">expect</span>(final.portalPhase).<span class="fn">toBe</span>(<span class="s">'COMPLETE'</span>);
+});</pre>
+      </div>
+    </section>
+
+    <!-- UI Smoke Tests -->
+    <section id="test-ui" class="module-section">
+      <div class="module-header accent-cyan">
+        <h2>🧪 UI Smoke Tests</h2>
+      </div>
+      <div class="module-body">
+        <p>These tests use <code>authenticatedTest</code> (Playwright page fixture) and verify the actual browser UI.</p>
+
+        <table class="cred-table">
+          <thead><tr><th>ID</th><th>Test</th><th>Assert</th></tr></thead>
+          <tbody>
+            <tr><td>TC-UI-01</td><td>Portal loads without login redirect</td><td>No login heading visible; "Cashless Insurance Portal" text present</td></tr>
+            <tr><td>TC-UI-02</td><td>Registration form renders all required fields</td><td>Insurance number, full name, mobile number inputs visible</td></tr>
+            <tr><td>TC-UI-03</td><td>Pre-repair upload UI shown after registration</td><td>"Upload Required Documents" heading + document slot labels visible</td></tr>
+            <tr><td>TC-UI-04</td><td>POST_REPAIR UI shown after admin approval</td><td>APPROVED badge + "Post-Repair" heading + post-repair slots visible</td></tr>
+            <tr><td>TC-UI-05</td><td>COMPLETE state shown after post-repair submission</td><td>INVOICE_SUBMITTED badge visible</td></tr>
+            <tr><td>TC-UI-06</td><td>Invalid token shows error / registration fallback</td><td>"Could not load claim" or "Register Your Claim" visible</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Security Tests -->
+    <section id="test-security" class="module-section">
+      <div class="module-header accent-red">
+        <h2>🧪 Security Tests</h2>
+      </div>
+      <div class="module-body">
+
+        <table class="cred-table">
+          <thead><tr><th>ID</th><th>Test</th><th>Assert</th></tr></thead>
+          <tbody>
+            <tr><td>TC-SEC-01</td><td>Register endpoint requires no Authorization header</td><td>HTTP 200 without any token</td></tr>
+            <tr><td>TC-SEC-02</td><td>Status endpoint requires no Authorization header</td><td>HTTP 200 for valid public token</td></tr>
+            <tr><td>TC-SEC-03</td><td>Upload endpoint requires no Authorization header</td><td>HTTP 200 for valid public token + file</td></tr>
+            <tr><td>TC-SEC-04</td><td>Token A cannot access Token B's data</td><td>Fetching with token A returns claim A, not claim B</td></tr>
+          </tbody>
+        </table>
+
+        <div class="warn-box">⚠️ <strong>Security Note:</strong> Each claim's public token is a random UUID. Without knowing the exact token, no one can access another customer's claim. Tokens are generated server-side and never predictable.</div>
+      </div>
+    </section>
+
+    <!-- How to Run -->
+    <section id="run" class="module-section">
+      <div class="module-header accent-slate">
+        <h2>▶️ How to Run the Regression Tests</h2>
+      </div>
+      <div class="module-body">
+
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Navigate to the framework</strong><pre>cd Advance-Playwright-Framework-Testing</pre></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Install dependencies</strong><pre>npm install</pre></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Set environment (UAT)</strong><pre>BASE_URL=https://front-end-uat.up.railway.app
+API_BASE_URL=https://backend-uat-2fe5.up.railway.app/api</pre></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Run only cashless portal tests</strong><pre>npx playwright test 14-public-cashless-portal --project=chromium</pre></div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-body"><strong>Run all regression tests</strong><pre>npx playwright test --grep @Regression</pre></div></div>
+        <div class="step"><div class="step-num">6</div><div class="step-body"><strong>View Allure report</strong><pre>npx allure generate Report/allure-results --clean -o Report/allure-report
+npx allure open Report/allure-report</pre></div></div>
+
+        <h3>Test File Location</h3>
+        <pre>Advance-Playwright-Framework-Testing/
+└── src/
+    └── tests/
+        └── regression/
+            ├── regression.helpers.ts          <span class="c"># shared helpers + public portal helpers</span>
+            └── 14-public-cashless-portal.regression.spec.ts</pre>
+
+        <h3>Helper Functions Available</h3>
+        <table class="cred-table">
+          <thead><tr><th>Function</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td><code>registerPublicClaim(request, overrides?)</code></td><td>Register a new claim via public API</td></tr>
+            <tr><td><code>fetchPublicClaimStatus(request, token)</code></td><td>GET current status by token</td></tr>
+            <tr><td><code>uploadPublicClaimDocument(request, token, type)</code></td><td>Upload one document (SVG stub)</td></tr>
+            <tr><td><code>uploadAllPublicPreRepairDocs(request, token)</code></td><td>Upload all 9 pre-repair docs</td></tr>
+            <tr><td><code>uploadAllPublicPostRepairDocs(request, token)</code></td><td>Upload all 7 post-repair docs</td></tr>
+            <tr><td><code>submitPublicClaimForApproval(request, token)</code></td><td>Submit for GSH approval</td></tr>
+            <tr><td><code>submitPublicClaimPostRepair(request, token)</code></td><td>Submit post-repair documents</td></tr>
+            <tr><td><code>seedPublicClaimAtApprovalPending(request)</code></td><td>Register + upload all + submit in one call</td></tr>
+            <tr><td><code>approvePublicClaimViaAdminApi(request, token, id)</code></td><td>Admin approves via authenticated API</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </div><!-- /content -->
+</div><!-- /layout -->
+
+<script>
+  const links = document.querySelectorAll('.sidebar a');
+  const sections = document.querySelectorAll('.module-section');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        links.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

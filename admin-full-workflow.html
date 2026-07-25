@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gadget Seva Hub — Admin Full Workflow Guide</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f1f5f9; color: #1e293b; line-height: 1.6; }
+    a { color: #2563eb; }
+    code { background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 4px; padding: 2px 6px; font-size: .85rem; font-family: 'Consolas', monospace; color: #0f172a; }
+
+    .hero { background: linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%); color: #f8fafc; padding: 56px 48px 48px; }
+    .hero h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 10px; }
+    .hero p  { font-size: 1.1rem; color: #94a3b8; max-width: 760px; }
+    .hero .badge-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:20px; }
+    .badge { background:#1e293b; border-radius:999px; padding:6px 16px; font-size:.85rem; font-weight:600; color:#93c5fd; }
+
+    .flow-nav { background:#020617; padding:12px 48px; display:flex; gap:10px; flex-wrap:wrap; }
+    .flow-nav a { background:#1e293b; color:#cbd5e1; text-decoration:none; padding:8px 16px; border-radius:8px; font-size:.85rem; font-weight:600; border:1px solid #334155; }
+    .flow-nav a.current { background:#2563eb; color:#fff; border-color:#2563eb; }
+    .flow-nav a:hover { border-color:#3b82f6; color:#fff; }
+
+    .layout { display: flex; min-height: 100vh; }
+    .sidebar { width: 260px; background: #0f172a; color: #f8fafc; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; flex-shrink: 0; }
+    .sidebar h3 { font-size: .7rem; letter-spacing: 1.5px; text-transform: uppercase; color: #475569; padding: 16px 20px 6px; margin-top: 12px; }
+    .sidebar a { display: block; padding: 8px 20px; color: #cbd5e1; text-decoration: none; font-size: .9rem; border-left: 3px solid transparent; transition: all .15s; }
+    .sidebar a:hover, .sidebar a.active { color: #f8fafc; background: #1e293b; border-left-color: #3b82f6; }
+    .content { flex: 1; padding: 0; overflow: hidden; }
+
+    .module-section { background: #fff; margin: 24px 32px; border-radius: 16px; box-shadow: 0 1px 4px rgba(0,0,0,.08); overflow: hidden; }
+    .module-header { padding: 24px 32px; }
+    .module-header h2 { font-size: 1.5rem; font-weight: 700; color: #fff; }
+    .module-body { padding: 28px 32px; }
+
+    .accent-blue   { background: #2563eb; }
+    .accent-cyan   { background: #0891b2; }
+    .accent-teal   { background: #0d9488; }
+    .accent-gold   { background: #d97706; }
+    .accent-orange { background: #ea580c; }
+    .accent-purple { background: #7c3aed; }
+    .accent-green  { background: #16a34a; }
+    .accent-slate  { background: #475569; }
+    .accent-indigo { background: #4f46e5; }
+    .accent-red    { background: #dc2626; }
+    .accent-rose   { background: #e11d48; }
+
+    h3 { font-size: 1.1rem; font-weight: 700; color: #0f172a; margin: 24px 0 12px; }
+    h4 { font-size: .95rem; font-weight: 600; color: #334155; margin: 18px 0 8px; }
+    p  { color: #475569; margin-bottom: 12px; font-size: .95rem; }
+    ul, ol { padding-left: 20px; color: #475569; font-size: .95rem; margin-bottom: 14px; }
+    li { margin-bottom: 6px; }
+
+    .step { display:flex; gap:14px; margin-bottom:16px; align-items:flex-start; }
+    .step-num { width:28px; height:28px; background:#2563eb; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.8rem; font-weight:800; flex-shrink:0; margin-top:2px; }
+    .step-body strong { display:block; font-size:.95rem; color:#0f172a; }
+    .step-body p { margin:4px 0 0; font-size:.88rem; }
+
+    .ss-fig { margin: 16px 0 24px; }
+    figcaption { font-size: .8rem; color: #64748b; text-align: center; margin-top: 6px; }
+
+    .info-box { background:#eff6ff; border-left:4px solid #2563eb; border-radius:6px; padding:14px 18px; margin:16px 0; font-size:.9rem; color:#1e40af; }
+    .warn-box { background:#fffbeb; border-left:4px solid #d97706; border-radius:6px; padding:14px 18px; margin:16px 0; font-size:.9rem; color:#92400e; }
+    .success-box { background:#f0fdf4; border-left:4px solid #16a34a; border-radius:6px; padding:14px 18px; margin:16px 0; font-size:.9rem; color:#14532d; }
+
+    .cred-table { width:100%; border-collapse:collapse; margin:16px 0; font-size:.9rem; }
+    .cred-table th { background:#0f172a; color:#f8fafc; padding:10px 14px; text-align:left; }
+    .cred-table td { padding:10px 14px; border-bottom:1px solid #e2e8f0; vertical-align:top; }
+    .cred-table tr:last-child td { border-bottom:none; }
+    .cred-table tr:nth-child(even) td { background:#f8fafc; }
+
+    .flow-diagram { background:#f8fafc; border-radius:10px; padding:20px 24px; margin:16px 0; }
+    .flow-steps { display:flex; flex-wrap:wrap; gap:0; align-items:center; }
+    .flow-step { background:#fff; border:1px solid #e2e8f0; border-radius:8px; padding:8px 14px; font-size:.82rem; font-weight:600; color:#334155; }
+    .flow-arrow { color:#94a3b8; font-size:1.2rem; padding:0 6px; }
+
+    .status-pill { display:inline-block; border-radius:999px; padding:3px 12px; font-size:.78rem; font-weight:700; }
+    .pill-blue   { background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; }
+    .pill-amber  { background:#fffbeb; color:#92400e; border:1px solid #fde68a; }
+    .pill-green  { background:#f0fdf4; color:#166534; border:1px solid #bbf7d0; }
+    .pill-gray   { background:#f8fafc; color:#475569; border:1px solid #e2e8f0; }
+
+    .ss-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:16px 0; }
+
+    .stage-strip { display:flex; flex-wrap:wrap; gap:8px; margin: 16px 0 24px; }
+    .stage-chip { background:#f1f5f9; border:1px solid #e2e8f0; border-radius:999px; padding:6px 14px; font-size:.8rem; font-weight:700; color:#334155; }
+    .stage-chip.done { background:#f0fdf4; border-color:#bbf7d0; color:#166534; }
+
+    @media(max-width:900px){
+      .layout { flex-direction:column; }
+      .sidebar { width:100%; height:auto; position:relative; }
+      .ss-grid { grid-template-columns:1fr; }
+      .hero { padding:36px 24px 32px; }
+      .hero h1 { font-size:1.8rem; }
+      .module-section { margin:16px; }
+      .module-body { padding:20px; }
+      .flow-nav { padding: 12px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🖥️ Admin Full Workflow — Pickup to Billing Closure</h1>
+  <p>The complete journey of a single service request through every admin console module — from pickup assignment to the final closed, paid invoice — demonstrated end-to-end in one continuous session.</p>
+  <div class="badge-row">
+    <span class="badge">v1.0 — July 2026</span>
+    <span class="badge">12 Admin Modules</span>
+    <span class="badge">1 Continuous Request</span>
+    <span class="badge">No Handoff Gaps</span>
+    <span class="badge">Verified on Live UAT ✅</span>
+  </div>
+</div>
+
+<div class="flow-nav">
+  <a href="index.html">🏠 All Docs</a>
+  <a href="cashless-portal.html">🛡️ Public Cashless Portal Flow</a>
+  <a href="pickup-runner-flow.html">🛵 Pickup Runner Flow</a>
+  <a href="admin-full-workflow.html" class="current">🖥️ Admin Full Workflow</a>
+</div>
+
+<div class="layout">
+
+  <nav class="sidebar">
+    <h3>Overview</h3>
+    <a href="#overview">What is the Full Workflow?</a>
+    <a href="#stages">The 12 Stages at a Glance</a>
+
+    <h3>The Journey</h3>
+    <a href="#stage1">1 — Assign Pickup</a>
+    <a href="#stage2">2 — Hub Operations</a>
+    <a href="#stage3">3 — Service Center Estimate</a>
+    <a href="#stage4">4 — Estimate Approval</a>
+    <a href="#stage5">5 — Repair Execution</a>
+    <a href="#stage6">6 — Quality Check</a>
+    <a href="#stage7">7 — Delivery</a>
+    <a href="#stage8">8 — Billing &amp; Closure</a>
+
+    <h3>Reference</h3>
+    <a href="#statuses">Full Status Flow</a>
+
+    <h3>Testing</h3>
+    <a href="#test-summary">How This Was Verified</a>
+
+    <h3>Video</h3>
+    <a href="#video">Full Admin Journey Recording</a>
+  </nav>
+
+  <div class="content">
+
+    <section id="overview" class="module-section">
+      <div class="module-header accent-indigo">
+        <h2>🖥️ What is the Admin Full Workflow?</h2>
+      </div>
+      <div class="module-body">
+        <p>Gadget Seva Hub's admin console is organised into separate modules — Pickup Management, Hub Operations, Service Center, Estimates, Quality Check, Delivery, Billing — each with its own board and its own set of action buttons. In day-to-day use, different team members work in different modules.</p>
+        <p>This guide demonstrates that a <strong>single request can move continuously through every one of those modules</strong>, with each stage's action correctly handing the request off to the next, all the way to a closed, fully paid invoice — proving there's no gap or dead end anywhere in the chain.</p>
+
+        <div class="info-box">💡 This is the same journey a real device takes from the moment a customer's pickup is arranged until their repaired device is delivered and the invoice is settled.</div>
+      </div>
+    </section>
+
+    <section id="stages" class="module-section">
+      <div class="module-header accent-cyan">
+        <h2>🗺️ The 12 Stages at a Glance</h2>
+      </div>
+      <div class="module-body">
+        <div class="stage-strip">
+          <span class="stage-chip done">1. Assign Pickup</span>
+          <span class="stage-chip done">2. Received at Hub</span>
+          <span class="stage-chip done">3. Send to Service Center</span>
+          <span class="stage-chip done">4. Submit Estimate</span>
+          <span class="stage-chip done">5. Approve Estimate</span>
+          <span class="stage-chip done">6. Repair Execution</span>
+          <span class="stage-chip done">7. QC Passed</span>
+          <span class="stage-chip done">8. Assign Delivery</span>
+          <span class="stage-chip done">9. Out for Delivery → Delivered</span>
+          <span class="stage-chip done">10. Generate Invoice</span>
+          <span class="stage-chip done">11. Record Payment → Reconcile</span>
+          <span class="stage-chip done">12. Close Request</span>
+        </div>
+        <p>Every chip above is a real button click in the admin console, captured on video in one uninterrupted run — see the <a href="#video">recording</a> at the bottom of this page.</p>
+      </div>
+    </section>
+
+    <section id="stage1" class="module-section">
+      <div class="module-header accent-blue">
+        <h2>1️⃣ Assign Pickup</h2>
+      </div>
+      <div class="module-body">
+        <p>The journey starts the same way as the <a href="pickup-runner-flow.html">Pickup Runner Flow</a>: admin allocates the collection to a field runner.</p>
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Pickup Management → Assign Pickup</strong><p>Select the runner, set the pickup schedule, and add notes.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Click "Assign Pickup"</strong><p>Request status becomes <code>PICKUP_ASSIGNED</code>; the runner link is sent by SMS and WhatsApp.</p></div></div>
+
+        <figure class="ss-fig">
+          <img src="e2e-shots/admin-e2e-assign-pickup.png" alt="Assign Pickup board" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+          <figcaption>Real captured moment — Assign Pickup board, request queued for the runner</figcaption>
+        </figure>
+
+        <div class="info-box">💡 Once the runner accepts, uploads all 10 required photos, and submits pickup done, the device is officially collected — see the full detail in the <a href="pickup-runner-flow.html">Pickup Runner Flow guide</a>.</div>
+      </div>
+    </section>
+
+    <section id="stage2" class="module-section">
+      <div class="module-header accent-teal">
+        <h2>2️⃣ Hub Operations — Receive &amp; Dispatch</h2>
+      </div>
+      <div class="module-body">
+        <p>Once the runner hands the device over, it's logged into the hub and forwarded on to diagnosis.</p>
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Hub Operations → Device Received at Hub</strong><p>Click "Mark Received At Hub" on the request card.</p><p>Status becomes <code>RECEIVED_AT_HUB</code>.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Hub Operations → Send to Service Center</strong><p>Click "Send To Service Center."</p><p>Status becomes <code>DIAGNOSIS_IN_PROGRESS</code> — the device is now with the repair team.</p></div></div>
+      </div>
+    </section>
+
+    <section id="stage3" class="module-section">
+      <div class="module-header accent-gold">
+        <h2>3️⃣ Service Center — Submit the Estimate</h2>
+      </div>
+      <div class="module-body">
+        <p>The service center technician diagnoses the fault and submits a cost estimate directly on the request card.</p>
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Service Center → Devices Under Inspection</strong><p>Fill in the diagnosis summary, parts cost, labour cost, and tax amount.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Click "Submit Estimate"</strong><p>Status becomes <code>ESTIMATE_PREPARED</code> and the request moves to the approval desk.</p></div></div>
+      </div>
+    </section>
+
+    <section id="stage4" class="module-section">
+      <div class="module-header accent-orange">
+        <h2>4️⃣ Estimates — Approve</h2>
+      </div>
+      <div class="module-body">
+        <p>The estimate approval desk is where a commercial decision is made on the cost before repair begins.</p>
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Estimates → Awaiting Customer Approval</strong><p>Review the submitted estimate against the diagnosis.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Click "Approve Estimate"</strong><p>Status becomes <code>ESTIMATE_APPROVED</code> — repair can now begin.</p></div></div>
+
+        <figure class="ss-fig">
+          <img src="e2e-shots/admin-e2e-estimate-approval.png" alt="Estimate Approval Queue" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+          <figcaption>Real captured moment — Estimate Approval Queue, the admin console's own built-in explainer for this stage</figcaption>
+        </figure>
+
+        <div class="warn-box">⚠️ Estimates can also be sent back with <strong>"Request Revision"</strong>, which returns the request to diagnosis instead of approving it — that path is exercised separately in the regression suite.</div>
+      </div>
+    </section>
+
+    <section id="stage5" class="module-section">
+      <div class="module-header accent-purple">
+        <h2>5️⃣ Repair Execution</h2>
+      </div>
+      <div class="module-body">
+        <p>Repair start and completion are recorded against the request timeline as the technician physically works on the device. This is currently a backend-tracked stage — there isn't a separate admin console button for it yet (every other stage in this journey has one; this is the sole exception), so it's recorded directly via the request status API rather than a UI click.</p>
+        <div class="flow-diagram">
+          <div class="flow-steps">
+            <div class="flow-step">ESTIMATE_APPROVED</div><div class="flow-arrow">→</div>
+            <div class="flow-step">REPAIR_IN_PROGRESS</div><div class="flow-arrow">→</div>
+            <div class="flow-step">REPAIR_COMPLETED</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stage6" class="module-section">
+      <div class="module-header accent-green">
+        <h2>6️⃣ Quality Check</h2>
+      </div>
+      <div class="module-body">
+        <p>Before a repaired device can be dispatched, it passes through quality control.</p>
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Quality Check → Pending QC</strong><p>Inspect the repaired device against the reported issue.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Click "QC Passed"</strong><p>Status becomes <code>READY_FOR_DISPATCH</code>.</p></div></div>
+        <div class="info-box">💡 If a device fails inspection, <strong>"QC Failed"</strong> sends it back to repair, and <strong>"Finish Rework"</strong> returns it to the QC queue once fixed — both exercised in the module's own dedicated regression test.</div>
+      </div>
+    </section>
+
+    <section id="stage7" class="module-section">
+      <div class="module-header accent-red">
+        <h2>7️⃣ Delivery</h2>
+      </div>
+      <div class="module-body">
+        <p>The finished device is handed to a delivery agent and tracked to the customer's doorstep.</p>
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Delivery → Assign Delivery</strong><p>Pick a delivery agent, schedule, and notes, then click "Assign Drop."</p><p>Status becomes <code>DELIVERY_ASSIGNED</code>.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Delivery → Out for Delivery</strong><p>Click "Mark Out For Delivery."</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Click "Mark Delivered"</strong><p>Status becomes <code>DELIVERED</code> once the customer has the device back.</p></div></div>
+
+        <figure class="ss-fig">
+          <img src="e2e-shots/admin-e2e-delivery-started.png" alt="Delivery Tracking — Out for Delivery" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+          <figcaption>Real captured moment — Delivery Tracking board, "Delivery started" confirmation</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="stage8" class="module-section">
+      <div class="module-header accent-rose">
+        <h2>8️⃣ Billing &amp; Closure</h2>
+      </div>
+      <div class="module-body">
+        <p>The final leg: turning the delivered repair into a paid, reconciled, closed invoice.</p>
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Billing → Generate Invoice</strong><p>Click "Generate Invoice" — a GST-ready invoice number is created.</p><p>Status becomes <code>INVOICED</code>.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Billing → Pending Invoices</strong><p>Record the payment reference, amount, method, and UTR number, then click "Record Payment."</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Payment Reconciliation</strong><p>Mark the payment "RECONCILED" with a remark, then click "Save Reconciliation."</p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Billing → Paid Invoices</strong><p>Click "Close Request."</p><p>Status becomes <code>CLOSED</code> — the request lifecycle is complete.</p></div></div>
+
+        <figure class="ss-fig">
+          <img src="e2e-shots/admin-e2e-paid-invoices.png" alt="Paid Invoices board" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+          <figcaption>Real captured moment — Paid Invoices board, the admin console's own built-in explainer for this stage</figcaption>
+        </figure>
+
+        <div class="success-box">✅ <strong>Confirmed working:</strong> the closed request retains its 10 pickup photos, its invoice number, its payment record, and both its DELIVERED and CLOSED timeline entries — nothing is lost across the full 12-stage journey.</div>
+      </div>
+    </section>
+
+    <section id="statuses" class="module-section">
+      <div class="module-header accent-slate">
+        <h2>📊 Full Status Flow</h2>
+      </div>
+      <div class="module-body">
+        <div class="flow-diagram">
+          <div class="flow-steps">
+            <div class="flow-step">PICKUP_ASSIGNED</div><div class="flow-arrow">→</div>
+            <div class="flow-step">PICKUP_COMPLETED</div><div class="flow-arrow">→</div>
+            <div class="flow-step">RECEIVED_AT_HUB</div><div class="flow-arrow">→</div>
+            <div class="flow-step">DIAGNOSIS_IN_PROGRESS</div>
+          </div>
+          <div class="flow-steps" style="margin-top:10px">
+            <div class="flow-step">ESTIMATE_PREPARED</div><div class="flow-arrow">→</div>
+            <div class="flow-step">ESTIMATE_APPROVED</div><div class="flow-arrow">→</div>
+            <div class="flow-step">REPAIR_IN_PROGRESS</div><div class="flow-arrow">→</div>
+            <div class="flow-step">REPAIR_COMPLETED</div>
+          </div>
+          <div class="flow-steps" style="margin-top:10px">
+            <div class="flow-step">READY_FOR_DISPATCH</div><div class="flow-arrow">→</div>
+            <div class="flow-step">DELIVERY_ASSIGNED</div><div class="flow-arrow">→</div>
+            <div class="flow-step">OUT_FOR_DELIVERY</div><div class="flow-arrow">→</div>
+            <div class="flow-step">DELIVERED</div>
+          </div>
+          <div class="flow-steps" style="margin-top:10px">
+            <div class="flow-step">INVOICED</div><div class="flow-arrow">→</div>
+            <div class="flow-step">Payment Recorded</div><div class="flow-arrow">→</div>
+            <div class="flow-step">Reconciled</div><div class="flow-arrow">→</div>
+            <div class="flow-step">CLOSED</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="test-summary" class="module-section">
+      <div class="module-header accent-indigo">
+        <h2>🧪 How This Was Verified</h2>
+      </div>
+      <div class="module-body">
+        <p>This journey is covered by an automated end-to-end test in <code>10-full-workflow.regression.spec.ts</code> that drives the <strong>real admin console UI</strong> at every stage that has a dedicated button, against the live UAT environment:</p>
+        <ol>
+          <li>Assigns the pickup via the real Assign Pickup board</li>
+          <li>Marks the device received at hub, then dispatches to service center — both via their real buttons</li>
+          <li>Fills and submits a real estimate on the Devices Under Inspection card</li>
+          <li>Approves the estimate from the real approval desk</li>
+          <li>Advances repair start/completion via the status API (the one stage without a dedicated UI button)</li>
+          <li>Passes QC via the real "QC Passed" button</li>
+          <li>Assigns, dispatches, and delivers via the real Delivery boards</li>
+          <li>Generates the invoice, records the payment, saves reconciliation, and closes the request — all via their real buttons</li>
+          <li>Confirms the final closed request still has all 10 pickup photos, its invoice number, its payment record, and its full timeline</li>
+        </ol>
+        <div class="success-box">✅ <strong>Result:</strong> Passed on the first real run against live UAT — every one of the 12 stages correctly handed the request off to the next, with no gap anywhere in the chain.</div>
+      </div>
+    </section>
+
+    <section id="video" class="module-section">
+      <div class="module-header accent-cyan">
+        <h2>🎥 Video — Full Admin Console Journey</h2>
+      </div>
+      <div class="module-body">
+        <p>Complete recorded walkthrough of the automated test above: one request carried continuously from pickup assignment through hub operations, service center, estimate approval, quality check, delivery, and billing closure — all in one uninterrupted run against the live UAT environment.</p>
+        <video controls style="width:100%;border-radius:10px;margin-top:16px;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/admin-full-workflow-journey.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/admin-full-workflow-journey.webm">Download the video</a>.
+        </video>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+  const links = document.querySelectorAll('.sidebar a');
+  const sections = document.querySelectorAll('.module-section');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        links.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

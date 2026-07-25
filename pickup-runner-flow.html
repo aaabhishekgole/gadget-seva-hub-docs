@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gadget Seva Hub — Pickup Runner ("Pickup Boy") Flow Guide</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f1f5f9; color: #1e293b; line-height: 1.6; }
+    a { color: #2563eb; }
+    code { background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 4px; padding: 2px 6px; font-size: .85rem; font-family: 'Consolas', monospace; color: #0f172a; }
+    pre { background: #0f172a; color: #e2e8f0; border-radius: 10px; padding: 20px 24px; margin: 16px 0 24px; overflow-x: auto; font-size: .82rem; line-height: 1.7; font-family: 'Consolas', monospace; }
+    pre .c  { color: #64748b; }
+    pre .k  { color: #93c5fd; }
+    pre .s  { color: #86efac; }
+
+    .hero { background: linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%); color: #f8fafc; padding: 56px 48px 48px; }
+    .hero h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 10px; }
+    .hero p  { font-size: 1.1rem; color: #94a3b8; max-width: 720px; }
+    .hero .badge-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:20px; }
+    .badge { background:#1e293b; border-radius:999px; padding:6px 16px; font-size:.85rem; font-weight:600; color:#93c5fd; }
+
+    .flow-nav { background:#020617; padding:12px 48px; display:flex; gap:10px; flex-wrap:wrap; }
+    .flow-nav a { background:#1e293b; color:#cbd5e1; text-decoration:none; padding:8px 16px; border-radius:8px; font-size:.85rem; font-weight:600; border:1px solid #334155; }
+    .flow-nav a.current { background:#2563eb; color:#fff; border-color:#2563eb; }
+    .flow-nav a:hover { border-color:#3b82f6; color:#fff; }
+
+    .layout { display: flex; min-height: 100vh; }
+    .sidebar { width: 260px; background: #0f172a; color: #f8fafc; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; flex-shrink: 0; }
+    .sidebar h3 { font-size: .7rem; letter-spacing: 1.5px; text-transform: uppercase; color: #475569; padding: 16px 20px 6px; margin-top: 12px; }
+    .sidebar a { display: block; padding: 8px 20px; color: #cbd5e1; text-decoration: none; font-size: .9rem; border-left: 3px solid transparent; transition: all .15s; }
+    .sidebar a:hover, .sidebar a.active { color: #f8fafc; background: #1e293b; border-left-color: #3b82f6; }
+    .content { flex: 1; padding: 0; overflow: hidden; }
+
+    .module-section { background: #fff; margin: 24px 32px; border-radius: 16px; box-shadow: 0 1px 4px rgba(0,0,0,.08); overflow: hidden; }
+    .module-header { padding: 24px 32px; }
+    .module-header h2 { font-size: 1.5rem; font-weight: 700; color: #fff; }
+    .module-body { padding: 28px 32px; }
+
+    .accent-blue   { background: #2563eb; }
+    .accent-cyan   { background: #0891b2; }
+    .accent-teal   { background: #0d9488; }
+    .accent-gold   { background: #d97706; }
+    .accent-orange { background: #ea580c; }
+    .accent-purple { background: #7c3aed; }
+    .accent-green  { background: #16a34a; }
+    .accent-slate  { background: #475569; }
+    .accent-indigo { background: #4f46e5; }
+    .accent-red    { background: #dc2626; }
+
+    h3 { font-size: 1.1rem; font-weight: 700; color: #0f172a; margin: 24px 0 12px; }
+    h4 { font-size: .95rem; font-weight: 600; color: #334155; margin: 18px 0 8px; }
+    p  { color: #475569; margin-bottom: 12px; font-size: .95rem; }
+    ul, ol { padding-left: 20px; color: #475569; font-size: .95rem; margin-bottom: 14px; }
+    li { margin-bottom: 6px; }
+
+    .step { display:flex; gap:14px; margin-bottom:16px; align-items:flex-start; }
+    .step-num { width:28px; height:28px; background:#2563eb; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.8rem; font-weight:800; flex-shrink:0; margin-top:2px; }
+    .step-body strong { display:block; font-size:.95rem; color:#0f172a; }
+    .step-body p { margin:4px 0 0; font-size:.88rem; }
+
+    .ss-fig { margin: 16px 0 24px; }
+    figcaption { font-size: .8rem; color: #64748b; text-align: center; margin-top: 6px; }
+
+    .info-box { background:#eff6ff; border-left:4px solid #2563eb; border-radius:6px; padding:14px 18px; margin:16px 0; font-size:.9rem; color:#1e40af; }
+    .warn-box { background:#fffbeb; border-left:4px solid #d97706; border-radius:6px; padding:14px 18px; margin:16px 0; font-size:.9rem; color:#92400e; }
+    .success-box { background:#f0fdf4; border-left:4px solid #16a34a; border-radius:6px; padding:14px 18px; margin:16px 0; font-size:.9rem; color:#14532d; }
+
+    .cred-table { width:100%; border-collapse:collapse; margin:16px 0; font-size:.9rem; }
+    .cred-table th { background:#0f172a; color:#f8fafc; padding:10px 14px; text-align:left; }
+    .cred-table td { padding:10px 14px; border-bottom:1px solid #e2e8f0; vertical-align:top; }
+    .cred-table tr:last-child td { border-bottom:none; }
+    .cred-table tr:nth-child(even) td { background:#f8fafc; }
+
+    .flow-diagram { background:#f8fafc; border-radius:10px; padding:20px 24px; margin:16px 0; }
+    .flow-steps { display:flex; flex-wrap:wrap; gap:0; align-items:center; }
+    .flow-step { background:#fff; border:1px solid #e2e8f0; border-radius:8px; padding:8px 14px; font-size:.82rem; font-weight:600; color:#334155; }
+    .flow-arrow { color:#94a3b8; font-size:1.2rem; padding:0 6px; }
+
+    .doc-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:16px 0; }
+    .doc-slot { display:flex; align-items:center; gap:10px; border:1px solid #e2e8f0; border-radius:10px; padding:10px 14px; background:#f8fafc; }
+    .doc-slot .doc-icon { font-size:1.3rem; }
+    .doc-slot .doc-label { font-size:.85rem; font-weight:600; color:#334155; }
+    .doc-slot .doc-sub { font-size:.75rem; color:#94a3b8; }
+
+    .status-pill { display:inline-block; border-radius:999px; padding:3px 12px; font-size:.78rem; font-weight:700; }
+    .pill-blue   { background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; }
+    .pill-amber  { background:#fffbeb; color:#92400e; border:1px solid #fde68a; }
+    .pill-green  { background:#f0fdf4; color:#166534; border:1px solid #bbf7d0; }
+    .pill-orange { background:#fff7ed; color:#9a3412; border:1px solid #fed7aa; }
+    .pill-gray   { background:#f8fafc; color:#475569; border:1px solid #e2e8f0; }
+
+    .ss-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:16px 0; }
+
+    @media(max-width:900px){
+      .layout { flex-direction:column; }
+      .sidebar { width:100%; height:auto; position:relative; }
+      .ss-grid, .doc-grid { grid-template-columns:1fr; }
+      .hero { padding:36px 24px 32px; }
+      .hero h1 { font-size:1.8rem; }
+      .module-section { margin:16px; }
+      .module-body { padding:20px; }
+      .flow-nav { padding: 12px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🛵 Pickup Runner ("Pickup Boy") Flow</h1>
+  <p>Complete end-to-end guide to how a field pickup executive receives, accepts, documents, and completes a doorstep device collection through Gadget Seva Hub.</p>
+  <div class="badge-row">
+    <span class="badge">v1.0 — July 2026</span>
+    <span class="badge">No App Install Required</span>
+    <span class="badge">SMS / WhatsApp Link</span>
+    <span class="badge">10 Required Photos</span>
+    <span class="badge">Verified on Live UAT ✅</span>
+  </div>
+</div>
+
+<div class="flow-nav">
+  <a href="index.html">🏠 All Docs</a>
+  <a href="cashless-portal.html">🛡️ Public Cashless Portal Flow</a>
+  <a href="pickup-runner-flow.html" class="current">🛵 Pickup Runner Flow</a>
+  <a href="admin-full-workflow.html">🖥️ Admin Full Workflow</a>
+</div>
+
+<div class="layout">
+
+  <nav class="sidebar">
+    <h3>Overview</h3>
+    <a href="#overview">What is the Pickup Flow?</a>
+    <a href="#roles">Who's Involved?</a>
+
+    <h3>Admin Side</h3>
+    <a href="#onboard">Onboarding a Runner</a>
+    <a href="#assign">Assigning a Pickup</a>
+
+    <h3>Runner Flow</h3>
+    <a href="#step1">Step 1 — Open the Link</a>
+    <a href="#step2">Step 2 — Accept the Pickup</a>
+    <a href="#step3">Step 3 — Upload 10 Required Photos</a>
+    <a href="#step4">Step 4 — Optional Extra Photos</a>
+    <a href="#step5">Step 5 — Submit Pickup Done</a>
+    <a href="#customer-update">If the Customer Isn't Available</a>
+
+    <h3>Admin Confirmation</h3>
+    <a href="#admin-confirm">Seeing the Completed Pickup</a>
+
+    <h3>Reference</h3>
+    <a href="#photos">Required Photo Checklist</a>
+    <a href="#statuses">Status Reference</a>
+    <a href="#flow">Full Status Flow</a>
+
+    <h3>Testing</h3>
+    <a href="#test-summary">How This Was Verified</a>
+
+    <h3>Video</h3>
+    <a href="#video">Full Runner Journey Recording</a>
+  </nav>
+
+  <div class="content">
+
+    <section id="overview" class="module-section">
+      <div class="module-header accent-indigo">
+        <h2>🛵 What is the Pickup Runner Flow?</h2>
+      </div>
+      <div class="module-body">
+        <p>When a customer books a device pickup, Gadget Seva Hub assigns the job to a <strong>Pickup Runner</strong> (the field executive who physically visits the customer). The runner never needs to log into the admin console — they get a single link by SMS and WhatsApp that opens a focused, mobile-friendly portal for that one job.</p>
+
+        <h3>Key Highlights</h3>
+        <ul>
+          <li>No separate app install needed — works as a plain mobile web page</li>
+          <li>One link per pickup — sent automatically the moment admin assigns the job</li>
+          <li>4-step guided flow: Accept → Upload 10 photos → Optional extras → Submit</li>
+          <li>The "Submit Pickup Done" button only unlocks once all 10 required photos are uploaded — the app itself won't let a runner skip evidence</li>
+          <li>Handles doorstep exceptions — customer not available, reschedule requests, unreachable numbers</li>
+          <li>The moment pickup is marked done, the request instantly appears in the admin's <strong>Picked Up Devices</strong> board</li>
+        </ul>
+
+        <div class="info-box">💡 <strong>Tip:</strong> The same job can also be opened from a browser-based <strong>Runner Inbox</strong> if the runner prefers to log in and see every job assigned to them in one list, instead of only the one link they were just sent.</div>
+      </div>
+    </section>
+
+    <section id="roles" class="module-section">
+      <div class="module-header accent-cyan">
+        <h2>👥 Who's Involved?</h2>
+      </div>
+      <div class="module-body">
+        <table class="cred-table">
+          <thead><tr><th>Role</th><th>What they do</th><th>Needs login?</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Admin / Operations</strong></td><td>Onboards runners, assigns pickups with a schedule and OTP, monitors the pickup boards</td><td>Yes</td></tr>
+            <tr><td><strong>Pickup Runner ("Pickup Boy")</strong></td><td>Opens the SMS/WhatsApp link, accepts the job, photographs the device, submits pickup done</td><td>No (link-based) — optional login for the browser inbox</td></tr>
+            <tr><td><strong>Customer</strong></td><td>Hands over the device at the scheduled slot; confirms pickup OTP if asked</td><td>No</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="onboard" class="module-section">
+      <div class="module-header accent-red">
+        <h2>🔐 Admin Side — Onboarding a Runner</h2>
+      </div>
+      <div class="module-body">
+        <p>Before any pickup can be assigned, the runner must exist in the system as a <strong>Pickup Agent</strong> user.</p>
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Login to Admin Portal</strong><p>Go to <code>/login</code> with admin credentials.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Open Pickup Management → Runner Onboarding</strong><p>Fill the runner's full name, mobile number, and optionally WhatsApp number, email, and username.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Submit</strong><p>The runner is created with role <code>PICKUP_AGENT</code> and a default password pattern (<code>Runner@</code> + last 4 digits of their mobile number), and instantly appears in the runner roster ready for assignment.</p></div></div>
+
+        <figure class="ss-fig">
+          <img src="screenshots/pickup-runner-onboarding.png" alt="Runner Onboarding form" loading="lazy" style="width:100%;max-width:700px;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+          <figcaption>Runner Onboarding — new pickup agent added to the roster</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="assign" class="module-section">
+      <div class="module-header accent-blue">
+        <h2>📋 Admin Side — Assigning a Pickup</h2>
+      </div>
+      <div class="module-body">
+        <p>Once a service request needs a pickup, admin allocates it to an available runner from the <strong>Assign Pickup</strong> board.</p>
+
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Open Pickup Management → Assign Pickup</strong><p>Every request awaiting pickup assignment appears here as a card.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Pick a runner, date/time, and notes</strong><p>Choose the pickup runner from the dropdown, set the scheduled pickup slot, and add any handoff notes.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Click "Assign Pickup"</strong><p>The system generates a unique, secure runner link and a 4-digit pickup OTP, then queues the SMS + WhatsApp notification to the runner.</p></div></div>
+
+        <figure class="ss-fig">
+          <img src="e2e-shots/admin-e2e-assign-pickup.png" alt="Assign Pickup board with workflow explainer" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+          <figcaption>Assign Pickup board — the admin console's own built-in explainer for this stage</figcaption>
+        </figure>
+
+        <div class="success-box">✅ <strong>Confirmed working:</strong> "Runner link sent over SMS and WhatsApp" toast appears immediately, and the request moves to status <code>PICKUP_ASSIGNED</code>.</div>
+      </div>
+    </section>
+
+    <section id="step1" class="module-section">
+      <div class="module-header accent-teal">
+        <h2>📲 Step 1 — Runner Opens the Link</h2>
+      </div>
+      <div class="module-body">
+        <p>The runner receives an SMS/WhatsApp message with a single link, e.g. <code>/runner-access/&lt;token&gt;</code>.</p>
+
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Tap the link on the phone</strong><p>On a mobile device, it first tries to open the hybrid runner app (if installed).</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Falls back to the browser automatically</strong><p>If the app isn't installed (or on desktop), the page shows two buttons after ~1.4 seconds: <strong>"Open Direct Pickup Flow"</strong> and <strong>"Open Runner Inbox."</strong></p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Tap "Open Direct Pickup Flow"</strong><p>This opens the actual pickup execution screen for this specific job.</p></div></div>
+
+        <figure class="ss-fig">
+          <img src="screenshots/runner-access.png" alt="Runner Access — app launch fallback with two browser options" loading="lazy" style="width:100%;max-width:700px;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+          <figcaption>Runner Access landing page — the exact page a runner sees when they tap the SMS/WhatsApp link</figcaption>
+        </figure>
+
+        <div class="info-box">💡 <strong>Prefer to log in instead?</strong> Tapping "Open Runner Inbox" lets the runner sign in with their mobile number and see <em>every</em> pickup assigned to them, not just the one from this link — useful if they have several jobs queued for the day.</div>
+      </div>
+    </section>
+
+    <section id="step2" class="module-section">
+      <div class="module-header accent-gold">
+        <h2>✅ Step 2 — Accept the Pickup</h2>
+      </div>
+      <div class="module-body">
+        <p>The runner portal shows the customer's name, phone, address, device details, and the pickup OTP — everything needed for the doorstep visit — with a 4-step progress tracker at the top.</p>
+
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Review the job details</strong><p>Customer contact info, device category, issue summary, and the pickup OTP are all shown up front.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Tap "Accept Pickup"</strong><p>Confirms the runner has received and is acting on the assignment. The button changes to "Pickup Accepted" and locks.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Notifications fire automatically</strong><p>Both the customer and admin receive a notification the moment acceptance is recorded.</p></div></div>
+
+        <figure class="ss-fig">
+          <img src="e2e-shots/pickup-e2e-accepted.png" alt="Pickup Accepted — evidence uploaded toast visible" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+          <figcaption>Real captured moment — "Pickup Accepted" button state, with the acceptance and first-photo confirmation toasts</figcaption>
+        </figure>
+
+        <div class="warn-box">⚠️ <strong>Note:</strong> Photo uploads are blocked until the pickup is accepted — the app enforces "accept first, then document."</div>
+      </div>
+    </section>
+
+    <section id="step3" class="module-section">
+      <div class="module-header accent-purple">
+        <h2>📸 Step 3 — Upload the 10 Required Photos</h2>
+      </div>
+      <div class="module-body">
+        <p>Every pickup needs the same 10 angles of the device, captured live at the doorstep before handoff. Each slot has its own file picker with a camera-capture hint on mobile.</p>
+
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Tap any required slot</strong><p>Opens the phone's camera or gallery. Slots can be filled in any order.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Watch the slot turn green</strong><p>Each successful upload shows an instant "Uploaded successfully" confirmation and the progress counter increases.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Repeat for all 10</strong><p>The "Submit Pickup Done" button stays disabled until every required slot shows <strong>Uploaded</strong>.</p></div></div>
+
+        <figure class="ss-fig">
+          <img src="e2e-shots/pickup-e2e-evidence-uploading.png" alt="Evidence photos uploading — stacked success toasts" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+          <figcaption>Real captured moment — photos being uploaded one after another, each confirmed instantly</figcaption>
+        </figure>
+
+        <h3 id="photos">Required Photo Checklist (10 total)</h3>
+        <div class="doc-grid">
+          <div class="doc-slot"><div class="doc-icon">📱</div><div><div class="doc-label">Front View</div><div class="doc-sub">Front panel and body condition</div></div></div>
+          <div class="doc-slot"><div class="doc-icon">🔄</div><div><div class="doc-label">Back View</div><div class="doc-sub">Rear panel and housing</div></div></div>
+          <div class="doc-slot"><div class="doc-icon">◀</div><div><div class="doc-label">Left Edge</div><div class="doc-sub">Left side frame</div></div></div>
+          <div class="doc-slot"><div class="doc-icon">▶</div><div><div class="doc-label">Right Edge</div><div class="doc-sub">Right side frame</div></div></div>
+          <div class="doc-slot"><div class="doc-icon">▲</div><div><div class="doc-label">Top Edge</div><div class="doc-sub">Top-side ports and body</div></div></div>
+          <div class="doc-slot"><div class="doc-icon">▼</div><div><div class="doc-label">Bottom Edge</div><div class="doc-sub">Speakers, ports, bottom frame</div></div></div>
+          <div class="doc-slot"><div class="doc-icon">💡</div><div><div class="doc-label">Display On</div><div class="doc-sub">Device powered on, if possible</div></div></div>
+          <div class="doc-slot"><div class="doc-icon">🔢</div><div><div class="doc-label">Serial / IMEI Label</div><div class="doc-sub">Clear shot of serial or IMEI sticker</div></div></div>
+          <div class="doc-slot"><div class="doc-icon">🔍</div><div><div class="doc-label">Damage Close-up</div><div class="doc-sub">Main damage or fault area, up close</div></div></div>
+          <div class="doc-slot"><div class="doc-icon">🎒</div><div><div class="doc-label">Accessories / Box</div><div class="doc-sub">Charger, remote, box, or handed-over items</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="step4" class="module-section">
+      <div class="module-header accent-orange">
+        <h2>➕ Step 4 — Optional Extra Photos</h2>
+      </div>
+      <div class="module-body">
+        <p>After the 10 required photos, the runner can add up to <strong>20 additional optional photos</strong> — for extra damage angles, doorstep context, or anything worth recording for audit support.</p>
+        <div class="info-box">💡 Optional photos are never required to submit — they exist purely to give the runner (and later, admin) more supporting context when needed.</div>
+      </div>
+    </section>
+
+    <section id="step5" class="module-section">
+      <div class="module-header accent-green">
+        <h2>🏁 Step 5 — Submit Pickup Done</h2>
+      </div>
+      <div class="module-body">
+        <p>Once all 10 required photos show <strong>Uploaded</strong>, the "Submit Pickup Done" button becomes active.</p>
+
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Confirm the device has been physically handed over</strong><p>The runner should only submit once they actually have the device in hand.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Tap "Submit Pickup Done"</strong><p>The button confirms with "Pickup marked complete. Customer and admin notifications were queued."</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Request status becomes PICKUP_COMPLETED</strong><p>The device now moves into the hub intake pipeline for the operations team.</p></div></div>
+
+        <div class="success-box">✅ <strong>Done!</strong> The runner's job for this pickup ends here — the device now heads to the hub for inward verification.</div>
+      </div>
+    </section>
+
+    <section id="customer-update" class="module-section">
+      <div class="module-header accent-slate">
+        <h2>🚧 If the Customer Isn't Available</h2>
+      </div>
+      <div class="module-body">
+        <p>Not every doorstep visit goes smoothly. The same portal has a dedicated <strong>Customer Update</strong> panel for these situations — no photos or acceptance are required to use it.</p>
+        <table class="cred-table">
+          <thead><tr><th>Option</th><th>When to use it</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Customer Not Available</strong></td><td>Runner reaches the location but the customer isn't there</td></tr>
+            <tr><td><strong>Customer Reschedule</strong></td><td>Customer asks for a different date/time</td></tr>
+            <tr><td><strong>Customer Not Contactable</strong></td><td>Runner cannot reach the customer on any provided number</td></tr>
+          </tbody>
+        </table>
+        <p>Any of these can include an optional note, and both the customer and admin are notified. Admin can then reassign the pickup for another attempt from the Assign Pickup board.</p>
+      </div>
+    </section>
+
+    <section id="admin-confirm" class="module-section">
+      <div class="module-header accent-red">
+        <h2>🔐 Admin Side — Seeing the Completed Pickup</h2>
+      </div>
+      <div class="module-body">
+        <p>The instant the runner submits pickup done, the request appears in <strong>Pickup Management → Picked Up Devices</strong> with the full 10-photo evidence gallery attached.</p>
+
+        <figure class="ss-fig">
+          <img src="e2e-shots/pickup-e2e-admin-picked-up-devices.png" alt="Admin Picked Up Devices board with evidence gallery" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
+          <figcaption>Real captured moment — admin's Picked Up Devices board showing the FRONT/BACK/LEFT evidence the runner just uploaded</figcaption>
+        </figure>
+
+        <div class="success-box">✅ <strong>Confirmed working:</strong> Every photo the runner captured is visible to admin by name (Front, Back, Left, Right, Top, Bottom, Display On, Serial Label, Damage Close-up, Accessories) against the exact request number — nothing is lost between the runner's phone and the admin console.</div>
+      </div>
+    </section>
+
+    <section id="statuses" class="module-section">
+      <div class="module-header accent-slate">
+        <h2>📊 Status Reference</h2>
+      </div>
+      <div class="module-body">
+        <table class="cred-table">
+          <thead><tr><th>Status</th><th>What it means</th><th>Who acts next</th></tr></thead>
+          <tbody>
+            <tr><td><span class="status-pill pill-blue">PICKUP_ASSIGNED</span></td><td>Runner link sent, awaiting acceptance</td><td>Runner accepts</td></tr>
+            <tr><td><span class="status-pill pill-amber">PICKUP_IN_PROGRESS</span></td><td>Runner accepted, on the way / uploading photos</td><td>Runner completes</td></tr>
+            <tr><td><span class="status-pill pill-orange">CUSTOMER_NOT_AVAILABLE / CUSTOMER_RESCHEDULED / CUSTOMER_NOT_CONTACTABLE</span></td><td>Doorstep exception reported by runner</td><td>Admin reassigns</td></tr>
+            <tr><td><span class="status-pill pill-green">PICKUP_COMPLETED</span></td><td>Device collected with all 10 photos</td><td>Hub team receives device</td></tr>
+          </tbody>
+        </table>
+
+        <h3 id="flow">Full Status Flow</h3>
+        <div class="flow-diagram">
+          <div class="flow-steps">
+            <div class="flow-step">Admin Assigns</div><div class="flow-arrow">→</div>
+            <div class="flow-step">PICKUP_ASSIGNED</div><div class="flow-arrow">→</div>
+            <div class="flow-step">Runner Accepts</div><div class="flow-arrow">→</div>
+            <div class="flow-step">PICKUP_IN_PROGRESS</div><div class="flow-arrow">→</div>
+            <div class="flow-step">10 Photos + Submit</div><div class="flow-arrow">→</div>
+            <div class="flow-step">PICKUP_COMPLETED</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="test-summary" class="module-section">
+      <div class="module-header accent-indigo">
+        <h2>🧪 How This Was Verified</h2>
+      </div>
+      <div class="module-body">
+        <p>This entire journey is covered by an automated end-to-end test — <code>11-runner-inbox.regression.spec.ts</code> — that drives the <strong>real UI</strong> on both sides against the live UAT environment, not just API calls:</p>
+        <ol>
+          <li>Admin assigns a pickup through the real Assign Pickup board</li>
+          <li>The test opens <code>/runner-access/&lt;token&gt;</code> exactly as a runner's phone would</li>
+          <li>Clicks "Open Direct Pickup Flow" and lands on the real runner portal</li>
+          <li>Clicks "Accept Pickup" and confirms the acceptance toast</li>
+          <li>Uploads all 10 required evidence photos one at a time, confirming each one</li>
+          <li>Clicks "Submit Pickup Done" and confirms completion</li>
+          <li>Confirms the request now shows <code>PICKUP_COMPLETED</code> via the API</li>
+          <li>Opens the admin's Picked Up Devices board and confirms the request is visible there</li>
+        </ol>
+        <div class="success-box">✅ <strong>Result:</strong> Passed on the first real run against live UAT — no wiring gaps found between the runner portal and the admin console.</div>
+      </div>
+    </section>
+
+    <section id="video" class="module-section">
+      <div class="module-header accent-cyan">
+        <h2>🎥 Video — Full Pickup Runner Journey</h2>
+      </div>
+      <div class="module-body">
+        <p>Complete recorded walkthrough of the automated test above: admin assigning the pickup, the runner opening the link, accepting, uploading all 10 photos, submitting pickup done, and admin confirming the completed pickup — all in one continuous run against the live UAT environment.</p>
+        <video controls style="width:100%;border-radius:10px;margin-top:16px;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/pickup-runner-full-journey.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/pickup-runner-full-journey.webm">Download the video</a>.
+        </video>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+  const links = document.querySelectorAll('.sidebar a');
+  const sections = document.querySelectorAll('.module-section');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        links.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

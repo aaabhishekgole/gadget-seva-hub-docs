@@ -123,8 +123,15 @@
     /* Screenshot grid */
     .ss-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:16px 0; }
 
+    /* Cross-flow nav */
+    .flow-nav { background:#020617; padding:12px 48px; display:flex; gap:10px; flex-wrap:wrap; }
+    .flow-nav a { background:#1e293b; color:#cbd5e1; text-decoration:none; padding:8px 16px; border-radius:8px; font-size:.85rem; font-weight:600; border:1px solid #334155; }
+    .flow-nav a.current { background:#2563eb; color:#fff; border-color:#2563eb; }
+    .flow-nav a:hover { border-color:#3b82f6; color:#fff; }
+
     /* Responsive */
     @media(max-width:900px){
+      .flow-nav { padding: 12px 16px; }
       .layout { flex-direction:column; }
       .sidebar { width:100%; height:auto; position:relative; }
       .ss-grid, .doc-grid { grid-template-columns:1fr; }
@@ -146,8 +153,16 @@
     <span class="badge">No Login Required</span>
     <span class="badge">Customer &amp; Promoter</span>
     <span class="badge">v1.1 — Search &amp; Track Added</span>
-    <span class="badge">35 Regression Tests</span>
+    <span class="badge">v1.2 — Full Admin-Wired Journey Verified ✅</span>
+    <span class="badge">46 Regression Tests</span>
   </div>
+</div>
+
+<div class="flow-nav">
+  <a href="index.html">🏠 All Docs</a>
+  <a href="cashless-portal.html" class="current">🛡️ Public Cashless Portal Flow</a>
+  <a href="pickup-runner-flow.html">🛵 Pickup Runner Flow</a>
+  <a href="admin-full-workflow.html">🖥️ Admin Full Workflow</a>
 </div>
 
 <!-- ── Layout ── -->
@@ -197,6 +212,7 @@
     <a href="#run">How to Run Tests</a>
 
     <h3>Videos</h3>
+    <a href="#video-e2e">⭐ Full Admin-Wired Journey</a>
     <a href="#video-portal">Customer Portal Flow</a>
     <a href="#video-admin">Admin Claims Flow</a>
   </nav>
@@ -429,7 +445,10 @@
         <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Get your device repaired</strong><p>Take the device to an authorised service center. Keep the repair invoice and excess payment receipt (if applicable).</p></div></div>
         <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Return to your portal link</strong><p>The claim card now shows <span class="status-pill pill-green">Claim Approved</span> and Step 3 (Post-Repair) is highlighted in the progress bar.</p></div></div>
         <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Upload all 7 post-repair documents</strong><p>Photograph the repaired device from 6 angles and upload the service center invoice.</p></div></div>
-        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Click "Submit Post-Repair Documents →"</strong><p>All 7 documents must be present. The submit button activates when the progress bar reaches 7/7.</p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Enter the Service Center Invoice Amount</strong><p>A required ₹ amount field appears once all documents are uploaded — enter the total from the service center invoice you just uploaded. GSH uses this to verify the amount before approving.</p></div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-body"><strong>Click "Submit Post-Repair Documents →"</strong><p>All 7 documents plus the invoice amount must be present. The submit button activates once everything is filled in.</p></div></div>
+
+        <div class="info-box">💡 <strong>New:</strong> the invoice amount you enter here is what GSH's Invoice Verification team reviews and approves — it's the same amount check used for claims raised directly by the admin team, so portal claims now get identical invoice verification treatment.</div>
 
         <div class="info-box">💡 After GSH approves, the portal automatically switches to Step 3 — Post-Repair. The progress bar resets to 0/7 for the new document set.</div>
 
@@ -1112,6 +1131,21 @@ npx allure open Report/allure-report</pre></div></div>
             <tr><td><code>approvePublicClaimViaAdminApi(request, token, id)</code></td><td>Admin approves via authenticated API</td></tr>
           </tbody>
         </table>
+      </div>
+    </section>
+
+    <!-- Video: Full Admin-Wired Journey (E2E) -->
+    <section id="video-e2e" class="module-section">
+      <div class="module-header accent-green">
+        <h2>⭐ Video — Full Admin-Wired Journey (Register → Closed)</h2>
+      </div>
+      <div class="module-body">
+        <p>This is the definitive end-to-end proof: one continuous recording showing a customer registering a claim, uploading pre-repair documents, submitting for approval, <strong>admin approving the claim</strong>, the customer uploading post-repair documents with the invoice amount, and then <strong>admin approving the invoice, submitting to insurance, and closing the claim</strong> — with the customer returning to the same bookmarked link and seeing "Your claim is closed and settlement is complete." No steps skipped, no API shortcuts — every action is a real click on the real UI.</p>
+        <video controls style="width:100%;border-radius:10px;margin-top:16px;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/cashless-full-e2e-journey.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/cashless-full-e2e-journey.webm">Download the video</a>.
+        </video>
+        <div class="success-box" style="margin-top:16px;">✅ Recorded against the live UAT environment. See the <a href="admin-full-workflow.html">Admin Full Workflow guide</a> and <a href="pickup-runner-flow.html">Pickup Runner Flow guide</a> for the other two flagship journeys.</div>
       </div>
     </section>
 

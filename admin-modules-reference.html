@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gadget Seva Hub — All 19 Admin Modules Reference</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f1f5f9; color: #1e293b; line-height: 1.6; }
+    a { color: #2563eb; }
+    code { background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 4px; padding: 2px 6px; font-size: .85rem; font-family: 'Consolas', monospace; color: #0f172a; }
+
+    .hero { background: linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%); color: #f8fafc; padding: 56px 48px 48px; }
+    .hero h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 10px; }
+    .hero p  { font-size: 1.1rem; color: #94a3b8; max-width: 780px; }
+    .hero .badge-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:20px; }
+    .badge { background:#1e293b; border-radius:999px; padding:6px 16px; font-size:.85rem; font-weight:600; color:#93c5fd; }
+
+    .flow-nav { background:#020617; padding:12px 48px; display:flex; gap:10px; flex-wrap:wrap; }
+    .flow-nav a { background:#1e293b; color:#cbd5e1; text-decoration:none; padding:8px 16px; border-radius:8px; font-size:.85rem; font-weight:600; border:1px solid #334155; }
+    .flow-nav a.current { background:#2563eb; color:#fff; border-color:#2563eb; }
+    .flow-nav a:hover { border-color:#3b82f6; color:#fff; }
+
+    .layout { display: flex; min-height: 100vh; }
+    .sidebar { width: 260px; background: #0f172a; color: #f8fafc; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; flex-shrink: 0; }
+    .sidebar h3 { font-size: .7rem; letter-spacing: 1.5px; text-transform: uppercase; color: #475569; padding: 16px 20px 6px; margin-top: 12px; }
+    .sidebar a { display: block; padding: 6px 20px; color: #cbd5e1; text-decoration: none; font-size: .85rem; border-left: 3px solid transparent; transition: all .15s; }
+    .sidebar a:hover, .sidebar a.active { color: #f8fafc; background: #1e293b; border-left-color: #3b82f6; }
+    .content { flex: 1; padding: 0; overflow: hidden; }
+
+    .module-section { background: #fff; margin: 24px 32px; border-radius: 16px; box-shadow: 0 1px 4px rgba(0,0,0,.08); overflow: hidden; }
+    .module-header { padding: 20px 32px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+    .module-header h2 { font-size: 1.4rem; font-weight: 700; color: #fff; }
+    .module-body { padding: 26px 32px; }
+
+    .accent-blue   { background: #2563eb; }
+    .accent-cyan   { background: #0891b2; }
+    .accent-teal   { background: #0d9488; }
+    .accent-gold   { background: #d97706; }
+    .accent-orange { background: #ea580c; }
+    .accent-purple { background: #7c3aed; }
+    .accent-rose   { background: #e11d48; }
+    .accent-red    { background: #dc2626; }
+    .accent-green  { background: #16a34a; }
+    .accent-slate  { background: #475569; }
+    .accent-indigo { background: #4f46e5; }
+
+    h3 { font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 20px 0 10px; }
+    p  { color: #475569; margin-bottom: 12px; font-size: .95rem; }
+
+    .info-box { background:#eff6ff; border-left:4px solid #2563eb; border-radius:6px; padding:14px 18px; margin:16px 0; font-size:.9rem; color:#1e40af; }
+    .warn-box { background:#fffbeb; border-left:4px solid #d97706; border-radius:6px; padding:14px 18px; margin:16px 0; font-size:.9rem; color:#92400e; }
+    .success-box { background:#f0fdf4; border-left:4px solid #16a34a; border-radius:6px; padding:14px 18px; margin:16px 0; font-size:.9rem; color:#14532d; }
+
+    .tab-row { display:flex; gap:8px; flex-wrap:wrap; margin:12px 0 16px; }
+    .tab-chip { background:#f1f5f9; border:1px solid #e2e8f0; border-radius:8px; padding:5px 14px; font-size:.82rem; font-weight:600; color:#334155; }
+
+    .wired-pill { display:inline-block; border-radius:999px; padding:4px 14px; font-size:.75rem; font-weight:800; letter-spacing:.02em; }
+    .wired-yes { background:#f0fdf4; color:#166534; border:1px solid #bbf7d0; }
+    .wired-partial { background:#fffbeb; color:#92400e; border:1px solid #fde68a; }
+
+    .module-nav-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:10px; margin: 20px 32px; }
+    .module-nav-card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:12px 16px; text-decoration:none; display:flex; align-items:center; gap:10px; transition: all .15s; }
+    .module-nav-card:hover { border-color:#3b82f6; box-shadow: 0 2px 8px rgba(37,99,235,.1); }
+    .module-nav-num { width:26px; height:26px; border-radius:50%; background:#0f172a; color:#fff; display:flex; align-items:center; justify-content:center; font-size:.75rem; font-weight:800; flex-shrink:0; }
+    .module-nav-card strong { font-size:.88rem; color:#0f172a; }
+    .module-nav-card small { display:block; font-size:.72rem; color:#94a3b8; }
+
+    @media(max-width:900px){
+      .layout { flex-direction:column; }
+      .sidebar { width:100%; height:auto; position:relative; }
+      .hero { padding:36px 24px 32px; }
+      .hero h1 { font-size:1.8rem; }
+      .module-section { margin:16px; }
+      .module-body { padding:20px; }
+      .flow-nav { padding: 12px 16px; }
+      .module-nav-grid { margin: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🗂️ All 19 Admin Modules — Reference &amp; Video Library</h1>
+  <p>Every module and sub-tab in the Gadget Seva Hub admin console, in nav-bar order, each with a real functional-flow video captured against live UAT — the single source for a full-portal demo.</p>
+  <div class="badge-row">
+    <span class="badge">v1.0 — July 2026</span>
+    <span class="badge">19 Modules</span>
+    <span class="badge">92 Sub-Tabs</span>
+    <span class="badge">19 Videos</span>
+    <span class="badge">Verified on Live UAT ✅</span>
+  </div>
+</div>
+
+<div class="flow-nav">
+  <a href="index.html">🏠 All Docs</a>
+  <a href="cashless-portal.html">🛡️ Public Cashless Portal Flow</a>
+  <a href="pickup-runner-flow.html">🛵 Pickup Runner Flow</a>
+  <a href="admin-full-workflow.html">🖥️ Admin Full Workflow</a>
+  <a href="admin-modules-reference.html" class="current">🗂️ All 19 Modules Reference</a>
+</div>
+
+<div class="layout">
+
+  <nav class="sidebar">
+    <h3>Core Modules</h3>
+    <a href="#mod1">1. Dashboard</a>
+    <a href="#mod2">2. Service Requests</a>
+    <a href="#mod3">3. Pickup Management</a>
+    <a href="#mod4">4. Hub Operations</a>
+    <a href="#mod5">5. Service Center</a>
+    <a href="#mod6">6. Estimates</a>
+    <a href="#mod7">7. Cashless</a>
+
+    <h3>Claims Module</h3>
+    <a href="#mod8">8. Claims</a>
+    <a href="#mod9">9. Invoice Verification</a>
+    <a href="#mod10">10. Insurance Submission</a>
+
+    <h3>Fulfillment</h3>
+    <a href="#mod11">11. Quality Check</a>
+    <a href="#mod12">12. Delivery</a>
+    <a href="#mod13">13. Billing</a>
+
+    <h3>Admin Modules</h3>
+    <a href="#mod14">14. Notifications</a>
+    <a href="#mod15">15. Users</a>
+    <a href="#mod16">16. Reports</a>
+    <a href="#mod17">17. Settings</a>
+    <a href="#mod18">18. Documents</a>
+    <a href="#mod19">19. Audit &amp; Logs</a>
+  </nav>
+
+  <div class="content">
+
+    <section class="module-section">
+      <div class="module-header accent-indigo">
+        <h2>🗂️ Jump to Any Module</h2>
+      </div>
+      <div class="module-body">
+        <p>All 19 modules exactly as they appear in the admin console's top nav bar, left to right. Click any card to jump straight to its video and sub-tab breakdown.</p>
+      </div>
+    </section>
+
+    <div class="module-nav-grid">
+      <a class="module-nav-card" href="#mod1"><span class="module-nav-num">1</span><div><strong>Dashboard</strong><small>4 sub-tabs</small></div></a>
+      <a class="module-nav-card" href="#mod2"><span class="module-nav-num">2</span><div><strong>Service Requests</strong><small>7 sub-tabs</small></div></a>
+      <a class="module-nav-card" href="#mod3"><span class="module-nav-num">3</span><div><strong>Pickup Management</strong><small>7 sub-tabs</small></div></a>
+      <a class="module-nav-card" href="#mod4"><span class="module-nav-num">4</span><div><strong>Hub Operations</strong><small>5 sub-tabs</small></div></a>
+      <a class="module-nav-card" href="#mod5"><span class="module-nav-num">5</span><div><strong>Service Center</strong><small>6 sub-tabs</small></div></a>
+      <a class="module-nav-card" href="#mod6"><span class="module-nav-num">6</span><div><strong>Estimates</strong><small>5 sub-tabs</small></div></a>
+      <a class="module-nav-card" href="#mod7"><span class="module-nav-num">7</span><div><strong>Cashless</strong><small>3 sub-tabs</small></div></a>
+      <a class="module-nav-card" href="#mod8"><span class="module-nav-num">8</span><div><strong>Claims</strong><small>6 sub-tabs</small></div></a>
+      <a class="module-nav-card" href="#mod9"><span class="module-nav-num">9</span><div><strong>Invoice Verification</strong><small>3 sub-tabs</small></div></a>
+      <a class="module-nav-card" href="#mod10"><span class="module-nav-num">10</span><div><strong>Insurance Submission</strong><small>3 sub-tabs</small></div></a>
+      <a class="module-nav-card" href="#mod11"><span class="module-nav-num">11</span><div><strong>Quality Check</strong><small>4 sub-tabs</small></div></a>
+      <a class="module-nav-card" href="#mod12"><span class="module-nav-num">12</span><div><strong>Delivery</strong><small>6 sub-tabs</small></div></a>
+      <a class="module-nav-card" href="#mod13"><span class="module-nav-num">13</span><div><strong>Billing</strong><small>6 sub-tabs</small></div></a>
+      <a class="module-nav-card" href="#mod14"><span class="module-nav-num">14</span><div><strong>Notifications</strong><small>4 sub-tabs</small></div></a>
+      <a class="module-nav-card" href="#mod15"><span class="module-nav-num">15</span><div><strong>Users</strong><small>6 sub-tabs</small></div></a>
+      <a class="module-nav-card" href="#mod16"><span class="module-nav-num">16</span><div><strong>Reports</strong><small>7 sub-tabs</small></div></a>
+      <a class="module-nav-card" href="#mod17"><span class="module-nav-num">17</span><div><strong>Settings</strong><small>5 sub-tabs</small></div></a>
+      <a class="module-nav-card" href="#mod18"><span class="module-nav-num">18</span><div><strong>Documents</strong><small>1 sub-tab</small></div></a>
+      <a class="module-nav-card" href="#mod19"><span class="module-nav-num">19</span><div><strong>Audit &amp; Logs</strong><small>4 sub-tabs</small></div></a>
+    </div>
+
+    <!-- 1. Dashboard -->
+    <section id="mod1" class="module-section">
+      <div class="module-header accent-blue">
+        <h2>1️⃣ Dashboard</h2>
+        <span class="wired-pill wired-yes">✅ Fully Wired</span>
+      </div>
+      <div class="module-body">
+        <p>The operational home screen — KPI snapshot, SLA/TAT watch, recent activity feed, and alerts, all driven from live request data. Also where admin signs in.</p>
+        <div class="tab-row">
+          <span class="tab-chip">Overview</span>
+          <span class="tab-chip">SLA / TAT Summary</span>
+          <span class="tab-chip">Recent Activities</span>
+          <span class="tab-chip">Alerts &amp; Escalations</span>
+        </div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/dashboard-login.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/dashboard-login.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Real login → Dashboard → Claims queue, session preserved throughout</p>
+      </div>
+    </section>
+
+    <!-- 2. Service Requests -->
+    <section id="mod2" class="module-section">
+      <div class="module-header accent-cyan">
+        <h2>2️⃣ Service Requests</h2>
+        <span class="wired-pill wired-yes">✅ Fully Wired</span>
+      </div>
+      <div class="module-body">
+        <p>Core intake and lifecycle management — where every repair/claim request is created and tracked from open to closed.</p>
+        <div class="tab-row">
+          <span class="tab-chip">Create Request</span>
+          <span class="tab-chip">All Requests</span>
+          <span class="tab-chip">Open Requests</span>
+          <span class="tab-chip">In Progress</span>
+          <span class="tab-chip">Closed Requests</span>
+          <span class="tab-chip">Cancelled Requests</span>
+          <span class="tab-chip">Search Request</span>
+        </div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/service-requests-create.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/service-requests-create.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Registers a new claim through the real Create Request form and confirms it persists for admin follow-up</p>
+      </div>
+    </section>
+
+    <!-- 3. Pickup Management -->
+    <section id="mod3" class="module-section">
+      <div class="module-header accent-teal">
+        <h2>3️⃣ Pickup Management</h2>
+        <span class="wired-pill wired-yes">✅ Fully Wired</span>
+      </div>
+      <div class="module-body">
+        <p>Assign, track, and manage doorstep device collection by field runners. See the dedicated <a href="pickup-runner-flow.html">Pickup Runner Flow guide</a> for the full runner-side journey.</p>
+        <div class="tab-row">
+          <span class="tab-chip">Pickup Dashboard</span>
+          <span class="tab-chip">Runner Onboarding</span>
+          <span class="tab-chip">Assign Pickup</span>
+          <span class="tab-chip">Pending Pickup</span>
+          <span class="tab-chip">Picked Up Devices</span>
+          <span class="tab-chip">Pickup Failed Cases</span>
+          <span class="tab-chip">Pickup History</span>
+        </div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/admin-stage1-assign-pickup.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/admin-stage1-assign-pickup.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Onboards a runner, assigns a pickup, and tracks the request across every pickup tab</p>
+      </div>
+    </section>
+
+    <!-- 4. Hub Operations -->
+    <section id="mod4" class="module-section">
+      <div class="module-header accent-gold">
+        <h2>4️⃣ Hub Operations</h2>
+        <span class="wired-pill wired-yes">✅ Fully Wired</span>
+      </div>
+      <div class="module-body">
+        <p>Inward receiving, IMEI/serial verification, and dispatch of collected devices to the service center.</p>
+        <div class="tab-row">
+          <span class="tab-chip">Device Received at Hub</span>
+          <span class="tab-chip">Pending Verification</span>
+          <span class="tab-chip">Send to Service Center</span>
+          <span class="tab-chip">Inward Register</span>
+          <span class="tab-chip">Hub Inventory</span>
+        </div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/admin-stage2-hub-operations.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/admin-stage2-hub-operations.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Marks a device received at hub, then dispatches it to the service center — moved across every hub tab</p>
+      </div>
+    </section>
+
+    <!-- 5. Service Center -->
+    <section id="mod5" class="module-section">
+      <div class="module-header accent-orange">
+        <h2>5️⃣ Service Center</h2>
+        <span class="wired-pill wired-yes">✅ Fully Wired</span>
+      </div>
+      <div class="module-body">
+        <p>Diagnosis, repair estimate submission, repair execution tracking, and total-loss decisions.</p>
+        <div class="tab-row">
+          <span class="tab-chip">Devices Under Inspection</span>
+          <span class="tab-chip">Estimate Pending</span>
+          <span class="tab-chip">Estimate Submitted</span>
+          <span class="tab-chip">Under Repair</span>
+          <span class="tab-chip">Repair Completed</span>
+          <span class="tab-chip">Total Loss Cases</span>
+        </div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/admin-stage3-service-center.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/admin-stage3-service-center.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Maps diagnosis, estimate, repair, and total-loss requests into every correct service-center tab</p>
+      </div>
+    </section>
+
+    <!-- 6. Estimates -->
+    <section id="mod6" class="module-section">
+      <div class="module-header accent-purple">
+        <h2>6️⃣ Estimates</h2>
+        <span class="wired-pill wired-yes">✅ Fully Wired</span>
+      </div>
+      <div class="module-body">
+        <p>Customer-facing decision governance — approve or send back repair cost estimates before work begins.</p>
+        <div class="tab-row">
+          <span class="tab-chip">New Estimates</span>
+          <span class="tab-chip">Awaiting Customer Approval</span>
+          <span class="tab-chip">Approved Estimates</span>
+          <span class="tab-chip">Rejected Estimates</span>
+          <span class="tab-chip">Estimate History</span>
+        </div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/admin-stage4-estimate-approval.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/admin-stage4-estimate-approval.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Approves one estimate and sends another back for revision from the real approval desk</p>
+      </div>
+    </section>
+
+    <!-- 7. Cashless -->
+    <section id="mod7" class="module-section">
+      <div class="module-header accent-purple">
+        <h2>7️⃣ Cashless</h2>
+        <span class="wired-pill wired-yes">✅ Fully Wired</span>
+      </div>
+      <div class="module-body">
+        <p>Evidence review, approvals, and exceptions for cashless insurance cases raised against a service request.</p>
+        <div class="tab-row">
+          <span class="tab-chip">Approval Queue</span>
+          <span class="tab-chip">Pending Photos</span>
+          <span class="tab-chip">Approved Cases</span>
+        </div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/cashless-approval-queue.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/cashless-approval-queue.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Maps cashless evidence and approval into the Pending Photos and Approved Cases queues</p>
+      </div>
+    </section>
+
+    <!-- 8. Claims -->
+    <section id="mod8" class="module-section">
+      <div class="module-header accent-teal">
+        <h2>8️⃣ Claims</h2>
+        <span class="wired-pill wired-yes">✅ Fully Wired</span>
+      </div>
+      <div class="module-body">
+        <p>The cashless <strong>claim</strong> lifecycle — a separate, richer flow from the Cashless module above, covering claims raised via the <a href="cashless-portal.html">public customer portal</a> as well as internally. See the full customer-to-close journey in the <a href="cashless-portal.html">Public Cashless Portal Flow guide</a>.</p>
+        <div class="tab-row">
+          <span class="tab-chip">All Claims</span>
+          <span class="tab-chip">Approval Pending</span>
+          <span class="tab-chip">Approved Claims</span>
+          <span class="tab-chip">Rejected Claims</span>
+          <span class="tab-chip">Re-upload Pending</span>
+          <span class="tab-chip">Claim History</span>
+        </div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/claims-list.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/claims-list.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">A submitted claim appears in the real All Claims list page immediately after submission</p>
+      </div>
+    </section>
+
+    <!-- 9. Invoice Verification -->
+    <section id="mod9" class="module-section">
+      <div class="module-header accent-gold">
+        <h2>9️⃣ Invoice Verification</h2>
+        <span class="wired-pill wired-yes">✅ Fully Wired</span>
+      </div>
+      <div class="module-body">
+        <p>Reviews and approves post-repair invoices for cashless claims — verifying the amount against the approved limit before insurance submission.</p>
+        <div class="tab-row">
+          <span class="tab-chip">Invoice Queue</span>
+          <span class="tab-chip">Invoice Approved</span>
+          <span class="tab-chip">Invoice Rejected</span>
+        </div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/invoice-verification-queue.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/invoice-verification-queue.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">A submitted invoice appears in the real Invoice Verification queue, ready for admin approval</p>
+      </div>
+    </section>
+
+    <!-- 10. Insurance Submission -->
+    <section id="mod10" class="module-section">
+      <div class="module-header accent-rose">
+        <h2>🔟 Insurance Submission</h2>
+        <span class="wired-pill wired-yes">✅ Fully Wired</span>
+      </div>
+      <div class="module-body">
+        <p>Final step of the claims chain — submitting approved claim documents to the insurance company and tracking settlement.</p>
+        <div class="tab-row">
+          <span class="tab-chip">Ready for Insurance</span>
+          <span class="tab-chip">Submitted to Insurance</span>
+          <span class="tab-chip">Insurance History</span>
+        </div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/insurance-submission-queue.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/insurance-submission-queue.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">A claim with an approved invoice appears in the real "Ready for Insurance" queue</p>
+      </div>
+    </section>
+
+    <!-- 11. Quality Check -->
+    <section id="mod11" class="module-section">
+      <div class="module-header accent-rose">
+        <h2>1️⃣1️⃣ Quality Check</h2>
+        <span class="wired-pill wired-yes">✅ Fully Wired</span>
+      </div>
+      <div class="module-body">
+        <p>Repair validation before dispatch — pass, fail, or send back for rework.</p>
+        <div class="tab-row">
+          <span class="tab-chip">Pending QC</span>
+          <span class="tab-chip">QC Passed</span>
+          <span class="tab-chip">QC Failed</span>
+          <span class="tab-chip">Rework Required</span>
+        </div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/admin-stage6-quality-check.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/admin-stage6-quality-check.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Drives a QC failure, rework, and final QC pass across every quality-check tab</p>
+      </div>
+    </section>
+
+    <!-- 12. Delivery -->
+    <section id="mod12" class="module-section">
+      <div class="module-header accent-red">
+        <h2>1️⃣2️⃣ Delivery</h2>
+        <span class="wired-pill wired-yes">✅ Fully Wired</span>
+      </div>
+      <div class="module-body">
+        <p>Final-mile dispatch, tracking, OTP/signature completion, and failure/reassignment handling.</p>
+        <div class="tab-row">
+          <span class="tab-chip">Assign Delivery</span>
+          <span class="tab-chip">Ready for Dispatch</span>
+          <span class="tab-chip">Out for Delivery</span>
+          <span class="tab-chip">Delivered</span>
+          <span class="tab-chip">Delivery Failed</span>
+          <span class="tab-chip">Delivery History</span>
+        </div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/admin-stage7-delivery.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/admin-stage7-delivery.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Assigns, fails, reassigns, and completes a delivery across every delivery tab</p>
+      </div>
+    </section>
+
+    <!-- 13. Billing -->
+    <section id="mod13" class="module-section">
+      <div class="module-header accent-red">
+        <h2>1️⃣3️⃣ Billing</h2>
+        <span class="wired-pill wired-yes">✅ Fully Wired</span>
+      </div>
+      <div class="module-body">
+        <p>GST-compliant invoicing, payment capture, UTR reconciliation, refunds, and billing analytics.</p>
+        <div class="tab-row">
+          <span class="tab-chip">Generate Invoice</span>
+          <span class="tab-chip">Pending Invoices</span>
+          <span class="tab-chip">Payment Reconciliation</span>
+          <span class="tab-chip">Paid Invoices</span>
+          <span class="tab-chip">Refund Cases</span>
+          <span class="tab-chip">Invoice Reports</span>
+        </div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/admin-stage8-billing.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/admin-stage8-billing.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Generates an invoice, records payment, reconciles it, and closes the request</p>
+      </div>
+    </section>
+
+    <!-- 14. Notifications -->
+    <section id="mod14" class="module-section">
+      <div class="module-header accent-teal">
+        <h2>1️⃣4️⃣ Notifications</h2>
+        <span class="wired-pill wired-partial">⚠️ Reference View</span>
+      </div>
+      <div class="module-body">
+        <p>Intended for SMS/email delivery logs, retry queues, and template management. Currently a read-only placeholder — no notification-log or template-editing backend exists yet, so every sub-tab loads correctly but shows the same general activity view rather than real message logs.</p>
+        <div class="tab-row">
+          <span class="tab-chip">SMS Logs</span>
+          <span class="tab-chip">Email Logs</span>
+          <span class="tab-chip">Failed Notifications</span>
+          <span class="tab-chip">Templates</span>
+        </div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/notifications-sms-logs.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/notifications-sms-logs.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">SMS Logs tab loading correctly (navigation-only — no dedicated backend yet)</p>
+        <div class="warn-box">⚠️ Confirmed via a full admin-portal wiring audit: no backend endpoint exists for notification logs or templates yet.</div>
+      </div>
+    </section>
+
+    <!-- 15. Users -->
+    <section id="mod15" class="module-section">
+      <div class="module-header accent-blue">
+        <h2>1️⃣5️⃣ Users</h2>
+        <span class="wired-pill wired-yes">✅ Wired to Real Data</span>
+      </div>
+      <div class="module-body">
+        <p>The account directory — filtered by role — plus a live access-control reference. Originally a placeholder like the three modules below; wired to the real user directory API this session (read-only — no create/edit/delete backend exists yet).</p>
+        <div class="tab-row">
+          <span class="tab-chip">Admin Users</span>
+          <span class="tab-chip">Delivery Executives</span>
+          <span class="tab-chip">Hub Operators</span>
+          <span class="tab-chip">Service Center Users</span>
+          <span class="tab-chip">Customers</span>
+          <span class="tab-chip">Roles &amp; Permissions</span>
+        </div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/users-admin-directory.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/users-admin-directory.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Admin Users tab showing the real registered admin account from the live user directory</p>
+        <div class="success-box">✅ Customers is derived from live service-request data; Roles &amp; Permissions reflects the app's actual per-role access rules.</div>
+      </div>
+    </section>
+
+    <!-- 16. Reports -->
+    <section id="mod16" class="module-section">
+      <div class="module-header accent-gold">
+        <h2>1️⃣6️⃣ Reports</h2>
+        <span class="wired-pill wired-partial">⚠️ Reference View</span>
+      </div>
+      <div class="module-body">
+        <p>Intended for operational and revenue reporting. 6 of 7 sub-tabs are a read-only placeholder — no reporting/export backend exists yet. The 7th, Audit Logs, is fully real (it reuses the Status Timeline page).</p>
+        <div class="tab-row">
+          <span class="tab-chip">Request Report</span>
+          <span class="tab-chip">Pickup Report</span>
+          <span class="tab-chip">Repair Report</span>
+          <span class="tab-chip">Delivery Report</span>
+          <span class="tab-chip">SLA / TAT Report</span>
+          <span class="tab-chip">Revenue Report</span>
+          <span class="tab-chip">Audit Logs ✅ real</span>
+        </div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/reports-request-report.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/reports-request-report.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Request Report tab loading correctly (navigation-only — no dedicated reporting backend yet)</p>
+      </div>
+    </section>
+
+    <!-- 17. Settings -->
+    <section id="mod17" class="module-section">
+      <div class="module-header accent-orange">
+        <h2>1️⃣7️⃣ Settings</h2>
+        <span class="wired-pill wired-partial">⚠️ Reference View</span>
+      </div>
+      <div class="module-body">
+        <p>Intended for system-wide configuration — SLA rules, status definitions, storage config, notification channels. Currently a read-only placeholder end to end; no settings-persistence backend exists yet on either side.</p>
+        <div class="tab-row">
+          <span class="tab-chip">Status Configuration</span>
+          <span class="tab-chip">Notification Settings</span>
+          <span class="tab-chip">SLA Configuration</span>
+          <span class="tab-chip">File Storage Config</span>
+          <span class="tab-chip">System Preferences</span>
+        </div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/settings-status-config.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/settings-status-config.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Status Configuration tab loading correctly (navigation-only — no dedicated settings backend yet)</p>
+      </div>
+    </section>
+
+    <!-- 18. Documents -->
+    <section id="mod18" class="module-section">
+      <div class="module-header accent-teal">
+        <h2>1️⃣8️⃣ Documents</h2>
+        <span class="wired-pill wired-yes">✅ Fully Wired</span>
+      </div>
+      <div class="module-body">
+        <p>Upload, list, filter, and delete shared reference documents, SOPs, and templates — a genuinely real feature with its own signed-URL backend.</p>
+        <div class="tab-row">
+          <span class="tab-chip">Document Library</span>
+        </div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/documents-upload.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/documents-upload.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Uploads a real document through the upload form and confirms it appears in the library</p>
+        <div class="info-box">💡 A real race-condition bug was found and fixed here this session — a slow initial page load could clobber a just-uploaded document from the list. See <code>DocumentsPage.tsx</code> for the fix.</div>
+      </div>
+    </section>
+
+    <!-- 19. Audit -->
+    <section id="mod19" class="module-section">
+      <div class="module-header accent-purple">
+        <h2>1️⃣9️⃣ Audit &amp; Logs</h2>
+        <span class="wired-pill wired-partial">⚠️ Reference View</span>
+      </div>
+      <div class="module-body">
+        <p>Intended for enterprise-wide activity tracking and change review. 3 of 4 sub-tabs are a read-only placeholder. Status History is fully real (shares the same Status Timeline page as Reports → Audit Logs).</p>
+        <div class="tab-row">
+          <span class="tab-chip">Activity Logs</span>
+          <span class="tab-chip">Status History ✅ real</span>
+          <span class="tab-chip">User Actions</span>
+          <span class="tab-chip">Change Logs</span>
+        </div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/audit-activity-logs.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/audit-activity-logs.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Activity Logs tab loading correctly (navigation-only — no dedicated activity-log backend yet)</p>
+      </div>
+    </section>
+
+    <section class="module-section">
+      <div class="module-header accent-slate">
+        <h2>📊 Wiring Summary</h2>
+      </div>
+      <div class="module-body">
+        <p><span class="wired-pill wired-yes">✅ Fully Wired</span> — 15 of 19 modules: Dashboard, Service Requests, Pickup Management, Hub Operations, Service Center, Estimates, Cashless, Claims, Invoice Verification, Insurance Submission, Quality Check, Delivery, Billing, Users, Documents.</p>
+        <p><span class="wired-pill wired-partial">⚠️ Reference View</span> — 4 of 19 modules: Notifications, Reports (6 of 7 sub-tabs), Settings, Audit (3 of 4 sub-tabs) — all confirmed to load correctly, but with no dedicated backend behind their specific data yet. Not a bug — a scope decision for a future build.</p>
+        <p>Every module above, wired or reference, has its own real video captured against live UAT — nothing on this page is a mockup.</p>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+  const links = document.querySelectorAll('.sidebar a');
+  const sections = document.querySelectorAll('.module-section[id]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        links.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

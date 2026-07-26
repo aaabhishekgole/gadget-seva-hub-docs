@@ -72,6 +72,9 @@
     .cred-table tr:last-child td { border-bottom:none; }
     .cred-table tr:nth-child(even) td { background:#f8fafc; }
 
+    .stage-strip { display:flex; flex-wrap:wrap; gap:8px; margin: 16px 0 24px; }
+    .stage-chip { background:#f1f5f9; border:1px solid #e2e8f0; border-radius:999px; padding:6px 14px; font-size:.8rem; font-weight:700; color:#334155; }
+    .stage-chip.done { background:#f0fdf4; border-color:#bbf7d0; color:#166534; }
     .flow-diagram { background:#f8fafc; border-radius:10px; padding:20px 24px; margin:16px 0; }
     .flow-steps { display:flex; flex-wrap:wrap; gap:0; align-items:center; }
     .flow-step { background:#fff; border:1px solid #e2e8f0; border-radius:8px; padding:8px 14px; font-size:.82rem; font-weight:600; color:#334155; }
@@ -130,6 +133,7 @@
   <nav class="sidebar">
     <h3>Overview</h3>
     <a href="#overview">What is the Pickup Flow?</a>
+    <a href="#stages">Stages at a Glance</a>
     <a href="#roles">Who's Involved?</a>
 
     <h3>Admin Side</h3>
@@ -179,6 +183,25 @@
         </ul>
 
         <div class="info-box">💡 <strong>Tip:</strong> The same job can also be opened from a browser-based <strong>Runner Inbox</strong> if the runner prefers to log in and see every job assigned to them in one list, instead of only the one link they were just sent.</div>
+      </div>
+    </section>
+
+    <section id="stages" class="module-section">
+      <div class="module-header accent-cyan">
+        <h2>🗺️ The 8 Stages at a Glance</h2>
+      </div>
+      <div class="module-body">
+        <div class="stage-strip">
+          <span class="stage-chip done">1. Admin Onboards Runner</span>
+          <span class="stage-chip done">2. Admin Assigns Pickup</span>
+          <span class="stage-chip done">3. Runner Opens SMS/WhatsApp Link</span>
+          <span class="stage-chip done">4. Runner Accepts Pickup</span>
+          <span class="stage-chip done">5. Upload 10 Required Photos</span>
+          <span class="stage-chip done">6. Optional Extra Photos</span>
+          <span class="stage-chip done">7. Submit Pickup Done</span>
+          <span class="stage-chip done">8. Admin Confirms in Picked Up Devices</span>
+        </div>
+        <p>Every chip above is a real click — by the runner on their phone, or by admin in the ops console — captured on video in one uninterrupted run. See the <a href="#video">full journey recording</a> further down this page.</p>
       </div>
     </section>
 

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gadget Seva Hub — Pickup Runner All 8 Tab Video Reference</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f1f5f9; color: #1e293b; line-height: 1.6; }
+    a { color: #2563eb; }
+    code { background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 4px; padding: 2px 6px; font-size: .85rem; font-family: 'Consolas', monospace; color: #0f172a; }
+
+    .hero { background: linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%); color: #f8fafc; padding: 56px 48px 48px; }
+    .hero h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 10px; }
+    .hero p  { font-size: 1.1rem; color: #94a3b8; max-width: 780px; }
+    .hero .badge-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:20px; }
+    .badge { background:#1e293b; border-radius:999px; padding:6px 16px; font-size:.85rem; font-weight:600; color:#93c5fd; }
+
+    .flow-nav { background:#020617; padding:12px 48px; display:flex; gap:10px; flex-wrap:wrap; }
+    .flow-nav a { background:#1e293b; color:#cbd5e1; text-decoration:none; padding:8px 16px; border-radius:8px; font-size:.85rem; font-weight:600; border:1px solid #334155; }
+    .flow-nav a.current { background:#2563eb; color:#fff; border-color:#2563eb; }
+    .flow-nav a:hover { border-color:#3b82f6; color:#fff; }
+
+    .layout { display: flex; min-height: 100vh; }
+    .sidebar { width: 260px; background: #0f172a; color: #f8fafc; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; flex-shrink: 0; }
+    .sidebar h3 { font-size: .7rem; letter-spacing: 1.5px; text-transform: uppercase; color: #475569; padding: 16px 20px 6px; margin-top: 12px; }
+    .sidebar a { display: block; padding: 6px 20px; color: #cbd5e1; text-decoration: none; font-size: .85rem; border-left: 3px solid transparent; transition: all .15s; }
+    .sidebar a:hover, .sidebar a.active { color: #f8fafc; background: #1e293b; border-left-color: #3b82f6; }
+    .content { flex: 1; padding: 0; overflow: hidden; }
+
+    .module-section { background: #fff; margin: 24px 32px; border-radius: 16px; box-shadow: 0 1px 4px rgba(0,0,0,.08); overflow: hidden; }
+    .module-header { padding: 20px 32px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+    .module-header h2 { font-size: 1.4rem; font-weight: 700; color: #fff; }
+    .module-body { padding: 26px 32px; }
+
+    .accent-blue   { background: #2563eb; }
+    .accent-cyan   { background: #0891b2; }
+    .accent-teal   { background: #0d9488; }
+    .accent-gold   { background: #d97706; }
+    .accent-orange { background: #ea580c; }
+    .accent-purple { background: #7c3aed; }
+    .accent-rose   { background: #e11d48; }
+    .accent-red    { background: #dc2626; }
+    .accent-green  { background: #16a34a; }
+    .accent-slate  { background: #475569; }
+    .accent-indigo { background: #4f46e5; }
+
+    h3 { font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 20px 0 10px; }
+    p  { color: #475569; margin-bottom: 12px; font-size: .95rem; }
+
+    .info-box { background:#eff6ff; border-left:4px solid #2563eb; border-radius:6px; padding:14px 18px; margin:16px 0; font-size:.9rem; color:#1e40af; }
+    .success-box { background:#f0fdf4; border-left:4px solid #16a34a; border-radius:6px; padding:14px 18px; margin:16px 0; font-size:.9rem; color:#14532d; }
+
+    .tab-row { display:flex; gap:8px; flex-wrap:wrap; margin:12px 0 16px; }
+    .tab-chip { background:#f1f5f9; border:1px solid #e2e8f0; border-radius:8px; padding:5px 14px; font-size:.82rem; font-weight:600; color:#334155; }
+
+    .wired-pill { display:inline-block; border-radius:999px; padding:4px 14px; font-size:.75rem; font-weight:800; letter-spacing:.02em; background:#f0fdf4; color:#166534; border:1px solid #bbf7d0; }
+    .shared-pill { display:inline-block; border-radius:999px; padding:4px 14px; font-size:.75rem; font-weight:800; letter-spacing:.02em; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; }
+
+    .module-nav-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:10px; margin: 20px 32px; }
+    .module-nav-card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:12px 16px; text-decoration:none; display:flex; align-items:center; gap:10px; transition: all .15s; }
+    .module-nav-card:hover { border-color:#3b82f6; box-shadow: 0 2px 8px rgba(37,99,235,.1); }
+    .module-nav-num { width:26px; height:26px; border-radius:50%; background:#0f172a; color:#fff; display:flex; align-items:center; justify-content:center; font-size:.75rem; font-weight:800; flex-shrink:0; }
+    .module-nav-card strong { font-size:.88rem; color:#0f172a; }
+    .module-nav-card small { display:block; font-size:.72rem; color:#94a3b8; }
+
+    @media(max-width:900px){
+      .layout { flex-direction:column; }
+      .sidebar { width:100%; height:auto; position:relative; }
+      .hero { padding:36px 24px 32px; }
+      .hero h1 { font-size:1.8rem; }
+      .module-section { margin:16px; }
+      .module-body { padding:20px; }
+      .flow-nav { padding: 12px 16px; }
+      .module-nav-grid { margin: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🛵 Pickup Runner All 8 Tab Video Reference</h1>
+  <p>Every stage of the doorstep pickup journey — admin onboarding and assignment through the runner's own portal to the admin's final confirmation — each given its own tab and video proof, captured against live UAT.</p>
+  <div class="badge-row">
+    <span class="badge">v1.0 — July 2026</span>
+    <span class="badge">8 Stages</span>
+    <span class="badge">4 Distinct Recordings</span>
+    <span class="badge">Every Stage Individually Verified ✅</span>
+    <span class="badge">Verified on Live UAT ✅</span>
+  </div>
+</div>
+
+<div class="flow-nav">
+  <a href="index.html">🏠 All Docs</a>
+  <a href="cashless-portal.html">🛡️ Public Cashless Portal Flow</a>
+  <a href="pickup-runner-flow.html">🛵 Pickup Runner Flow</a>
+  <a href="admin-full-workflow.html">🖥️ Admin Full Workflow</a>
+  <a href="admin-modules-reference.html">🗂️ Admin All 19 Tab Video Reference</a>
+  <a href="cashless-tab-video-reference.html">🛡️ Cashless All 9 Tab Video Reference</a>
+  <a href="pickup-tab-video-reference.html" class="current">🛵 Pickup Runner All 8 Tab Video Reference</a>
+</div>
+
+<div class="layout">
+
+  <nav class="sidebar">
+    <h3>All 8 Stages</h3>
+    <a href="#tab1">1. Admin Onboards Runner</a>
+    <a href="#tab2">2. Admin Assigns Pickup</a>
+    <a href="#tab3">3. Runner Opens Link</a>
+    <a href="#tab4">4. Runner Accepts Pickup</a>
+    <a href="#tab5">5. Upload 10 Photos</a>
+    <a href="#tab6">6. Optional Extra Photos</a>
+    <a href="#tab7">7. Submit Pickup Done</a>
+    <a href="#tab8">8. Admin Confirms Pickup</a>
+
+    <h3>Exception Path</h3>
+    <a href="#bonus">Customer Not Available</a>
+  </nav>
+
+  <div class="content">
+
+    <section class="module-section">
+      <div class="module-header accent-indigo">
+        <h2>🗂️ Jump to Any Stage</h2>
+      </div>
+      <div class="module-body">
+        <p>All 8 stages of the pickup journey, in order. Four are captured in their own dedicated recording; the runner-side stages 4–7 share one continuous take since they happen back-to-back in the same real session. See the <a href="pickup-runner-flow.html">full step-by-step guide</a> for the written walkthrough.</p>
+      </div>
+    </section>
+
+    <div class="module-nav-grid">
+      <a class="module-nav-card" href="#tab1"><span class="module-nav-num">1</span><div><strong>Admin Onboards Runner</strong><small>Runner Onboarding tab</small></div></a>
+      <a class="module-nav-card" href="#tab2"><span class="module-nav-num">2</span><div><strong>Admin Assigns Pickup</strong><small>Assign Pickup tab</small></div></a>
+      <a class="module-nav-card" href="#tab3"><span class="module-nav-num">3</span><div><strong>Runner Opens Link</strong><small>SMS / WhatsApp</small></div></a>
+      <a class="module-nav-card" href="#tab4"><span class="module-nav-num">4</span><div><strong>Runner Accepts Pickup</strong><small>Runner portal</small></div></a>
+      <a class="module-nav-card" href="#tab5"><span class="module-nav-num">5</span><div><strong>Upload 10 Photos</strong><small>Required evidence</small></div></a>
+      <a class="module-nav-card" href="#tab6"><span class="module-nav-num">6</span><div><strong>Optional Extra Photos</strong><small>Bonus evidence</small></div></a>
+      <a class="module-nav-card" href="#tab7"><span class="module-nav-num">7</span><div><strong>Submit Pickup Done</strong><small>Locks until 10/10</small></div></a>
+      <a class="module-nav-card" href="#tab8"><span class="module-nav-num">8</span><div><strong>Admin Confirms Pickup</strong><small>Picked Up Devices tab</small></div></a>
+    </div>
+
+    <!-- 1. Admin Onboards Runner -->
+    <section id="tab1" class="module-section">
+      <div class="module-header accent-blue">
+        <h2>1️⃣ Admin Onboards Runner</h2>
+        <span class="wired-pill">✅ Verified</span>
+      </div>
+      <div class="module-body">
+        <p>Before any pickup can be assigned, a field runner must be registered in the admin console's Runner Onboarding tab.</p>
+        <div class="tab-row"><span class="tab-chip">Pickup Management → Runner Onboarding</span></div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/admin-stage1-assign-pickup.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/admin-stage1-assign-pickup.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Onboards a new pickup runner through the real admin console</p>
+      </div>
+    </section>
+
+    <!-- 2. Admin Assigns Pickup -->
+    <section id="tab2" class="module-section">
+      <div class="module-header accent-cyan">
+        <h2>2️⃣ Admin Assigns Pickup</h2>
+        <span class="shared-pill">🔗 Same recording as Stage 1</span>
+      </div>
+      <div class="module-body">
+        <p>Immediately after onboarding, admin assigns the newly onboarded runner to a pending pickup request — captured in the same continuous take as Stage 1 above.</p>
+        <div class="tab-row"><span class="tab-chip">Pickup Management → Assign Pickup</span></div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/admin-stage1-assign-pickup.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/admin-stage1-assign-pickup.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Assigns the onboarded runner to a request — the SMS/WhatsApp link fires automatically</p>
+      </div>
+    </section>
+
+    <!-- 3. Runner Opens Link -->
+    <section id="tab3" class="module-section">
+      <div class="module-header accent-teal">
+        <h2>3️⃣ Runner Opens SMS/WhatsApp Link</h2>
+        <span class="wired-pill">✅ Verified</span>
+      </div>
+      <div class="module-body">
+        <p>The runner receives a single job-specific link the moment admin assigns the pickup, and opens it directly — no separate app install, no login.</p>
+        <div class="tab-row"><span class="tab-chip">/runner-access/:token</span></div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/pickup-runner-full-journey.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/pickup-runner-full-journey.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Same continuous recording as Stages 4–7 below — the runner's full portal session</p>
+      </div>
+    </section>
+
+    <!-- 4. Runner Accepts Pickup -->
+    <section id="tab4" class="module-section">
+      <div class="module-header accent-gold">
+        <h2>4️⃣ Runner Accepts Pickup</h2>
+        <span class="shared-pill">🔗 Same recording as Stage 3</span>
+      </div>
+      <div class="module-body">
+        <p>The runner reviews the job details and taps Accept — moving the request into their active pickup queue.</p>
+        <div class="tab-row"><span class="tab-chip">Accept Pickup</span></div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/pickup-runner-full-journey.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/pickup-runner-full-journey.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Real Accept click through the runner portal UI</p>
+      </div>
+    </section>
+
+    <!-- 5. Upload 10 Photos -->
+    <section id="tab5" class="module-section">
+      <div class="module-header accent-orange">
+        <h2>5️⃣ Upload 10 Required Photos</h2>
+        <span class="shared-pill">🔗 Same recording as Stage 3</span>
+      </div>
+      <div class="module-body">
+        <p>The runner uploads all 10 required evidence photos of the device before pickup can be marked done.</p>
+        <div class="tab-row"><span class="tab-chip">10/10 Required</span></div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/pickup-runner-full-journey.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/pickup-runner-full-journey.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">All 10 evidence photos uploaded through the real runner portal</p>
+      </div>
+    </section>
+
+    <!-- 6. Optional Extra Photos -->
+    <section id="tab6" class="module-section">
+      <div class="module-header accent-purple">
+        <h2>6️⃣ Optional Extra Photos</h2>
+        <span class="shared-pill">🔗 Same recording as Stage 3</span>
+      </div>
+      <div class="module-body">
+        <p>Beyond the 10 required slots, the runner can attach extra photos — for accessories, existing damage, or anything worth noting before transit.</p>
+        <div class="tab-row"><span class="tab-chip">Optional</span></div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/pickup-runner-full-journey.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/pickup-runner-full-journey.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Extra photo slots available beyond the 10 mandatory ones</p>
+      </div>
+    </section>
+
+    <!-- 7. Submit Pickup Done -->
+    <section id="tab7" class="module-section">
+      <div class="module-header accent-rose">
+        <h2>7️⃣ Submit Pickup Done</h2>
+        <span class="shared-pill">🔗 Same recording as Stage 3</span>
+      </div>
+      <div class="module-body">
+        <p>The "Submit Pickup Done" button only unlocks once all 10 required photos are present — the app itself enforces evidence completeness before the runner can close out the job.</p>
+        <div class="tab-row"><span class="tab-chip">Locks until 10/10</span></div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/pickup-runner-full-journey.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/pickup-runner-full-journey.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Submit unlocks at 10/10 and completes the pickup in one real click</p>
+      </div>
+    </section>
+
+    <!-- 8. Admin Confirms Pickup -->
+    <section id="tab8" class="module-section">
+      <div class="module-header accent-red">
+        <h2>8️⃣ Admin Confirms in Picked Up Devices</h2>
+        <span class="wired-pill">✅ Verified</span>
+      </div>
+      <div class="module-body">
+        <p>The moment the runner submits, the request instantly appears in the admin's Picked Up Devices board — no manual refresh or re-sync needed.</p>
+        <div class="tab-row"><span class="tab-chip">Pickup Management → Picked Up Devices</span></div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/pickup-management-full-walkthrough.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/pickup-management-full-walkthrough.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Full walkthrough of every Pickup Management tab, including Picked Up Devices</p>
+      </div>
+    </section>
+
+    <!-- Bonus: Exception path -->
+    <section id="bonus" class="module-section">
+      <div class="module-header accent-slate">
+        <h2>🔁 Bonus — Customer Not Available / Reschedule</h2>
+        <span class="wired-pill">✅ Verified</span>
+      </div>
+      <div class="module-body">
+        <p>The real-world exception path: a runner reaches the doorstep but the customer isn't available, and the pickup needs to be rescheduled. Also shows the browser-based Runner Inbox — an alternative to the one-link flow, for runners who prefer to log in and see every assigned job in one list.</p>
+        <div class="tab-row"><span class="tab-chip">Runner Inbox</span><span class="tab-chip">Reschedule</span><span class="tab-chip">Reassignment</span></div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/pickup-inbox-reschedule.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/pickup-inbox-reschedule.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Runner Inbox, customer-unavailable update, and reassignment — all through the real UI</p>
+      </div>
+    </section>
+
+    <section class="module-section">
+      <div class="module-header accent-slate">
+        <h2>📊 Coverage Summary</h2>
+      </div>
+      <div class="module-body">
+        <p><span class="wired-pill">✅ Verified</span> — all 8 of 8 stages, each with its own tab and video proof. Stages 1–2 share one continuous admin-side recording; Stages 3–7 share one continuous runner-side recording (they happen back-to-back in the same real session); Stage 8 and the exception path each have their own dedicated clip.</p>
+        <p>For the guided step-by-step written walkthrough, see the <a href="pickup-runner-flow.html">Pickup Runner Flow guide</a>. For the flagship recording of the full accept-to-complete runner journey, see the <a href="pickup-runner-flow.html#video">full journey video</a> on that page.</p>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+  const links = document.querySelectorAll('.sidebar a');
+  const sections = document.querySelectorAll('.module-section[id]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        links.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

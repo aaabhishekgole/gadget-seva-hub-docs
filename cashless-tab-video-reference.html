@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gadget Seva Hub — Cashless All 9 Tab Video Reference</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f1f5f9; color: #1e293b; line-height: 1.6; }
+    a { color: #2563eb; }
+    code { background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 4px; padding: 2px 6px; font-size: .85rem; font-family: 'Consolas', monospace; color: #0f172a; }
+
+    .hero { background: linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%); color: #f8fafc; padding: 56px 48px 48px; }
+    .hero h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 10px; }
+    .hero p  { font-size: 1.1rem; color: #94a3b8; max-width: 780px; }
+    .hero .badge-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:20px; }
+    .badge { background:#1e293b; border-radius:999px; padding:6px 16px; font-size:.85rem; font-weight:600; color:#93c5fd; }
+
+    .flow-nav { background:#020617; padding:12px 48px; display:flex; gap:10px; flex-wrap:wrap; }
+    .flow-nav a { background:#1e293b; color:#cbd5e1; text-decoration:none; padding:8px 16px; border-radius:8px; font-size:.85rem; font-weight:600; border:1px solid #334155; }
+    .flow-nav a.current { background:#2563eb; color:#fff; border-color:#2563eb; }
+    .flow-nav a:hover { border-color:#3b82f6; color:#fff; }
+
+    .layout { display: flex; min-height: 100vh; }
+    .sidebar { width: 260px; background: #0f172a; color: #f8fafc; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; flex-shrink: 0; }
+    .sidebar h3 { font-size: .7rem; letter-spacing: 1.5px; text-transform: uppercase; color: #475569; padding: 16px 20px 6px; margin-top: 12px; }
+    .sidebar a { display: block; padding: 6px 20px; color: #cbd5e1; text-decoration: none; font-size: .85rem; border-left: 3px solid transparent; transition: all .15s; }
+    .sidebar a:hover, .sidebar a.active { color: #f8fafc; background: #1e293b; border-left-color: #3b82f6; }
+    .content { flex: 1; padding: 0; overflow: hidden; }
+
+    .module-section { background: #fff; margin: 24px 32px; border-radius: 16px; box-shadow: 0 1px 4px rgba(0,0,0,.08); overflow: hidden; }
+    .module-header { padding: 20px 32px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+    .module-header h2 { font-size: 1.4rem; font-weight: 700; color: #fff; }
+    .module-body { padding: 26px 32px; }
+
+    .accent-blue   { background: #2563eb; }
+    .accent-cyan   { background: #0891b2; }
+    .accent-teal   { background: #0d9488; }
+    .accent-gold   { background: #d97706; }
+    .accent-orange { background: #ea580c; }
+    .accent-purple { background: #7c3aed; }
+    .accent-rose   { background: #e11d48; }
+    .accent-red    { background: #dc2626; }
+    .accent-green  { background: #16a34a; }
+    .accent-slate  { background: #475569; }
+    .accent-indigo { background: #4f46e5; }
+
+    h3 { font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 20px 0 10px; }
+    p  { color: #475569; margin-bottom: 12px; font-size: .95rem; }
+
+    .info-box { background:#eff6ff; border-left:4px solid #2563eb; border-radius:6px; padding:14px 18px; margin:16px 0; font-size:.9rem; color:#1e40af; }
+    .success-box { background:#f0fdf4; border-left:4px solid #16a34a; border-radius:6px; padding:14px 18px; margin:16px 0; font-size:.9rem; color:#14532d; }
+
+    .tab-row { display:flex; gap:8px; flex-wrap:wrap; margin:12px 0 16px; }
+    .tab-chip { background:#f1f5f9; border:1px solid #e2e8f0; border-radius:8px; padding:5px 14px; font-size:.82rem; font-weight:600; color:#334155; }
+
+    .wired-pill { display:inline-block; border-radius:999px; padding:4px 14px; font-size:.75rem; font-weight:800; letter-spacing:.02em; background:#f0fdf4; color:#166534; border:1px solid #bbf7d0; }
+
+    .module-nav-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:10px; margin: 20px 32px; }
+    .module-nav-card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:12px 16px; text-decoration:none; display:flex; align-items:center; gap:10px; transition: all .15s; }
+    .module-nav-card:hover { border-color:#3b82f6; box-shadow: 0 2px 8px rgba(37,99,235,.1); }
+    .module-nav-num { width:26px; height:26px; border-radius:50%; background:#0f172a; color:#fff; display:flex; align-items:center; justify-content:center; font-size:.75rem; font-weight:800; flex-shrink:0; }
+    .module-nav-card strong { font-size:.88rem; color:#0f172a; }
+    .module-nav-card small { display:block; font-size:.72rem; color:#94a3b8; }
+
+    @media(max-width:900px){
+      .layout { flex-direction:column; }
+      .sidebar { width:100%; height:auto; position:relative; }
+      .hero { padding:36px 24px 32px; }
+      .hero h1 { font-size:1.8rem; }
+      .module-section { margin:16px; }
+      .module-body { padding:20px; }
+      .flow-nav { padding: 12px 16px; }
+      .module-nav-grid { margin: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🛡️ Cashless All 9 Tab Video Reference</h1>
+  <p>Every distinct screen and state of the public Cashless Insurance Portal, each proven on its own separate video captured against live UAT — no combined recording standing in for the individual tabs.</p>
+  <div class="badge-row">
+    <span class="badge">v1.0 — July 2026</span>
+    <span class="badge">9 Tabs</span>
+    <span class="badge">9 Videos</span>
+    <span class="badge">Every Screen Individually Verified ✅</span>
+    <span class="badge">Verified on Live UAT ✅</span>
+  </div>
+</div>
+
+<div class="flow-nav">
+  <a href="index.html">🏠 All Docs</a>
+  <a href="cashless-portal.html">🛡️ Public Cashless Portal Flow</a>
+  <a href="pickup-runner-flow.html">🛵 Pickup Runner Flow</a>
+  <a href="admin-full-workflow.html">🖥️ Admin Full Workflow</a>
+  <a href="admin-modules-reference.html">🗂️ Admin All 19 Tab Video Reference</a>
+  <a href="cashless-tab-video-reference.html" class="current">🛡️ Cashless All 9 Tab Video Reference</a>
+  <a href="pickup-tab-video-reference.html">🛵 Pickup Runner All 8 Tab Video Reference</a>
+</div>
+
+<div class="layout">
+
+  <nav class="sidebar">
+    <h3>All 9 Tabs</h3>
+    <a href="#tab1">1. Portal Landing</a>
+    <a href="#tab2">2. Two-Tab Home</a>
+    <a href="#tab3">3. Registration Form</a>
+    <a href="#tab4">4. Stepper Transition</a>
+    <a href="#tab5">5. Pre-Repair Upload UI</a>
+    <a href="#tab6">6. Track Existing Claim</a>
+    <a href="#tab7">7. Post-Repair Upload UI</a>
+    <a href="#tab8">8. Complete State</a>
+    <a href="#tab9">9. Invalid Token Error</a>
+  </nav>
+
+  <div class="content">
+
+    <section class="module-section">
+      <div class="module-header accent-indigo">
+        <h2>🗂️ Jump to Any Tab</h2>
+      </div>
+      <div class="module-body">
+        <p>Every screen a customer or promoter can land on in the public Cashless Insurance Portal — each with its own dedicated video, not one clip standing in for all of them. See the <a href="cashless-portal.html">full step-by-step guide</a> for the written walkthrough, or the <a href="cashless-portal.html#video-e2e">flagship end-to-end journey</a> for the full register-to-closed recording in one continuous take.</p>
+      </div>
+    </section>
+
+    <div class="module-nav-grid">
+      <a class="module-nav-card" href="#tab1"><span class="module-nav-num">1</span><div><strong>Portal Landing</strong><small>No login redirect</small></div></a>
+      <a class="module-nav-card" href="#tab2"><span class="module-nav-num">2</span><div><strong>Two-Tab Home</strong><small>Register / Track</small></div></a>
+      <a class="module-nav-card" href="#tab3"><span class="module-nav-num">3</span><div><strong>Registration Form</strong><small>All fields render</small></div></a>
+      <a class="module-nav-card" href="#tab4"><span class="module-nav-num">4</span><div><strong>Stepper Transition</strong><small>Step 1 → Step 2</small></div></a>
+      <a class="module-nav-card" href="#tab5"><span class="module-nav-num">5</span><div><strong>Pre-Repair Upload UI</strong><small>9 document slots</small></div></a>
+      <a class="module-nav-card" href="#tab6"><span class="module-nav-num">6</span><div><strong>Track Existing Claim</strong><small>Search by claim/phone</small></div></a>
+      <a class="module-nav-card" href="#tab7"><span class="module-nav-num">7</span><div><strong>Post-Repair Upload UI</strong><small>7 slots + invoice amount</small></div></a>
+      <a class="module-nav-card" href="#tab8"><span class="module-nav-num">8</span><div><strong>Complete State</strong><small>Claim closed card</small></div></a>
+      <a class="module-nav-card" href="#tab9"><span class="module-nav-num">9</span><div><strong>Invalid Token Error</strong><small>Unknown/expired link</small></div></a>
+    </div>
+
+    <!-- 1. Portal Landing -->
+    <section id="tab1" class="module-section">
+      <div class="module-header accent-blue">
+        <h2>1️⃣ Portal Landing</h2>
+        <span class="wired-pill">✅ Verified</span>
+      </div>
+      <div class="module-body">
+        <p>The very first screen anyone sees at <code>/cashless-portal</code> — confirms the page loads with no login redirect, since the whole point of this portal is that customers and promoters never need an admin account.</p>
+        <div class="tab-row"><span class="tab-chip">No Login Required</span></div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/cashless-subtab-portal-landing.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/cashless-subtab-portal-landing.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Portal loads directly at /cashless-portal — no login heading, no redirect</p>
+      </div>
+    </section>
+
+    <!-- 2. Two-Tab Home -->
+    <section id="tab2" class="module-section">
+      <div class="module-header accent-cyan">
+        <h2>2️⃣ Two-Tab Home</h2>
+        <span class="wired-pill">✅ Verified</span>
+      </div>
+      <div class="module-body">
+        <p>The home card offers two tabs — <strong>New Claim Registration</strong> for first-time customers, and <strong>Track Existing Claim</strong> for anyone resuming a claim without their bookmark link.</p>
+        <div class="tab-row"><span class="tab-chip">New Claim Registration</span><span class="tab-chip">Track Existing Claim</span></div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/cashless-subtab-two-tab-home.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/cashless-subtab-two-tab-home.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Both tab buttons visible and switchable on first load</p>
+      </div>
+    </section>
+
+    <!-- 3. Registration Form -->
+    <section id="tab3" class="module-section">
+      <div class="module-header accent-teal">
+        <h2>3️⃣ Registration Form</h2>
+        <span class="wired-pill">✅ Verified</span>
+      </div>
+      <div class="module-body">
+        <p>Every field on the New Claim Registration form renders correctly — Insurance Claim Number, Customer Name, Mobile Number (mandatory), plus Email, Promoter Name, Device Model, and IMEI (optional).</p>
+        <div class="tab-row"><span class="tab-chip">Insurance Claim Number</span><span class="tab-chip">Customer Name</span><span class="tab-chip">Mobile Number</span><span class="tab-chip">Email</span><span class="tab-chip">Promoter Name</span><span class="tab-chip">Device Model</span><span class="tab-chip">IMEI</span></div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/cashless-subtab-registration-fields.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/cashless-subtab-registration-fields.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">All 7 registration fields render, mandatory and optional</p>
+      </div>
+    </section>
+
+    <!-- 4. Stepper Transition -->
+    <section id="tab4" class="module-section">
+      <div class="module-header accent-gold">
+        <h2>4️⃣ Stepper Transition</h2>
+        <span class="wired-pill">✅ Verified</span>
+      </div>
+      <div class="module-body">
+        <p>The progress stepper at the top of the portal correctly advances from Step 1 (Register) to Step 2 (Upload Docs) the instant a claim is registered — proving the guided 4-step flow tracks real state, not just a static graphic.</p>
+        <div class="tab-row"><span class="tab-chip">Step 1 — Register</span><span class="tab-chip">Step 2 — Upload Docs</span></div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/cashless-subtab-stepper-transition.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/cashless-subtab-stepper-transition.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Stepper highlights Step 1 on load, then Step 2 immediately after registration</p>
+      </div>
+    </section>
+
+    <!-- 5. Pre-Repair Upload UI -->
+    <section id="tab5" class="module-section">
+      <div class="module-header accent-purple">
+        <h2>5️⃣ Pre-Repair Upload UI</h2>
+        <span class="wired-pill">✅ Verified</span>
+      </div>
+      <div class="module-body">
+        <p>Right after registration, all 9 required pre-repair document slots appear with a live progress bar — the same screen documented in Step 2 of the <a href="cashless-portal.html#step2">full guide</a>.</p>
+        <div class="tab-row"><span class="tab-chip">6 Device Photos</span><span class="tab-chip">Purchase Invoice</span><span class="tab-chip">Estimate Copy</span><span class="tab-chip">Job Sheet Copy</span></div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/cashless-pre-repair-upload-ui.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/cashless-pre-repair-upload-ui.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Real captured moment — the pre-repair upload screen right after registration</p>
+      </div>
+    </section>
+
+    <!-- 6. Track Existing Claim -->
+    <section id="tab6" class="module-section">
+      <div class="module-header accent-rose">
+        <h2>6️⃣ Track Existing Claim</h2>
+        <span class="wired-pill">✅ Verified</span>
+      </div>
+      <div class="module-body">
+        <p>Customers who lost their bookmark link can find their claim again — search by Insurance Claim Number or Registered Mobile Number, no login needed.</p>
+        <div class="tab-row"><span class="tab-chip">Insurance Claim Number</span><span class="tab-chip">Mobile Number</span></div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/cashless-subtab-track-fields.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/cashless-subtab-track-fields.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Both search fields and the Search Claim button visible on the Track tab</p>
+      </div>
+    </section>
+
+    <!-- 7. Post-Repair Upload UI -->
+    <section id="tab7" class="module-section">
+      <div class="module-header accent-orange">
+        <h2>7️⃣ Post-Repair Upload UI</h2>
+        <span class="wired-pill">✅ Verified</span>
+      </div>
+      <div class="module-body">
+        <p>After GSH approves the claim, the portal automatically switches to the Post-Repair phase — 7 new document slots plus the required Service Center Invoice Amount field.</p>
+        <div class="tab-row"><span class="tab-chip">6 Repaired-Device Photos</span><span class="tab-chip">Service Center Invoice</span><span class="tab-chip">Invoice Amount ₹</span></div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/cashless-post-repair-upload-ui.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/cashless-post-repair-upload-ui.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Real captured moment — the post-repair upload screen right after GSH approval</p>
+      </div>
+    </section>
+
+    <!-- 8. Complete State -->
+    <section id="tab8" class="module-section">
+      <div class="module-header accent-green">
+        <h2>8️⃣ Complete State</h2>
+        <span class="wired-pill">✅ Verified</span>
+      </div>
+      <div class="module-body">
+        <p>Once post-repair documents are submitted, the portal shows the final Complete status card — no further customer action needed until the claim is fully closed.</p>
+        <div class="tab-row"><span class="tab-chip">INVOICE_SUBMITTED</span><span class="tab-chip">Step 4 of 4</span></div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/cashless-complete-state-ui.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/cashless-complete-state-ui.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Real captured moment — the Complete state card after post-repair submission</p>
+      </div>
+    </section>
+
+    <!-- 9. Invalid Token Error -->
+    <section id="tab9" class="module-section">
+      <div class="module-header accent-slate">
+        <h2>9️⃣ Invalid Token Error</h2>
+        <span class="wired-pill">✅ Verified</span>
+      </div>
+      <div class="module-body">
+        <p>An edge case, verified deliberately: opening the portal with an unknown or expired token shows a clear, friendly error message instead of a blank page or a stack trace.</p>
+        <div class="tab-row"><span class="tab-chip">Edge Case</span><span class="tab-chip">Graceful Error</span></div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/cashless-subtab-invalid-token.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/cashless-subtab-invalid-token.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Unknown token shows an error message, not a crash</p>
+      </div>
+    </section>
+
+    <section class="module-section">
+      <div class="module-header accent-slate">
+        <h2>📊 Coverage Summary</h2>
+      </div>
+      <div class="module-body">
+        <p><span class="wired-pill">✅ Verified</span> — all 9 of 9 distinct portal screens/states, each backed by its own dedicated video captured against live UAT. None of these are mockups or design-file screenshots.</p>
+        <p>For the guided step-by-step written walkthrough of the whole customer journey, see the <a href="cashless-portal.html">Public Cashless Portal Flow guide</a>. For one continuous recording of register → uploads → GSH approval → post-repair → invoice → insurance → closed, see the <a href="cashless-portal.html#video-e2e">flagship end-to-end video</a> on that page.</p>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+  const links = document.querySelectorAll('.sidebar a');
+  const sections = document.querySelectorAll('.module-section[id]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        links.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

@@ -197,6 +197,12 @@
           <figcaption>Real captured moment — Assign Pickup board, request queued for the runner</figcaption>
         </figure>
 
+        <video controls style="width:100%;border-radius:10px;margin:8px 0 16px;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/admin-stage1-assign-pickup.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/admin-stage1-assign-pickup.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-10px;">Pickup Management module test — onboard a runner, assign a request, and track it across every pickup tab</p>
+
         <div class="info-box">💡 Once the runner accepts, uploads all 10 required photos, and submits pickup done, the device is officially collected — see the full detail in the <a href="pickup-runner-flow.html">Pickup Runner Flow guide</a>.</div>
       </div>
     </section>
@@ -209,6 +215,12 @@
         <p>Once the runner hands the device over, it's logged into the hub and forwarded on to diagnosis.</p>
         <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Hub Operations → Device Received at Hub</strong><p>Click "Mark Received At Hub" on the request card.</p><p>Status becomes <code>RECEIVED_AT_HUB</code>.</p></div></div>
         <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Hub Operations → Send to Service Center</strong><p>Click "Send To Service Center."</p><p>Status becomes <code>DIAGNOSIS_IN_PROGRESS</code> — the device is now with the repair team.</p></div></div>
+
+        <video controls style="width:100%;border-radius:10px;margin:8px 0 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/admin-stage2-hub-operations.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/admin-stage2-hub-operations.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:8px;">Hub Operations module test — receive at hub, verify, and dispatch to service center across every hub tab</p>
       </div>
     </section>
 
@@ -220,6 +232,12 @@
         <p>The service center technician diagnoses the fault and submits a cost estimate directly on the request card.</p>
         <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Service Center → Devices Under Inspection</strong><p>Fill in the diagnosis summary, parts cost, labour cost, and tax amount.</p></div></div>
         <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Click "Submit Estimate"</strong><p>Status becomes <code>ESTIMATE_PREPARED</code> and the request moves to the approval desk.</p></div></div>
+
+        <video controls style="width:100%;border-radius:10px;margin:8px 0 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/admin-stage3-service-center.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/admin-stage3-service-center.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:8px;">Service Center module test — diagnosis, estimate submission, repair, and total-loss requests mapped into every service-center tab</p>
       </div>
     </section>
 
@@ -236,6 +254,12 @@
           <img src="e2e-shots/admin-e2e-estimate-approval.png" alt="Estimate Approval Queue" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
           <figcaption>Real captured moment — Estimate Approval Queue, the admin console's own built-in explainer for this stage</figcaption>
         </figure>
+
+        <video controls style="width:100%;border-radius:10px;margin:8px 0 16px;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/admin-stage4-estimate-approval.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/admin-stage4-estimate-approval.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-10px;">Estimates module test — approve and revise estimates from the approval desk</p>
 
         <div class="warn-box">⚠️ Estimates can also be sent back with <strong>"Request Revision"</strong>, which returns the request to diagnosis instead of approving it — that path is exercised separately in the regression suite.</div>
       </div>
@@ -265,6 +289,13 @@
         <p>Before a repaired device can be dispatched, it passes through quality control.</p>
         <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Quality Check → Pending QC</strong><p>Inspect the repaired device against the reported issue.</p></div></div>
         <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Click "QC Passed"</strong><p>Status becomes <code>READY_FOR_DISPATCH</code>.</p></div></div>
+
+        <video controls style="width:100%;border-radius:10px;margin:8px 0 16px;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/admin-stage6-quality-check.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/admin-stage6-quality-check.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-10px;">Quality Check module test — QC failure, rework, and QC pass driven across every quality-check tab</p>
+
         <div class="info-box">💡 If a device fails inspection, <strong>"QC Failed"</strong> sends it back to repair, and <strong>"Finish Rework"</strong> returns it to the QC queue once fixed — both exercised in the module's own dedicated regression test.</div>
       </div>
     </section>
@@ -283,6 +314,12 @@
           <img src="e2e-shots/admin-e2e-delivery-started.png" alt="Delivery Tracking — Out for Delivery" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);">
           <figcaption>Real captured moment — Delivery Tracking board, "Delivery started" confirmation</figcaption>
         </figure>
+
+        <video controls style="width:100%;border-radius:10px;margin:8px 0 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/admin-stage7-delivery.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/admin-stage7-delivery.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:8px;">Delivery module test — assign, fail, reassign, and complete delivery across every delivery tab</p>
       </div>
     </section>
 

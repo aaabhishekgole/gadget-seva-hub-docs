@@ -66,6 +66,12 @@
     .module-nav-card strong { font-size:.88rem; color:#0f172a; }
     .module-nav-card small { display:block; font-size:.72rem; color:#94a3b8; }
 
+    .subhead { font-size:.78rem; font-weight:800; letter-spacing:.03em; text-transform:uppercase; color:#64748b; margin:22px 0 10px; padding-top:16px; border-top:1px dashed #e2e8f0; }
+    .subtab-video-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:14px; margin:10px 0 16px; }
+    .subtab-video-card { background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px; }
+    .subtab-video-card video { width:100%; border-radius:6px; display:block; }
+    .subtab-video-card .subtab-label { font-size:.78rem; font-weight:700; color:#334155; margin-top:8px; text-align:center; }
+
     @media(max-width:900px){
       .layout { flex-direction:column; }
       .sidebar { width:100%; height:auto; position:relative; }
@@ -82,12 +88,13 @@
 
 <div class="hero">
   <h1>🗂️ All 19 Admin Modules — Reference &amp; Video Library</h1>
-  <p>Every module and sub-tab in the Gadget Seva Hub admin console, in nav-bar order, each with a real functional-flow video captured against live UAT — the single source for a full-portal demo.</p>
+  <p>Every module and sub-tab in the Gadget Seva Hub admin console, in nav-bar order, each with a real functional-flow video captured against live UAT — the single source for a full-portal demo. Every module now includes a full sub-tab-by-sub-tab walkthrough, not just one representative clip.</p>
   <div class="badge-row">
-    <span class="badge">v1.0 — July 2026</span>
+    <span class="badge">v2.0 — July 2026</span>
     <span class="badge">19 Modules</span>
     <span class="badge">92 Sub-Tabs</span>
-    <span class="badge">19 Videos</span>
+    <span class="badge">58 Video Clips</span>
+    <span class="badge">Every Sub-Tab Covered ✅</span>
     <span class="badge">Verified on Live UAT ✅</span>
   </div>
 </div>
@@ -183,6 +190,13 @@
           Your browser does not support the video tag. <a href="videos/modules/dashboard-login.webm">Download the video</a>.
         </video>
         <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Real login → Dashboard → Claims queue, session preserved throughout</p>
+
+        <div class="subhead">🎬 Full Sub-Tab Walkthrough — all 4 tabs visited end-to-end</div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/dashboard-full-walkthrough.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/dashboard-full-walkthrough.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Overview → SLA/TAT Summary → Recent Activities → Alerts &amp; Escalations, every tab loads and renders real data</p>
       </div>
     </section>
 
@@ -208,6 +222,13 @@
           Your browser does not support the video tag. <a href="videos/modules/service-requests-create.webm">Download the video</a>.
         </video>
         <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Registers a new claim through the real Create Request form and confirms it persists for admin follow-up</p>
+
+        <div class="subhead">🎬 Full Sub-Tab Walkthrough — all 7 tabs visited end-to-end</div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/service-requests-full-walkthrough.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/service-requests-full-walkthrough.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">All Requests → Open → In Progress → Closed → Cancelled → Search, every tab confirmed loading real data</p>
       </div>
     </section>
 
@@ -233,6 +254,13 @@
           Your browser does not support the video tag. <a href="videos/modules/admin-stage1-assign-pickup.webm">Download the video</a>.
         </video>
         <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Onboards a runner, assigns a pickup, and tracks the request across every pickup tab</p>
+
+        <div class="subhead">🎬 Full Sub-Tab Walkthrough — all 7 tabs visited end-to-end</div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/pickup-management-full-walkthrough.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/pickup-management-full-walkthrough.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Pickup Dashboard → Runner Onboarding → Assign → Pending → Picked Up → Failed Cases → History, every tab confirmed</p>
       </div>
     </section>
 
@@ -256,6 +284,13 @@
           Your browser does not support the video tag. <a href="videos/modules/admin-stage2-hub-operations.webm">Download the video</a>.
         </video>
         <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Marks a device received at hub, then dispatches it to the service center — moved across every hub tab</p>
+
+        <div class="subhead">🎬 Full Sub-Tab Walkthrough — all 5 tabs visited end-to-end</div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/hub-operations-full-walkthrough.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/hub-operations-full-walkthrough.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Received at Hub → Pending Verification → Send to Service Center → Inward Register → Hub Inventory, every tab confirmed</p>
       </div>
     </section>
 
@@ -280,6 +315,13 @@
           Your browser does not support the video tag. <a href="videos/modules/admin-stage3-service-center.webm">Download the video</a>.
         </video>
         <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Maps diagnosis, estimate, repair, and total-loss requests into every correct service-center tab</p>
+
+        <div class="subhead">🎬 Full Sub-Tab Walkthrough — all 6 tabs visited end-to-end</div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/service-center-full-walkthrough.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/service-center-full-walkthrough.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Devices Under Inspection → Estimate Pending → Estimate Submitted → Under Repair → Repair Completed → Total Loss, every tab confirmed</p>
       </div>
     </section>
 
@@ -303,6 +345,13 @@
           Your browser does not support the video tag. <a href="videos/modules/admin-stage4-estimate-approval.webm">Download the video</a>.
         </video>
         <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Approves one estimate and sends another back for revision from the real approval desk</p>
+
+        <div class="subhead">🎬 Full Sub-Tab Walkthrough — all 5 Estimates tabs visited end-to-end</div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/estimates-cashless-full-walkthrough.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/estimates-cashless-full-walkthrough.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Same test run also walks every Cashless tab — see Module 7 below. New Estimates → Awaiting Approval → Approved → Rejected → History, every tab confirmed</p>
       </div>
     </section>
 
@@ -324,6 +373,13 @@
           Your browser does not support the video tag. <a href="videos/modules/cashless-approval-queue.webm">Download the video</a>.
         </video>
         <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Maps cashless evidence and approval into the Pending Photos and Approved Cases queues</p>
+
+        <div class="subhead">🎬 Full Sub-Tab Walkthrough — all 3 Cashless tabs visited end-to-end</div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/estimates-cashless-full-walkthrough.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/estimates-cashless-full-walkthrough.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Same combined test as Module 6 — Approval Queue → Pending Photos → Approved Cases, every tab confirmed</p>
       </div>
     </section>
 
@@ -348,6 +404,13 @@
           Your browser does not support the video tag. <a href="videos/modules/claims-list.webm">Download the video</a>.
         </video>
         <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">A submitted claim appears in the real All Claims list page immediately after submission</p>
+
+        <div class="subhead">🎬 Full Sub-Tab Walkthrough — all 6 tabs visited end-to-end</div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/claims-full-walkthrough.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/claims-full-walkthrough.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">All Claims → Approval Pending → Approved → Rejected → Re-upload Pending → History, every tab confirmed loading without error</p>
       </div>
     </section>
 
@@ -369,6 +432,13 @@
           Your browser does not support the video tag. <a href="videos/modules/invoice-verification-queue.webm">Download the video</a>.
         </video>
         <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">A submitted invoice appears in the real Invoice Verification queue, ready for admin approval</p>
+
+        <div class="subhead">🎬 Full Sub-Tab Walkthrough — all 3 tabs visited end-to-end</div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/invoice-verification-full-walkthrough.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/invoice-verification-full-walkthrough.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Invoice Queue → Invoice Approved → Invoice Rejected, every tab confirmed loading without error</p>
       </div>
     </section>
 
@@ -390,6 +460,13 @@
           Your browser does not support the video tag. <a href="videos/modules/insurance-submission-queue.webm">Download the video</a>.
         </video>
         <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">A claim with an approved invoice appears in the real "Ready for Insurance" queue</p>
+
+        <div class="subhead">🎬 Full Sub-Tab Walkthrough — all 3 tabs visited end-to-end</div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/insurance-submission-full-walkthrough.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/insurance-submission-full-walkthrough.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Ready for Insurance → Submitted to Insurance → Insurance History, every tab confirmed loading without error</p>
       </div>
     </section>
 
@@ -412,6 +489,13 @@
           Your browser does not support the video tag. <a href="videos/modules/admin-stage6-quality-check.webm">Download the video</a>.
         </video>
         <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Drives a QC failure, rework, and final QC pass across every quality-check tab</p>
+
+        <div class="subhead">🎬 Full Sub-Tab Walkthrough — all 4 tabs visited end-to-end</div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/quality-check-full-walkthrough.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/quality-check-full-walkthrough.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Pending QC → QC Passed → QC Failed → Rework Required, every tab confirmed</p>
       </div>
     </section>
 
@@ -436,6 +520,13 @@
           Your browser does not support the video tag. <a href="videos/modules/admin-stage7-delivery.webm">Download the video</a>.
         </video>
         <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Assigns, fails, reassigns, and completes a delivery across every delivery tab</p>
+
+        <div class="subhead">🎬 Full Sub-Tab Walkthrough — all 6 tabs visited end-to-end</div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/delivery-full-walkthrough.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/delivery-full-walkthrough.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Assign → Ready for Dispatch → Out for Delivery → Delivered → Delivery Failed → History, every tab confirmed</p>
       </div>
     </section>
 
@@ -460,6 +551,13 @@
           Your browser does not support the video tag. <a href="videos/modules/admin-stage8-billing.webm">Download the video</a>.
         </video>
         <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Generates an invoice, records payment, reconciles it, and closes the request</p>
+
+        <div class="subhead">🎬 Full Sub-Tab Walkthrough — all 6 tabs visited end-to-end</div>
+        <video controls style="width:100%;border-radius:10px;margin:8px 0;box-shadow:0 2px 12px rgba(0,0,0,.15);">
+          <source src="videos/modules/billing-full-walkthrough.webm" type="video/webm">
+          Your browser does not support the video tag. <a href="videos/modules/billing-full-walkthrough.webm">Download the video</a>.
+        </video>
+        <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Generate Invoice → Pending → Reconciliation → Paid → Refund Cases → Invoice Reports, every tab confirmed</p>
       </div>
     </section>
 
@@ -482,6 +580,26 @@
           Your browser does not support the video tag. <a href="videos/modules/notifications-sms-logs.webm">Download the video</a>.
         </video>
         <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">SMS Logs tab loading correctly (navigation-only — no dedicated backend yet)</p>
+
+        <div class="subhead">📋 Every Sub-Tab, Individually Verified</div>
+        <div class="subtab-video-grid">
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/notifications-subtab-sms-logs.webm" type="video/webm"></video>
+            <div class="subtab-label">SMS Logs</div>
+          </div>
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/notifications-subtab-email-logs.webm" type="video/webm"></video>
+            <div class="subtab-label">Email Logs</div>
+          </div>
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/notifications-subtab-failed-notifications.webm" type="video/webm"></video>
+            <div class="subtab-label">Failed Notifications</div>
+          </div>
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/notifications-subtab-templates.webm" type="video/webm"></video>
+            <div class="subtab-label">Templates</div>
+          </div>
+        </div>
         <div class="warn-box">⚠️ Confirmed via a full admin-portal wiring audit: no backend endpoint exists for notification logs or templates yet.</div>
       </div>
     </section>
@@ -507,6 +625,34 @@
           Your browser does not support the video tag. <a href="videos/modules/users-admin-directory.webm">Download the video</a>.
         </video>
         <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Admin Users tab showing the real registered admin account from the live user directory</p>
+
+        <div class="subhead">📋 Every Sub-Tab, Individually Verified</div>
+        <div class="subtab-video-grid">
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/users-subtab-admin-users.webm" type="video/webm"></video>
+            <div class="subtab-label">Admin Users</div>
+          </div>
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/users-subtab-delivery-executives.webm" type="video/webm"></video>
+            <div class="subtab-label">Delivery Executives</div>
+          </div>
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/users-subtab-hub-operators.webm" type="video/webm"></video>
+            <div class="subtab-label">Hub Operators</div>
+          </div>
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/users-subtab-service-center-users.webm" type="video/webm"></video>
+            <div class="subtab-label">Service Center Users</div>
+          </div>
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/users-subtab-customers.webm" type="video/webm"></video>
+            <div class="subtab-label">Customers</div>
+          </div>
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/users-subtab-roles-permissions.webm" type="video/webm"></video>
+            <div class="subtab-label">Roles &amp; Permissions</div>
+          </div>
+        </div>
         <div class="success-box">✅ Customers is derived from live service-request data; Roles &amp; Permissions reflects the app's actual per-role access rules.</div>
       </div>
     </section>
@@ -533,6 +679,38 @@
           Your browser does not support the video tag. <a href="videos/modules/reports-request-report.webm">Download the video</a>.
         </video>
         <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Request Report tab loading correctly (navigation-only — no dedicated reporting backend yet)</p>
+
+        <div class="subhead">📋 Every Sub-Tab, Individually Verified</div>
+        <div class="subtab-video-grid">
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/reports-subtab-request-report.webm" type="video/webm"></video>
+            <div class="subtab-label">Request Report</div>
+          </div>
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/reports-subtab-pickup-report.webm" type="video/webm"></video>
+            <div class="subtab-label">Pickup Report</div>
+          </div>
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/reports-subtab-repair-report.webm" type="video/webm"></video>
+            <div class="subtab-label">Repair Report</div>
+          </div>
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/reports-subtab-delivery-report.webm" type="video/webm"></video>
+            <div class="subtab-label">Delivery Report</div>
+          </div>
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/reports-subtab-sla-tat-report.webm" type="video/webm"></video>
+            <div class="subtab-label">SLA / TAT Report</div>
+          </div>
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/reports-subtab-revenue-report.webm" type="video/webm"></video>
+            <div class="subtab-label">Revenue Report</div>
+          </div>
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/reports-subtab-audit-logs.webm" type="video/webm"></video>
+            <div class="subtab-label">Audit Logs ✅ real</div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -556,6 +734,30 @@
           Your browser does not support the video tag. <a href="videos/modules/settings-status-config.webm">Download the video</a>.
         </video>
         <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Status Configuration tab loading correctly (navigation-only — no dedicated settings backend yet)</p>
+
+        <div class="subhead">📋 Every Sub-Tab, Individually Verified</div>
+        <div class="subtab-video-grid">
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/settings-subtab-status-configuration.webm" type="video/webm"></video>
+            <div class="subtab-label">Status Configuration</div>
+          </div>
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/settings-subtab-notification-settings.webm" type="video/webm"></video>
+            <div class="subtab-label">Notification Settings</div>
+          </div>
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/settings-subtab-sla-configuration.webm" type="video/webm"></video>
+            <div class="subtab-label">SLA Configuration</div>
+          </div>
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/settings-subtab-file-storage-config.webm" type="video/webm"></video>
+            <div class="subtab-label">File Storage Config</div>
+          </div>
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/settings-subtab-system-preferences.webm" type="video/webm"></video>
+            <div class="subtab-label">System Preferences</div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -598,6 +800,26 @@
           Your browser does not support the video tag. <a href="videos/modules/audit-activity-logs.webm">Download the video</a>.
         </video>
         <p style="font-size:.8rem;color:#64748b;text-align:center;margin-top:-4px;">Activity Logs tab loading correctly (navigation-only — no dedicated activity-log backend yet)</p>
+
+        <div class="subhead">📋 Every Sub-Tab, Individually Verified</div>
+        <div class="subtab-video-grid">
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/audit-subtab-activity-logs.webm" type="video/webm"></video>
+            <div class="subtab-label">Activity Logs</div>
+          </div>
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/audit-subtab-status-history.webm" type="video/webm"></video>
+            <div class="subtab-label">Status History ✅ real</div>
+          </div>
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/audit-subtab-user-actions.webm" type="video/webm"></video>
+            <div class="subtab-label">User Actions</div>
+          </div>
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/audit-subtab-change-logs.webm" type="video/webm"></video>
+            <div class="subtab-label">Change Logs</div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -608,7 +830,7 @@
       <div class="module-body">
         <p><span class="wired-pill wired-yes">✅ Fully Wired</span> — 15 of 19 modules: Dashboard, Service Requests, Pickup Management, Hub Operations, Service Center, Estimates, Cashless, Claims, Invoice Verification, Insurance Submission, Quality Check, Delivery, Billing, Users, Documents.</p>
         <p><span class="wired-pill wired-partial">⚠️ Reference View</span> — 4 of 19 modules: Notifications, Reports (6 of 7 sub-tabs), Settings, Audit (3 of 4 sub-tabs) — all confirmed to load correctly, but with no dedicated backend behind their specific data yet. Not a bug — a scope decision for a future build.</p>
-        <p>Every module above, wired or reference, has its own real video captured against live UAT — nothing on this page is a mockup.</p>
+        <p>Every module above, wired or reference, has its own real video captured against live UAT — nothing on this page is a mockup. 13 modules with a single combined navigation test now also include a <strong>Full Sub-Tab Walkthrough</strong> video that visits every one of that module's tabs in one run; the 5 modules whose sub-tabs are tested individually (Notifications, Users, Reports, Settings, Audit) instead show a dedicated clip <strong>per sub-tab</strong> — so every one of the 92 sub-tabs across all 19 modules now has direct video proof, not just its parent module.</p>
       </div>
     </section>
 

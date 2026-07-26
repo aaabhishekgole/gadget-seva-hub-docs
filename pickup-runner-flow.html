@@ -75,6 +75,13 @@
     .stage-strip { display:flex; flex-wrap:wrap; gap:8px; margin: 16px 0 24px; }
     .stage-chip { background:#f1f5f9; border:1px solid #e2e8f0; border-radius:999px; padding:6px 14px; font-size:.8rem; font-weight:700; color:#334155; }
     .stage-chip.done { background:#f0fdf4; border-color:#bbf7d0; color:#166534; }
+
+    .subhead { font-size:.78rem; font-weight:800; letter-spacing:.03em; text-transform:uppercase; color:#64748b; margin:22px 0 10px; padding-top:16px; border-top:1px dashed #e2e8f0; }
+    .subtab-video-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:14px; margin:10px 0 16px; }
+    .subtab-video-card { background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px; }
+    .subtab-video-card video { width:100%; border-radius:6px; display:block; }
+    .subtab-video-card .subtab-label { font-size:.78rem; font-weight:700; color:#334155; margin-top:8px; text-align:center; }
+    .subtab-video-card .subtab-stage { font-size:.7rem; color:#94a3b8; text-align:center; margin-top:2px; }
     .flow-diagram { background:#f8fafc; border-radius:10px; padding:20px 24px; margin:16px 0; }
     .flow-steps { display:flex; flex-wrap:wrap; gap:0; align-items:center; }
     .flow-step { background:#fff; border:1px solid #e2e8f0; border-radius:8px; padding:8px 14px; font-size:.82rem; font-weight:600; color:#334155; }
@@ -135,6 +142,7 @@
     <h3>Overview</h3>
     <a href="#overview">What is the Pickup Flow?</a>
     <a href="#stages">Stages at a Glance</a>
+    <a href="#stage-videos">🎬 Every Screen, Individually</a>
     <a href="#roles">Who's Involved?</a>
 
     <h3>Admin Side</h3>
@@ -203,6 +211,31 @@
           <span class="stage-chip done">8. Admin Confirms in Picked Up Devices</span>
         </div>
         <p>Every chip above is a real click — by the runner on their phone, or by admin in the ops console — captured on video in one uninterrupted run. See the <a href="#video">full journey recording</a> further down this page.</p>
+
+        <div id="stage-videos" class="subhead">🎬 Runner &amp; Admin Screens — Individually Verified (Tab Format)</div>
+        <p style="margin-top:-4px;">Each leg of the journey, captured as its own separate clip rather than one combined recording.</p>
+        <div class="subtab-video-grid">
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/admin-stage1-assign-pickup.webm" type="video/webm"></video>
+            <div class="subtab-label">Admin Onboards &amp; Assigns</div>
+            <div class="subtab-stage">Stage 1 – 2</div>
+          </div>
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/pickup-management-full-walkthrough.webm" type="video/webm"></video>
+            <div class="subtab-label">Every Pickup Tab (Admin Console)</div>
+            <div class="subtab-stage">Admin reference</div>
+          </div>
+          <div class="subtab-video-card">
+            <video controls><source src="videos/modules/pickup-inbox-reschedule.webm" type="video/webm"></video>
+            <div class="subtab-label">Runner Inbox + Reschedule</div>
+            <div class="subtab-stage">Stage 3 (alt. path) + exceptions</div>
+          </div>
+          <div class="subtab-video-card">
+            <video controls><source src="videos/pickup-runner-full-journey.webm" type="video/webm"></video>
+            <div class="subtab-label">Accept → Upload 10 Photos → Submit Done</div>
+            <div class="subtab-stage">Stage 4 – 8</div>
+          </div>
+        </div>
       </div>
     </section>
 
